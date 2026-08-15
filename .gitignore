@@ -1,0 +1,22 @@
+# Next.js
+.next/
+out/
+node_modules/
+.vercel
+*.tsbuildinfo
+
+# Env / secrets — never commit real credentials
+.env
+.env.local
+.env*.local
+
+# Claude Code local permission cache — can retain command history with
+# secrets that were typed inline during a session
+.claude/settings.local.json
+
+# Supabase CLI
+supabase/.temp/
+
+# OS / editor
+.DS_Store
+*.log

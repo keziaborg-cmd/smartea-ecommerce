@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens ported 1:1 from design-bundle/README.md ("Design Tokens").
+ * Per-tea palettes (heroBg gradients, glow, cardBg, etc.) live in data/teas.ts
+ * as inline gradient strings keyed by product slug, not here.
+ */
+@theme {
+  --color-verde-escuro: #013f24;
+  --color-verde-folha: #568833;
+  --color-creme: #fffdf8;
+  --color-creme-quente: #f0e6cf;
+  --color-vinho: #6f1d11;
+  --color-vermelho-marca: #c01718;
+  --color-tinta: #211f1e;
+  --color-dourado: #c8a24a;
+  --color-texto-sobre-escuro: #dce6d3;
+  --color-texto-sobre-escuro-2: #cfe0c9;
+  --color-eyebrow-escuro: #9db38f;
+  --color-eyebrow-claro: #7a8a6e;
+  --color-borda-clara: #e0dac6;
+  --color-borda-clara-2: #d9d2bf;
+  --color-input-bg: #faf8f1;
+  --color-sage: #e1ead4;
+  --color-confirm-bg: #f4efe2;
+  --color-sucesso-bg: #e6efdd;
+  --color-sucesso-fg: #2f6b2a;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-fg: #062e13;
+  --color-gatilho-bg: #f7f3e8;
+
+  --radius-panel: 34px;
+  --radius-card-produto: 26px;
+  --radius-card-conteudo: 22px;
+  --radius-input: 12px;
+  --radius-pill: 40px;
+
+  --shadow-lata: 0 40px 45px rgba(0, 0, 0, 0.5);
+  --shadow-card-produto: 0 26px 26px rgba(0, 0, 0, 0.28);
+
+  --container-container: 1500px;
+
+  --animate-hero-arrive: hero-arrive 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-hero-wordfade: hero-wordfade 0.7s ease-out;
+  --animate-floaty: floaty 7s ease-in-out infinite;
+  --animate-pagein: pagein 0.3s ease-out;
+}
+
+@keyframes hero-arrive {
+  from {
+    transform: translate(66px, 46px) scale(0.84);
+    opacity: 0;
+    filter: blur(5px);
+  }
+  to {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes hero-wordfade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(-1.5deg);
+  }
+}
+
+@keyframes pagein {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--color-dourado);
+  color: var(--color-creme);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+}
+
+/*
+ * Written as plain, unlayered rules (not through @theme's utility-generation
+ * machinery) referencing next/font's raw --font-carena/--font-montserrat
+ * variables directly, with !important. This is a deliberate brute-force fix:
+ * routing font-family through @theme tokens (--font-display/--font-body)
+ * referencing next/font's variables produced correct, verified-by-hand CSS
+ * output (right @layer nesting, right var() chain) that still failed to
+ * paint the brand fonts in Safari for a reason that resisted every static
+ * check. This shorter, more direct chain removes that whole indirection path.
+ */
+body {
+  font-family: var(--font-montserrat), sans-serif !important;
+}
+
+.font-display {
+  font-family: var(--font-carena), serif !important;
+}
+
+.font-body {
+  font-family: var(--font-montserrat), sans-serif !important;
+}
