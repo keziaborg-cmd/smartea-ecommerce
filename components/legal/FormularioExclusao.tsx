@@ -18,7 +18,58 @@
 import { useMemo, useState } from "react";
 
 const DESTINO = "ola@smartea.com.br";
+const ASSUNTO = "Excluir conta";
 const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+/**
+ * Endereço e assunto como texto selecionável, com botão de copiar.
+ *
+ * `mailto:` falha silenciosamente em desktop sem cliente de e-mail configurado — o clique não faz
+ * nada e a pessoa fica sem saída. Estes dois campos são o caminho alternativo, e funcionam também
+ * pra quem usa webmail.
+ */
+function CampoCopiavel({ rotulo, valor }: { rotulo: string; valor: string }) {
+  const [copiado, setCopiado] = useState(false);
+
+  async function copiar() {
+    try {
+      await navigator.clipboard.writeText(valor);
+    } catch {
+      // navegador sem permissão de área de transferência (ou contexto não seguro):
+      // seleciona o texto pra pessoa copiar com o teclado
+      const alvo = document.getElementById(`copiavel-${rotulo}`);
+      if (alvo) {
+        const faixa = document.createRange();
+        faixa.selectNodeContents(alvo);
+        const sel = window.getSelection();
+        sel?.removeAllRanges();
+        sel?.addRange(faixa);
+      }
+      return;
+    }
+    setCopiado(true);
+    setTimeout(() => setCopiado(false), 2000);
+  }
+
+  return (
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+      <span className="w-16 shrink-0 text-sm text-tinta/55">{rotulo}</span>
+      <code
+        id={`copiavel-${rotulo}`}
+        className="select-all break-all rounded-lg bg-verde-escuro/[0.06] px-2.5 py-1 font-mono text-sm text-verde-escuro"
+      >
+        {valor}
+      </code>
+      <button
+        type="button"
+        onClick={copiar}
+        className="rounded-full border border-verde-escuro/25 px-3 py-1 text-xs font-medium text-verde-escuro transition hover:bg-verde-escuro/[0.06]"
+      >
+        {copiado ? "Copiado" : "Copiar"}
+      </button>
+    </div>
+  );
+}
 
 export function FormularioExclusao() {
   const [email, setEmail] = useState("");
@@ -37,7 +88,7 @@ export function FormularioExclusao() {
       "",
       "Estou ciente de que a exclusão é permanente e não pode ser desfeita.",
     ].join("\n");
-    return `mailto:${DESTINO}?subject=${encodeURIComponent("Excluir conta")}&body=${encodeURIComponent(corpo)}`;
+    return `mailto:${DESTINO}?subject=${encodeURIComponent(ASSUNTO)}&body=${encodeURIComponent(corpo)}`;
   }, [email, motivo]);
 
   return (
@@ -108,12 +159,18 @@ export function FormularioExclusao() {
         <p className="text-sm leading-relaxed text-tinta/60">
           O botão abre seu programa de e-mail com a mensagem já escrita. O pedido precisa partir do
           endereço cadastrado — é assim que confirmamos que só o titular consegue solicitar a exclusão.
-          Se o botão não abrir nada, escreva direto para{" "}
-          <a href={`mailto:${DESTINO}?subject=Excluir%20conta`} className="text-verde-escuro underline underline-offset-4">
-            {DESTINO}
-          </a>{" "}
-          com o assunto &ldquo;Excluir conta&rdquo;.
         </p>
+
+        <div className="rounded-xl border border-verde-escuro/15 bg-white/60 p-4">
+          <p className="text-sm leading-relaxed text-tinta/70">
+            Nem todo computador tem um programa de e-mail configurado. Se o botão não abrir nada, envie
+            a mensagem pelo seu webmail com estes dados:
+          </p>
+          <div className="mt-3 flex flex-col gap-2">
+            <CampoCopiavel rotulo="Para" valor={DESTINO} />
+            <CampoCopiavel rotulo="Assunto" valor={ASSUNTO} />
+          </div>
+        </div>
       </div>
     </form>
   );
