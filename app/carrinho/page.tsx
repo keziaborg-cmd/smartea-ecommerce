@@ -355,7 +355,7 @@ export default function CarrinhoPage() {
                   />
                   <span>
                     Li e aceito a{" "}
-                    <Link href="/privacidade" target="_blank" className="font-semibold text-dourado hover:underline">
+                    <Link href="/politica-de-privacidade" target="_blank" className="font-semibold text-dourado hover:underline">
                       Política de Privacidade
                     </Link>{" "}
                     e autorizo o uso dos meus dados para processar este pedido.

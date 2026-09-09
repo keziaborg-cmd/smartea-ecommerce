@@ -32,8 +32,22 @@ export function Footer() {
               <Link href="/carrinho" className="text-sm text-[#a9c1a2] hover:text-creme">
                 Carrinho
               </Link>
-              <Link href="/privacidade" className="text-sm text-[#a9c1a2] hover:text-creme">
+            </div>
+          </div>
+          <div>
+            <div className="mb-3.5 text-sm font-extrabold text-creme">Legal</div>
+            <div className="flex flex-col gap-2.5">
+              <Link href="/termos-de-uso" className="text-sm text-[#a9c1a2] hover:text-creme">
+                Termos de Uso
+              </Link>
+              <Link href="/politica-de-trocas-e-devolucoes" className="text-sm text-[#a9c1a2] hover:text-creme">
+                Trocas e Devoluções
+              </Link>
+              <Link href="/politica-de-privacidade" className="text-sm text-[#a9c1a2] hover:text-creme">
                 Política de Privacidade
+              </Link>
+              <Link href="/suporte" className="text-sm text-[#a9c1a2] hover:text-creme">
+                Suporte
               </Link>
             </div>
           </div>
