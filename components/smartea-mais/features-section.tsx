@@ -1,0 +1,226 @@
+import Image from "next/image";
+import Link from "next/link";
+import { PillButton3D } from "@/components/smartea-mais/pill-button-3d";
+import { GardenDemoLoop } from "@/components/garden/GardenDemoLoop";
+
+function FloraPhoto({ className, src = "/flora.png" }: { className?: string; src?: string }) {
+  return (
+    <Image
+      src={src}
+      alt="Flora, mascote do Smartea+"
+      width={3375}
+      height={4219}
+      className={className}
+    />
+  );
+}
+
+const FLORA_BULLETS = [
+  { title: "Guia diária", text: "Uma mensagem por dia, no seu ritmo, lembrando do seu momento de chá." },
+  { title: "Lembra do ritual", text: "Um toque gentil quando a correria do dia ameaça engolir sua pausa." },
+  { title: "Ajusta a jornada", text: "Acompanha como você está indo e adapta sugestões ao longo dos 21 dias." },
+];
+
+const ATIVACAO_STEPS = [
+  { title: "Compre o chá", text: "Escolha o blend que combina com o seu momento — ou faça o quiz." },
+  { title: "Escaneie o QR Code", text: "Cada lata Smartea traz um QR Code próprio, impresso na embalagem." },
+  { title: "A jornada é ativada", text: "O app reconhece o chá e abre a jornada de 21 dias correspondente." },
+];
+
+function Sparkle({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <path d="M12 1 L14.3 9.7 L23 12 L14.3 14.3 L12 23 L9.7 14.3 L1 12 L9.7 9.7 Z" />
+    </svg>
+  );
+}
+
+function FloraGuideVisual() {
+  return (
+    <div className="relative flex justify-center">
+      <div className="pointer-events-none absolute -left-4 top-0 h-32 w-32 rounded-full bg-folha-viva opacity-25 blur-2xl sm:h-40 sm:w-40" />
+      <div className="pointer-events-none absolute -right-2 bottom-4 h-24 w-24 rounded-full bg-folha-viva opacity-15 blur-2xl sm:h-28 sm:w-28" />
+      <div className="absolute -top-20 right-0 z-10 w-[160px] rounded-2xl border-2 border-tinta-mais/10 bg-white px-3.5 py-2.5 font-body-mais text-sm font-bold text-tinta-mais shadow-md sm:right-4">
+        Hora do seu chá da tarde!
+        <span className="absolute -bottom-[7px] left-8 h-4 w-4 rotate-45 border-b-2 border-r-2 border-tinta-mais/10 bg-white" />
+      </div>
+      <FloraPhoto src="/flora-cha.png" className="relative z-0 h-[240px] w-auto md:h-[360px]" />
+    </div>
+  );
+}
+
+function FloraSubscribeVisual() {
+  return (
+    <div className="relative flex justify-center">
+      <div className="pointer-events-none absolute -right-4 top-2 h-32 w-32 rounded-full bg-jornada-pausa opacity-20 blur-2xl sm:h-40 sm:w-40" />
+      <div className="pointer-events-none absolute -left-2 bottom-2 h-24 w-24 rounded-full bg-jornada-pausa opacity-15 blur-2xl sm:h-28 sm:w-28" />
+      <Sparkle className="pointer-events-none absolute left-2 top-6 h-6 w-6 text-jornada-pausa sm:left-6 sm:h-8 sm:w-8" />
+      <Sparkle className="pointer-events-none absolute right-4 top-1/3 h-4 w-4 text-jornada-pausa-escura sm:right-10" />
+      <Sparkle className="pointer-events-none absolute bottom-6 left-8 h-5 w-5 text-jornada-pausa opacity-70" />
+      <FloraPhoto className="relative z-0 h-[240px] w-auto md:h-[360px]" />
+    </div>
+  );
+}
+
+function GardenGraphic() {
+  return (
+    <svg viewBox="0 0 220 220" className="h-auto w-full max-w-[260px]" role="img" aria-label="Jardim de progresso">
+      <ellipse cx="110" cy="196" rx="70" ry="10" fill="#22331c" opacity="0.08" />
+      <path d="M60,190 L70,120 Q110,105 150,120 L160,190 Z" fill="#324e19" />
+      <path d="M60,190 Q110,206 160,190 L156,178 Q110,192 64,178 Z" fill="#264d17" />
+      <path
+        d="M110,120 C90,90 92,55 115,30 C130,60 122,95 110,120 Z"
+        fill="#477023"
+      />
+      <path d="M110,120 C130,95 158,85 182,92 C172,115 145,128 110,120 Z" fill="#8a9a3e" />
+      <path d="M110,120 C88,100 62,95 40,105 C52,127 80,134 110,120 Z" fill="#5c8a72" />
+      <circle cx="115" cy="34" r="9" fill="#b0685f" />
+      <circle cx="112" cy="31" r="3" fill="#f0ddd8" />
+    </svg>
+  );
+}
+
+function TeaStack() {
+  return (
+    <div className="relative flex h-[220px] w-full max-w-[260px] items-center justify-center md:h-[300px] md:max-w-[340px]">
+      <Image
+        src="/tea/hibisco.png"
+        alt=""
+        aria-hidden
+        width={200}
+        height={200}
+        className="absolute left-2 top-6 h-[130px] w-auto -rotate-12 drop-shadow-lg md:h-[180px]"
+      />
+      <Image
+        src="/tea/cha-verde.png"
+        alt="Chás Smartea"
+        width={200}
+        height={200}
+        className="relative z-10 h-[160px] w-auto drop-shadow-xl md:h-[220px]"
+      />
+      <Image
+        src="/tea/camomila.png"
+        alt=""
+        aria-hidden
+        width={200}
+        height={200}
+        className="absolute right-0 top-10 h-[130px] w-auto rotate-12 drop-shadow-lg md:h-[180px]"
+      />
+    </div>
+  );
+}
+
+type FeatureRowProps = {
+  reverse?: boolean;
+  eyebrow: string;
+  title: string;
+  bg: string;
+  children: React.ReactNode;
+  visual: React.ReactNode;
+};
+
+function FeatureRow({ reverse, eyebrow, title, bg, children, visual }: FeatureRowProps) {
+  return (
+    <div className={`rounded-[32px] ${bg} px-7 py-10 sm:px-10 sm:py-12`}>
+      <div className={`mx-auto grid max-w-[1000px] items-center gap-10 md:grid-cols-2 xl:max-w-[1140px] 2xl:max-w-[1300px] ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
+        <div className="flex justify-center">{visual}</div>
+        <div>
+          <span className="inline-block rounded-full bg-white px-4 py-1.5 font-body-mais text-xs font-extrabold uppercase tracking-wide text-folha-viva-escura">
+            {eyebrow}
+          </span>
+          <h3 className="mt-3 font-display-mais text-2xl font-bold text-tinta-mais sm:text-3xl">{title}</h3>
+          <div className="mt-4">{children}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function FeaturesSection() {
+  return (
+    <section className="mx-auto mt-20 flex max-w-[1100px] flex-col gap-6 px-[6vw] xl:max-w-[1260px] 2xl:max-w-[1440px]">
+      <FeatureRow eyebrow="Quem guia você" title="Flora, sua companhia de bem-estar" bg="bg-folha-viva-clara" visual={<FloraGuideVisual />}>
+        <p className="font-body-mais text-tinta-mais/75">
+          Flora é a IA de bem-estar do Smartea+ — uma presença gentil que acompanha seu ritual, não um
+          assistente técnico.
+        </p>
+        <ul className="mt-4 space-y-3">
+          {FLORA_BULLETS.map((b) => (
+            <li key={b.title} className="rounded-2xl border-2 border-tinta-mais/10 bg-white px-4 py-3">
+              <p className="font-display-mais text-sm font-bold text-tinta-mais">{b.title}</p>
+              <p className="mt-0.5 font-body-mais text-sm text-tinta-mais/70">{b.text}</p>
+            </li>
+          ))}
+        </ul>
+      </FeatureRow>
+
+      <FeatureRow
+        reverse
+        eyebrow="Seu progresso"
+        title="Cada dia de ritual faz seu jardim crescer"
+        bg="bg-jornada-produtividade-clara"
+        visual={<GardenDemoLoop fallback={<GardenGraphic />} />}
+      >
+        <p className="font-body-mais text-tinta-mais/75">
+          No Smartea+, seu progresso na jornada vira um jardim que cresce a cada dia de ritual
+          cumprido — um jeito visual e gentil de acompanhar sua constância, com 12 itens diferentes
+          pra desbloquear.
+        </p>
+      </FeatureRow>
+
+      <FeatureRow eyebrow="Chá & loja" title="O ritual começa na lata" bg="bg-jornada-sono-clara" visual={<TeaStack />}>
+        <p className="font-body-mais text-tinta-mais/75">
+          Todo chá Smartea é a porta de entrada pra uma jornada — o app reconhece o QR Code e ativa a
+          experiência guiada certa.
+        </p>
+        <ul className="mt-4 space-y-2.5">
+          {ATIVACAO_STEPS.map((s, i) => (
+            <li key={s.title} className="flex items-start gap-3">
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-jornada-sono text-[11px] font-bold text-white">
+                {i + 1}
+              </span>
+              <span className="font-body-mais text-sm text-tinta-mais/80">
+                <strong className="font-bold text-tinta-mais">{s.title}.</strong> {s.text}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <Link href="/produtos" className="mt-4 inline-block font-body-mais text-sm font-extrabold text-jornada-sono-escura hover:underline">
+          Ver todos os chás →
+        </Link>
+      </FeatureRow>
+
+      <FeatureRow reverse eyebrow="Assinatura" title="Continue além do trial" bg="bg-jornada-pausa-clara" visual={<FloraSubscribeVisual />}>
+        <p className="font-body-mais text-tinta-mais/75">
+          Toda jornada começa com um trial gratuito — depois, escolha o plano que faz sentido pra
+          continuar com a Flora.
+        </p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          <div className="rounded-2xl border-2 border-tinta-mais/10 bg-white px-4 py-4 text-center">
+            <p className="font-body-mais text-xs font-extrabold uppercase tracking-wide text-tinta-mais/60">Trial</p>
+            <p className="mt-1 font-display-mais text-xl font-bold text-tinta-mais">14 dias</p>
+            <p className="font-body-mais text-xs text-tinta-mais/60">grátis</p>
+          </div>
+          <div className="rounded-2xl border-2 border-tinta-mais/10 bg-white px-4 py-4 text-center">
+            <p className="font-body-mais text-xs font-extrabold uppercase tracking-wide text-tinta-mais/60">Mensal</p>
+            <p className="mt-1 font-display-mais text-xl font-bold text-tinta-mais">R$ 29,90</p>
+            <p className="font-body-mais text-xs text-tinta-mais/60">por mês</p>
+          </div>
+          <div className="relative rounded-2xl border-2 border-jornada-pausa bg-white px-4 py-4 text-center">
+            <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-jornada-pausa px-2.5 py-0.5 font-body-mais text-[10px] font-extrabold text-white">
+              melhor valor
+            </span>
+            <p className="font-body-mais text-xs font-extrabold uppercase tracking-wide text-tinta-mais/60">Anual</p>
+            <p className="mt-1 font-display-mais text-xl font-bold text-tinta-mais">R$ 219,90</p>
+            <p className="font-body-mais text-xs text-tinta-mais/60">por ano</p>
+          </div>
+        </div>
+        <div className="mt-5">
+          <PillButton3D href="/quiz" variant="primary">
+            Começar meu trial grátis
+          </PillButton3D>
+        </div>
+      </FeatureRow>
+    </section>
+  );
+}

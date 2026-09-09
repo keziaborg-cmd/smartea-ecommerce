@@ -41,7 +41,7 @@ export default async function ProdutoPage({ params }: { params: Promise<{ slug: 
   return (
     <main className="animate-pagein px-[6vw] py-10">
       <ViewItemTracker slug={tea.slug} name={tea.name} priceCents={tea.priceCents} />
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-[1240px] xl:max-w-[1400px] 2xl:max-w-[1600px]">
         <Link href="/produtos" className="text-sm font-semibold text-verde-folha hover:underline">
           ← Voltar para produtos
         </Link>
@@ -124,13 +124,16 @@ export default async function ProdutoPage({ params }: { params: Promise<{ slug: 
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           <div className="rounded-card-conteudo border border-borda-clara bg-white p-7">
             <p className="eyebrow text-eyebrow-claro">O momento</p>
-            <p className="mt-3 font-display text-[23px] leading-snug text-tinta">{pdp.problema}</p>
+            {/* whitespace-pre-line: `problema`/`solucao`/`como` podem vir com
+                quebras de parágrafo (\n\n) na copy — ver data/pdp-data.ts.
+                Textos de uma linha só seguem renderizando igual. */}
+            <p className="mt-3 whitespace-pre-line font-display text-[23px] leading-snug text-tinta">{pdp.problema}</p>
           </div>
           <div className="rounded-card-conteudo p-7" style={{ background: tea.cardBg }}>
             <p className="eyebrow" style={{ color: tea.priceColor }}>
               O ritual
             </p>
-            <p className="mt-3 font-display text-[23px] leading-snug text-tinta">{pdp.solucao}</p>
+            <p className="mt-3 whitespace-pre-line font-display text-[23px] leading-snug text-tinta">{pdp.solucao}</p>
           </div>
         </div>
 
@@ -150,7 +153,7 @@ export default async function ProdutoPage({ params }: { params: Promise<{ slug: 
         {/* Como funciona */}
         <div className="mt-6 rounded-card-conteudo border border-borda-clara bg-white p-7">
           <p className="eyebrow text-eyebrow-claro">Como funciona</p>
-          <p className="mt-3 text-sm leading-relaxed text-tinta/80">{pdp.como}</p>
+          <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-tinta/80">{pdp.como}</p>
         </div>
 
         {/* Diferencial */}

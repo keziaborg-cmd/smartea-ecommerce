@@ -33,10 +33,10 @@ export default function HomePage() {
           aria-hidden
           width={210}
           height={210}
-          className="animate-floaty pointer-events-none absolute -top-[158px] right-[7vw] z-[4] h-[210px] w-auto drop-shadow-[0_26px_32px_rgba(0,0,0,.3)]"
+          className="animate-floaty pointer-events-none absolute -top-[158px] right-0 z-[4] h-[210px] w-auto drop-shadow-[0_26px_32px_rgba(0,0,0,.3)] md:right-[7vw]"
         />
 
-        <section className="mx-auto grid max-w-[1240px] gap-16 px-[6vw] pt-5 pb-[60px] md:grid-cols-[1fr_1.05fr] md:items-center">
+        <section className="mx-auto grid max-w-[1240px] gap-16 px-[6vw] pt-5 pb-[60px] md:grid-cols-[1fr_1.05fr] md:items-center xl:max-w-[1400px] 2xl:max-w-[1600px]">
           <div>
             <p className="eyebrow text-eyebrow-claro">Sobre</p>
             <h2 className="mt-3 font-display text-[clamp(42px,6vw,68px)] text-verde-escuro">Um ritual em cada lata</h2>
@@ -76,7 +76,7 @@ export default function HomePage() {
           <path d="M0,90 L0,40 C500,108 980,-16 1440,52 L1440,90 Z" fill="#fffdf8" />
         </svg>
 
-        <section className="mx-auto max-w-[1320px] px-[6vw] pt-[52px] pb-5">
+        <section className="mx-auto max-w-[1320px] px-[6vw] pt-[52px] pb-5 xl:max-w-[1480px] 2xl:max-w-[1680px]">
           <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="eyebrow text-eyebrow-claro">Em destaque</p>
@@ -94,7 +94,7 @@ export default function HomePage() {
         </section>
       </div>
 
-      <section className="mx-auto mt-14 mb-8 max-w-[1320px] px-[6vw] pb-5">
+      <section className="mx-auto mt-14 mb-8 max-w-[1320px] px-[6vw] pb-5 xl:max-w-[1480px] 2xl:max-w-[1680px]">
         <div className="rounded-panel bg-verde-escuro px-8 py-16 text-center">
           <h2 className="font-display text-4xl text-creme">Qual ritual combina com você?</h2>
           <Link

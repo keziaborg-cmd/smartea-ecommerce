@@ -49,7 +49,7 @@ export const teas: Tea[] = [
   {
     name: "Chá Verde",
     slug: "cha-verde",
-    tag: "sua defesa natural mais forte.",
+    tag: "o clássico que desperta.",
     weight: "150g",
     price: "R$ 24,90",
     priceCents: 2490,
@@ -223,9 +223,10 @@ export const teas: Tea[] = [
       "Cálices de hibisco de cor vibrante e sabor frutado e cítrico. Uma infusão rubi, refrescante quente ou gelada.",
     prep: "1 colher de sopa para 200ml de água a 95°C. Infusão de 5 a 7 minutos. Ótimo gelado com limão.",
     benefits: [
-      "Sabor vibrante e refrescante",
       "Ritual de pausa consciente",
-      "Fonte de antioxidantes",
+      "Cor viva e sabor marcante",
+      "Sem cafeína, serve a qualquer hora",
+      "Bom quente e bom gelado",
     ],
   },
 ];

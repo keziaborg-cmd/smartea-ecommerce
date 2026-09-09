@@ -20,10 +20,34 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
+const SITE_URL = "https://smartea.com.br";
+const SITE_TITLE = "Smartea — Chá 100% natural, um ritual em cada lata";
+const SITE_DESCRIPTION =
+  "Chás naturais Smartea: 6 blends para cada momento do seu dia. Cada lata traz um QR Code que ativa uma jornada de 21 dias no app Smartea+, guiada pela Flora.";
+
 export const metadata: Metadata = {
-  title: "Smartea — Chá 100% natural, um ritual em cada lata",
-  description:
-    "Chás naturais Smartea: 6 blends para cada momento do seu dia. Cada lata traz um QR Code que ativa uma jornada de 21 dias no app Smartea+, guiada pela Flora.",
+  // metadataBase resolve toda URL relativa (og:image, canonical, etc.) pro
+  // domínio de produção — sem isso, o Next usa http://localhost:3000 como
+  // base em dev/preview e isso vaza pro <head> gerado.
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  // og:image/twitter:image são gerados automaticamente por
+  // app/opengraph-image.tsx e app/twitter-image.tsx (convenção de arquivo do
+  // Next) — não precisam ser listados aqui.
+  openGraph: {
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Smartea",
+    locale: "pt_BR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
 };
 
 export default function RootLayout({

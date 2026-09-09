@@ -7,7 +7,7 @@ export function Footer() {
 
   return (
     <footer className="mt-[70px] bg-verde-escuro px-[6vw] pb-10 pt-14 text-[#cfe0c9]">
-      <div className="mx-auto flex max-w-[1240px] flex-wrap items-start justify-between gap-10">
+      <div className="mx-auto flex max-w-[1240px] flex-wrap items-start justify-between gap-10 xl:max-w-[1400px] 2xl:max-w-[1600px]">
         <div className="max-w-[320px]">
           <div className="mb-4 inline-flex items-center rounded-pill bg-creme px-[26px] py-3">
             <Image src="/logo.png" alt="Smartea" width={69} height={46} className="h-[46px] w-auto" />
@@ -48,7 +48,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-9 max-w-[1240px] border-t border-creme/15 pt-[22px] text-[13px] text-[#88a382]">
+      <div className="mx-auto mt-9 max-w-[1240px] border-t border-creme/15 pt-[22px] text-[13px] text-[#88a382] xl:max-w-[1400px] 2xl:max-w-[1600px]">
         © 2026 Smartea. Todos os direitos reservados.
       </div>
     </footer>

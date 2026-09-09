@@ -23,12 +23,12 @@ export const quizData: QuizQuestion[] = [
     ],
   },
   {
-    q: "O que você mais quer melhorar?",
+    q: "O que você busca no seu ritual?",
     opts: [
       { label: "Calma", scores: { Camomila: 3, Cidreira: 2, Jasmin: 1 } },
       { label: "Foco", scores: { "Chá Verde": 3, "Chá Preto": 2 } },
-      { label: "Energia", scores: { "Chá Preto": 3, "Chá Verde": 2 } },
-      { label: "Controle da compulsão alimentar", scores: { Hibisco: 3, "Chá Verde": 2 } },
+      { label: "Disposição", scores: { "Chá Preto": 3, "Chá Verde": 2 } },
+      { label: "Uma pausa no dia", scores: { Hibisco: 3, "Chá Verde": 2 } },
     ],
   },
   {
@@ -64,5 +64,5 @@ export const quizWhy: Record<string, string> = {
   Jasmin: "Leveza floral para um instante suave no meio da correria.",
   "Chá Preto": "Corpo e cafeína na medida certa para turbinar o seu foco.",
   Cidreira: "Um respiro sem cafeína que acalma o corpo e a mente.",
-  Hibisco: "Sabor vibrante e refrescante que ajuda no controle da compulsão alimentar.",
+  Hibisco: "Sabor vibrante e cor intensa — um chá que se faz notar e marca bem o seu intervalo.",
 };

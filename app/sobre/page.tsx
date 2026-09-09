@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function SobrePage() {
   return (
     <main className="animate-pagein px-[6vw] py-14">
-      <div className="mx-auto max-w-[900px] text-center">
+      <div className="mx-auto max-w-[900px] text-center xl:max-w-[1000px] 2xl:max-w-[1100px]">
         <p className="eyebrow text-eyebrow-claro">Nossa história</p>
         <h1 className="mt-3 font-display text-[clamp(44px,7vw,80px)] text-verde-escuro">Um ritual em cada lata</h1>
         <div className="mt-8 flex flex-col gap-5 text-left text-tinta/80">
@@ -32,7 +32,7 @@ export default function SobrePage() {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 flex max-w-[1000px] flex-col items-start gap-5 rounded-card-conteudo bg-verde-escuro p-7 text-left sm:flex-row sm:items-center">
+      <div className="mx-auto mt-12 flex max-w-[1000px] flex-col items-start gap-5 rounded-card-conteudo bg-verde-escuro p-7 text-left sm:flex-row sm:items-center xl:max-w-[1140px] 2xl:max-w-[1300px]">
         <QrBadge size={70} />
         <div>
           <p className="font-display text-2xl text-creme">A jornada continua no app</p>

@@ -187,7 +187,7 @@ export default function CarrinhoPage() {
 
   return (
     <main className="animate-pagein px-[6vw] py-10">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="mx-auto max-w-[1200px] xl:max-w-[1360px] 2xl:max-w-[1560px]">
         <p className="eyebrow text-eyebrow-claro">Finalizar pedido</p>
         <h1 className="mt-2 font-display text-[clamp(38px,6vw,64px)] text-verde-escuro">Seu carrinho</h1>
 

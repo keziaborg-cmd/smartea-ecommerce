@@ -65,7 +65,7 @@ export default function QuizPage() {
 
     return (
       <main className="animate-pagein px-[6vw] py-14">
-        <div className="mx-auto max-w-[1120px] rounded-panel bg-verde-escuro p-8 md:p-14">
+        <div className="mx-auto max-w-[1120px] rounded-panel bg-verde-escuro p-8 md:p-14 xl:max-w-[1280px] 2xl:max-w-[1440px]">
           <div className="grid gap-10 md:grid-cols-2">
             <div className="relative flex items-center justify-center">
               <div className="relative w-fit">
@@ -114,7 +114,7 @@ export default function QuizPage() {
           </div>
         </div>
 
-        <div className="mx-auto mt-6 max-w-[1120px] rounded-card-conteudo border border-borda-clara bg-white p-7">
+        <div className="mx-auto mt-6 max-w-[1120px] rounded-card-conteudo border border-borda-clara bg-white p-7 xl:max-w-[1280px] 2xl:max-w-[1440px]">
           <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-center sm:text-left">
             <div className="flex-1">
               <p className="eyebrow text-eyebrow-claro">Smartea+</p>
@@ -132,7 +132,7 @@ export default function QuizPage() {
           </div>
         </div>
 
-        <div className="mx-auto mt-6 max-w-[1120px] rounded-card-conteudo bg-white p-6">
+        <div className="mx-auto mt-6 max-w-[1120px] rounded-card-conteudo bg-white p-6 xl:max-w-[1280px] 2xl:max-w-[1440px]">
           <p className="eyebrow text-eyebrow-claro">Também combina com você</p>
           <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
             <div className="flex items-center gap-4">
@@ -162,7 +162,7 @@ export default function QuizPage() {
 
   return (
     <main className="animate-pagein px-[6vw] py-14">
-      <div className="mx-auto max-w-[1120px] rounded-panel bg-verde-escuro p-8 md:p-14">
+      <div className="mx-auto max-w-[1120px] rounded-panel bg-verde-escuro p-8 md:p-14 xl:max-w-[1280px] 2xl:max-w-[1440px]">
         <div className="mx-auto max-w-[700px] text-center">
           <p className="eyebrow text-eyebrow-escuro">Descubra seu ritual</p>
           <h1 className="mt-3 font-display text-[clamp(34px,5vw,54px)] leading-[1.02] text-creme">

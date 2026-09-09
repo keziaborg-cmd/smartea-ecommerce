@@ -35,7 +35,7 @@ export function HeroCarousel() {
           {tea.name}
         </span>
 
-        <div className="relative z-[2] w-fit -translate-y-5 md:translate-y-0">
+        <div className="relative z-[2] w-fit -translate-y-2 md:translate-y-0">
           <div
             className="pointer-events-none absolute -inset-[70px] rounded-full blur-[6px]"
             style={{ background: `radial-gradient(circle, ${tea.glow} 0%, rgba(120,190,90,0) 65%)` }}

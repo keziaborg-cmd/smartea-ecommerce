@@ -10,6 +10,9 @@ node_modules/
 .env.local
 .env*.local
 
+# Worktrees criados pelo Claude Code — cópias completas do repo, nunca versionar
+.claude/worktrees/
+
 # Claude Code local permission cache — can retain command history with
 # secrets that were typed inline during a session
 .claude/settings.local.json

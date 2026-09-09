@@ -37,7 +37,7 @@ export const pdpData: Record<TeaSlug, PdpEntry> = {
     como: "Folhas selecionadas na colheita natural, preparadas em água quente por alguns minutos — sem açúcar, sem conservantes. Parte da manhã, antes de começar o dia.",
     jornadas: ["produtividade", "compulsividade"],
     diferencial:
-      "A lata do Chá Verde conecta às jornadas de Produtividade & Foco e Compulsividade Alimentar no Smartea+ (21 dias cada), com a Flora guiando pausas e pequenos hábitos ao longo do dia.",
+      "A lata do Chá Verde conecta às jornadas de Produtividade & Foco e Pausa no Smartea+ (21 dias cada), com a Flora guiando pausas e pequenos hábitos ao longo do dia.",
     gatilhos: [
       { k: "Prova social", t: "Já faz parte da rotina de milhares de pessoas." },
       { k: "Tradição", t: "Folhas reconhecidas pela tradição do uso antioxidante." },
@@ -131,28 +131,40 @@ export const pdpData: Record<TeaSlug, PdpEntry> = {
       { q: "Tem cafeína?", a: "Não." },
       { q: "Posso tomar em qualquer horário?", a: "Sim. É um ritual de pausa que cabe a qualquer momento do dia." },
       { q: "Quanto tempo dura a lata de 120g?", a: "Rende cerca de 45 xícaras, usando 1 colher de sopa por preparo." },
-      { q: "Posso oferecer para quem tem ansiedade?", a: "É um chá calmante natural, mas não substitui acompanhamento profissional se necessário." },
+      { q: "Posso oferecer para quem tem ansiedade?", a: "É um chá sem cafeína, de aroma suave — mas não substitui acompanhamento profissional se necessário." },
     ],
   },
   hibisco: {
     problema:
-      "A vontade de beliscar fora de hora aparece antes de qualquer decisão consciente — e o impulso vence antes da pausa.",
+      "O dia inteiro emendado, sem um intervalo que seja realmente seu.\n\nVocê para, mas para com o celular na mão. Descansa, mas descansando de um jeito que continua entregando estímulo. No fim do dia dá aquela sensação de não ter havido nenhum espaço em lugar nenhum.",
     solucao:
-      "Um ritual de hidratação saborosa que cria um intervalo consciente entre a vontade e a ação.",
-    beneficios: ["Sabor marcante", "Hidratação saborosa", "Sem açúcar"],
-    como: "Pode ser consumido gelado ou quente, como substituto consciente nos momentos de vontade de beliscar.",
+      "O Hibisco é um chá difícil de tomar no automático.\n\nA cor rubi aparece na água em segundos, o sabor é ácido e franco, e a xícara pede um pouco de atenção enquanto você bebe. É exatamente esse tipo de presença que faz um intervalo de cinco minutos parecer um intervalo de verdade.\n\nSem cafeína — então serve tanto para a pausa da tarde quanto para a do fim do dia.",
+    beneficios: ["Sabor marcante", "Sem cafeína", "Sem açúcar", "Bom quente e gelado"],
+    como: "1. Uma colher de sopa para 200 ml de água quente, pouco antes de ferver.\n\n2. Deixe em infusão de 4 a 6 minutos. Menos tempo, mais leve; mais tempo, mais marcante.\n\n3. Beba sem fazer mais nada junto. A infusão já é parte da pausa.\n\nNo calor, prepare a mesma medida, deixe esfriar e sirva com gelo.",
     jornadas: ["compulsividade"],
     diferencial:
-      "Ativa a jornada de Compulsividade Alimentar de 21 dias no Smartea+, com a Flora ajudando a identificar gatilhos e criar pausas.",
-    gatilhos: [
-      { k: "Prova social", t: "Quem trocou o beliscar por uma pausa saborosa." },
-      { k: "Cuidado", t: "Não é fórmula milagrosa: é parte de um ritual mais amplo de autocuidado." },
-    ],
+      "Ativa a jornada Pausa de 21 dias no Smartea+ — um intervalo seu no meio do dia, com conteúdo diário e um jardim que cresce junto.",
+    gatilhos: [{ k: "O momento certo", t: "Feito para o momento do dia em que tudo se emenda." }],
     faq: [
-      { q: "Posso tomar gelado no verão?", a: "Sim, fica ótimo gelado com um toque de limão." },
-      { q: "Tem cafeína?", a: "Não." },
-      { q: "Ajuda a “cortar” a vontade de doce?", a: "Não é uma promessa — é um ritual de pausa consciente, e os resultados variam por pessoa." },
-      { q: "Quanto tempo dura a lata de 200g?", a: "Rende cerca de 70 xícaras, quente ou gelado." },
+      { q: "O Hibisco tem cafeína?", a: "Não. Pode ser tomado a qualquer hora, inclusive à noite." },
+      {
+        q: "Qual o sabor?",
+        a: "Ácido, floral e bem marcante, com cor rubi intensa. Lembra frutas vermelhas. Quem prefere chás suaves costuma reduzir o tempo de infusão ou adoçar levemente.",
+      },
+      { q: "Posso tomar gelado?", a: "Pode, e fica ótimo. Mesma medida, deixe esfriar e sirva com gelo e uma rodela de limão." },
+      { q: "Quantas xícaras rende a lata?", a: "Cerca de 70 xícaras, no preparo indicado." },
+      {
+        q: "Como conservar?",
+        a: "Em local seco e arejado, longe da luz e do calor, com a embalagem bem fechada depois de aberta.",
+      },
+      {
+        q: "Preciso do aplicativo para tomar o chá?",
+        a: "Não. O Hibisco é ótimo sozinho. O Smartea+ existe para quem quer transformar o hábito numa rotina com acompanhamento.",
+      },
+      {
+        q: "Posso tomar todo dia?",
+        a: "Sim, como qualquer chá de consumo comum. Gestantes, lactantes, pessoas em uso de medicamentos ou com alguma condição de saúde devem consultar um profissional antes de incluir qualquer ingrediente novo na rotina.",
+      },
     ],
   },
 };
