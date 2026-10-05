@@ -47,7 +47,7 @@ const SECTIONS: LegalSection[] = [
     title: "Dúvidas",
     blocks: [
       { t: "kv", k: "E-mail", v: "ola@smartea.com.br" },
-      { t: "kv", k: "WhatsApp", v: "(11) 93768-1729" },
+      { t: "kv", k: "WhatsApp", v: "(19) 99030-6995" },
     ],
   },
 ];

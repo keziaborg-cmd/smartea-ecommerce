@@ -16,7 +16,7 @@ const SECTIONS: LegalSection[] = [
       { t: "kv", k: "CPF", v: "504.355.458-41" },
       { t: "kv", k: "Endereço", v: "Rua Professor Doutor José Marques da Cruz, 85 — São Paulo/SP — CEP 04707-020" },
       { t: "kv", k: "E-mail de atendimento", v: "ola@smartea.com.br" },
-      { t: "kv", k: "WhatsApp", v: "(11) 93768-1729" },
+      { t: "kv", k: "WhatsApp", v: "(19) 99030-6995" },
       { t: "kv", k: "Horário de atendimento", v: "Segunda a sexta, das 8h às 18h" },
     ],
   },
@@ -199,7 +199,7 @@ const SECTIONS: LegalSection[] = [
     blocks: [
       { t: "p", text: "Em caso de dúvidas sobre estes Termos ou sobre uma compra realizada na Smartea:" },
       { t: "kv", k: "E-mail", v: "ola@smartea.com.br" },
-      { t: "kv", k: "WhatsApp", v: "(11) 93768-1729" },
+      { t: "kv", k: "WhatsApp", v: "(19) 99030-6995" },
       { t: "kv", k: "Horário de atendimento", v: "Segunda a sexta, das 8h às 18h" },
       { t: "kv", k: "Documentos relacionados", v: "Política de Trocas e Devoluções · Política de Privacidade e Cookies" },
     ],
