@@ -278,7 +278,7 @@ const SECTIONS: LegalSection[] = [
     blocks: [
       { t: "kv", k: "E-mail para assuntos de privacidade", v: "kezia.borges@smartea.com.br" },
       { t: "kv", k: "Encarregado(a) pelo Tratamento de Dados Pessoais", v: "Kezia Borges de Oliveira — kezia.borges@smartea.com.br" },
-      { t: "kv", k: "WhatsApp", v: "(11) 93768-1729" },
+      { t: "kv", k: "WhatsApp", v: "(19) 99030-6995" },
       { t: "kv", k: "Endereço", v: "Rua Professor Doutor José Marques da Cruz, 85 — São Paulo/SP — CEP 04707-020" },
       { t: "kv", k: "Documentos relacionados", v: "Termos de Uso · Política de Trocas e Devoluções" },
     ],

@@ -31,7 +31,7 @@ const SECTIONS: LegalSection[] = [
       { t: "p", text: "Por se tratar de compra realizada fora do estabelecimento comercial, o consumidor pode desistir da compra no prazo de **7 (sete) dias corridos**, contado da data do recebimento do produto, nos termos do **artigo 49 do Código de Defesa do Consumidor**." },
       { t: "strong", text: "Não é necessário apresentar justificativa." },
       { t: "h3", text: "Como solicitar" },
-      { t: "p", text: "Entre em contato pelo e-mail **ola@smartea.com.br** ou pelo WhatsApp **(11) 93768-1729**, informando o número do pedido e os dados utilizados na compra. Em seguida, enviaremos as orientações e o código de postagem para a devolução." },
+      { t: "p", text: "Entre em contato pelo e-mail **ola@smartea.com.br** ou pelo WhatsApp **(19) 99030-6995**, informando o número do pedido e os dados utilizados na compra. Em seguida, enviaremos as orientações e o código de postagem para a devolução." },
       { t: "h3", text: "Condições" },
       { t: "li", text: "**Os custos de devolução são integralmente suportados pela Smartea.** O consumidor não arca com frete de retorno no exercício regular do direito de arrependimento." },
       { t: "li", text: "Pedimos, sempre que possível, que o produto seja devolvido em sua embalagem original. Por se tratar de alimento, produtos abertos não podem retornar ao estoque — ainda assim, isso não é condição para o exercício do direito nem motivo para recusa da restituição." },
@@ -133,7 +133,7 @@ const SECTIONS: LegalSection[] = [
   {
     title: "Como solicitar — passo a passo",
     blocks: [
-      { t: "p", text: "1. Entre em contato pelo e-mail **ola@smartea.com.br** ou pelo WhatsApp **(11) 93768-1729**." },
+      { t: "p", text: "1. Entre em contato pelo e-mail **ola@smartea.com.br** ou pelo WhatsApp **(19) 99030-6995**." },
       { t: "p", text: "2. Informe o número do pedido, o nome do comprador e a descrição da situação." },
       { t: "p", text: "3. Envie fotos do produto e da embalagem, quando aplicável." },
       { t: "p", text: "4. Aguarde nosso retorno com a análise e as orientações." },
@@ -141,7 +141,7 @@ const SECTIONS: LegalSection[] = [
       { t: "p", text: "6. Acompanhe a confirmação do recebimento e o processamento da solução escolhida." },
       { t: "strong", text: "Canais de atendimento" },
       { t: "kv", k: "E-mail", v: "ola@smartea.com.br" },
-      { t: "kv", k: "WhatsApp", v: "(11) 93768-1729" },
+      { t: "kv", k: "WhatsApp", v: "(19) 99030-6995" },
       { t: "kv", k: "Horário de atendimento", v: "Segunda a sexta, das 8h às 18h" },
     ],
   },
