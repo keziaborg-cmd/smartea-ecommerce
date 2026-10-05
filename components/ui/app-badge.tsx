@@ -1,4 +1,4 @@
-export function QrBadge({ size = 76 }: { size?: 76 | 70 }) {
+export function AppBadge({ size = 76 }: { size?: 76 | 70 }) {
   return (
     <div
       className="flex shrink-0 items-center justify-center bg-creme font-extrabold tracking-[.05em] text-verde-escuro"
@@ -6,10 +6,10 @@ export function QrBadge({ size = 76 }: { size?: 76 | 70 }) {
         width: size,
         height: size,
         borderRadius: size === 76 ? 18 : 16,
-        fontSize: size === 76 ? 17 : 16,
+        fontSize: size === 76 ? 15 : 14,
       }}
     >
-      QR
+      APP
     </div>
   );
 }

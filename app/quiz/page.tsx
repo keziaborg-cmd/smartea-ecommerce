@@ -120,7 +120,8 @@ export default function QuizPage() {
               <p className="eyebrow text-eyebrow-claro">Smartea+</p>
               <p className="mt-2 font-display text-2xl text-verde-escuro">Sua jornada não termina na xícara</p>
               <p className="mt-1 text-sm text-tinta/70">
-                O {primary.name} também pode abrir uma jornada guiada de 21 dias no app, com a Flora ao seu lado.
+                No Smartea+ você encontra jornadas guiadas de 21 dias, com a Flora ao seu lado — todas
+                disponíveis, para qualquer chá que você escolher.
               </p>
             </div>
             <Link

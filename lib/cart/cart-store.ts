@@ -3,11 +3,10 @@ import { persist } from "zustand/middleware";
 import { teas, type TeaSlug } from "@/data/teas";
 import { tierForCartUnits, unitPriceForTier, type PriceTier } from "@/lib/pricing/tiers";
 
-export type ShippingMethod = "padrao" | "retirada";
+export type ShippingMethod = "padrao";
 
 const SHIPPING_FEE_CENTS: Record<ShippingMethod, number> = {
   padrao: 1290,
-  retirada: 0,
 };
 
 export interface CartLine {
@@ -25,7 +24,6 @@ interface CartState {
   setQty: (slug: TeaSlug, qty: number) => void;
   remove: (slug: TeaSlug) => void;
   clear: () => void;
-  setShippingMethod: (method: ShippingMethod) => void;
 }
 
 export const useCartStore = create<CartState>()(
@@ -56,7 +54,6 @@ export const useCartStore = create<CartState>()(
           return { items: rest };
         }),
       clear: () => set({ items: {} }),
-      setShippingMethod: (method) => set({ shippingMethod: method }),
     }),
     { name: "smartea-cart", skipHydration: true },
   ),

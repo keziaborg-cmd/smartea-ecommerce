@@ -1,15 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { journeys, type JourneySlug } from "@/data/journeys";
 import { getTeasForJourney } from "@/data/pdp-data";
-import { teas, getTeaBySlug, type TeaSlug } from "@/data/teas";
-
-const FEATURED_TEA_BY_JOURNEY: Record<JourneySlug, TeaSlug> = {
-  sono: "camomila",
-  ansiedade: "cidreira",
-  produtividade: "cha-preto",
-  compulsividade: "hibisco",
-};
+import { teas } from "@/data/teas";
 
 const JOURNEY_STYLE: Record<
   JourneySlug,
@@ -66,26 +58,16 @@ export function JourneysSection() {
           const journeyTeas = getTeasForJourney(journey.slug)
             .map((slug) => teas.find((t) => t.slug === slug))
             .filter((t): t is (typeof teas)[number] => Boolean(t));
-          const featuredTea = getTeaBySlug(FEATURED_TEA_BY_JOURNEY[journey.slug]) ?? journeyTeas[0];
 
           return (
             <div key={journey.slug} className="relative">
-              {featuredTea && (
-                <Image
-                  src={featuredTea.img}
-                  alt={featuredTea.name}
-                  width={200}
-                  height={200}
-                  className="animate-floaty pointer-events-none absolute -right-1 -top-7 z-10 h-[100px] w-auto rotate-12 drop-shadow-xl sm:-right-3 sm:-top-9 sm:h-[150px]"
-                />
-              )}
               <div className={`relative overflow-hidden rounded-[32px] p-7 ${style.clara} sm:p-8`}>
                 <div className={`pointer-events-none absolute -right-14 -top-16 h-48 w-48 rounded-full opacity-30 blur-2xl ${style.solid}`} />
                 <div className={`pointer-events-none absolute -bottom-20 -left-10 h-40 w-40 rounded-full opacity-20 blur-2xl ${style.solid}`} />
 
-                <h3 className="relative pr-20 font-display-mais text-2xl font-bold text-tinta-mais sm:pr-24">{journey.label}</h3>
+                <h3 className="relative font-display-mais text-2xl font-bold text-tinta-mais">{journey.label}</h3>
 
-                <p className="relative mt-2 pr-20 font-body-mais text-sm text-tinta-mais/75 sm:pr-24">{journey.description}</p>
+                <p className="relative mt-2 font-body-mais text-sm text-tinta-mais/75">{journey.description}</p>
 
               <div className="relative mt-4 rounded-2xl border-2 border-tinta-mais/10 bg-white px-4 py-3">
                 <p className={`font-body-mais text-[13px] font-extrabold ${style.text}`}>Pergunta de abertura</p>
@@ -130,7 +112,11 @@ export function JourneysSection() {
               </div>
 
               {journeyTeas.length > 0 && (
-                <div className="relative mt-5 flex flex-wrap gap-2">
+                <div className="relative mt-5">
+                  <p className="font-body-mais text-[13px] font-extrabold text-tinta-mais/70">
+                    Chás que combinam com este momento
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-2">
                   {journeyTeas.map((tea) => (
                     <Link
                       key={tea.slug}
@@ -140,6 +126,7 @@ export function JourneysSection() {
                       {tea.name}
                     </Link>
                   ))}
+                  </div>
                 </div>
               )}
               </div>

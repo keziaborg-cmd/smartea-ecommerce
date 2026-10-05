@@ -9,7 +9,7 @@ import { ProductCard } from "@/components/product/product-card";
 import { AddToCartButton } from "@/components/product/add-to-cart-button";
 import { FaqAccordion } from "@/components/product/faq-accordion";
 import { ViewItemTracker } from "@/components/product/view-item-tracker";
-import { QrBadge } from "@/components/ui/qr-badge";
+import { AppBadge } from "@/components/ui/app-badge";
 import { formatCentsBRL } from "@/lib/cart/cart-store";
 
 export function generateStaticParams() {
@@ -97,8 +97,8 @@ export default async function ProdutoPage({ params }: { params: Promise<{ slug: 
 
             <AddToCartButton tea={tea} className="mt-5 w-fit rounded-pill bg-creme px-8 py-3.5 text-sm font-semibold text-verde-escuro" />
             <p className="mt-5 text-xs" style={{ color: tea.heroSub }}>
-              <span className="mr-2 rounded border border-white/30 px-1.5 py-0.5 font-bold">QR</span>
-              Ativa a jornada de {pdp.jornadas.map(journeyLabel).join(" e ")} no Smartea+
+              <span className="mr-2 rounded border border-white/30 px-1.5 py-0.5 font-bold">APP</span>
+              Combina com a jornada de {pdp.jornadas.map(journeyLabel).join(" e ")} no Smartea+
             </p>
           </div>
         </div>
@@ -158,10 +158,10 @@ export default async function ProdutoPage({ params }: { params: Promise<{ slug: 
 
         {/* Diferencial */}
         <div className="mt-6 flex flex-col items-start gap-5 rounded-panel bg-verde-escuro p-8 sm:flex-row sm:items-center sm:gap-[26px]">
-          <QrBadge size={76} />
+          <AppBadge size={76} />
           <div className="min-w-0">
             <p className="eyebrow text-dourado">
-              Só na Smartea · jornada{pdp.jornadas.length > 1 ? "s" : ""} {pdp.jornadas.map(journeyLabel).join(" · ")}
+              No Smartea+ · jornada{pdp.jornadas.length > 1 ? "s" : ""} {pdp.jornadas.map(journeyLabel).join(" · ")}
             </p>
             <p className="mt-2 font-display text-2xl leading-snug text-creme">{pdp.diferencial}</p>
           </div>

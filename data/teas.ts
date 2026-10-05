@@ -1,4 +1,3 @@
-// Ported verbatim from design-bundle/Smartea.dc.html (teas()) — approved copy.
 // `price`/`priceCents`/`priceTier2Cents`/`priceTier3Cents` here are display
 // fallbacks only; shop_products' price_cents/price_tier2_cents/price_tier3_cents
 // in Supabase are authoritative at checkout (see shop-create-order).

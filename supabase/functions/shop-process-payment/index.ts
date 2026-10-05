@@ -62,7 +62,19 @@ Deno.serve(async (req) => {
       });
     }
 
-    return json({ status: orderStatus, mpPaymentId: payment.id });
+    // Pix vem "pending" na criação — a pessoa ainda precisa escanear/pagar
+    // o QR Code. Repassa os dados prontos que o Mercado Pago já devolve
+    // (nenhuma chamada extra necessária) pro frontend poder mostrá-los.
+    const transactionData = payment.point_of_interaction?.transaction_data;
+    const pix = transactionData?.qr_code
+      ? {
+          qrCode: transactionData.qr_code,
+          qrCodeBase64: transactionData.qr_code_base64 ?? null,
+          expiresAt: payment.date_of_expiration ?? null,
+        }
+      : undefined;
+
+    return json({ status: orderStatus, mpPaymentId: payment.id, pix });
   } catch (err) {
     console.error("shop-process-payment error", err);
     return json({ message: "Erro ao processar o pagamento." }, 500);

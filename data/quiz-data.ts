@@ -1,6 +1,5 @@
-// Ported verbatim from design-bundle/Smartea.dc.html (quizData()/quizWhy()).
-// `scores` is keyed by tea *name* (matches the prototype) — lib/quiz/scoring.ts
-// maps name -> slug via data/teas.ts.
+// `scores` is keyed by tea *name* — lib/quiz/scoring.ts maps name -> slug
+// via data/teas.ts.
 
 export interface QuizOption {
   label: string;

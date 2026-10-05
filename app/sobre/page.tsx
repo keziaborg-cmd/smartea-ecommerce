@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { QrBadge } from "@/components/ui/qr-badge";
+import { AppBadge } from "@/components/ui/app-badge";
 import { BenefitCard } from "@/components/ui/benefit-card";
 import { BENEFIT_CARDS } from "@/data/benefits";
 
@@ -26,19 +26,19 @@ export default function SobrePage() {
             noite que pede calma.
           </p>
           <p>
-            E cada lata carrega mais do que chá: um QR Code que ativa uma jornada de 21 dias no
-            Smartea+, guiada pela Flora, nossa IA de bem-estar — pequenos hábitos, todos os dias.
+            E por trás de cada lata existe mais do que chá: o Smartea+, nosso app de jornadas
+            guiadas de 21 dias, com a Flora, nossa IA de bem-estar — pequenos hábitos, todos os dias.
           </p>
         </div>
       </div>
 
       <div className="mx-auto mt-12 flex max-w-[1000px] flex-col items-start gap-5 rounded-card-conteudo bg-verde-escuro p-7 text-left sm:flex-row sm:items-center xl:max-w-[1140px] 2xl:max-w-[1300px]">
-        <QrBadge size={70} />
+        <AppBadge size={70} />
         <div>
           <p className="font-display text-2xl text-creme">A jornada continua no app</p>
           <p className="mt-1.5 text-texto-sobre-escuro">
-            O QR Code de cada lata abre uma jornada de 21 dias no app Smartea+, com a Flora, nossa IA de
-            bem-estar, guiando você dia após dia.
+            Baixe o Smartea+ e escolha sua jornada de 21 dias. O ritual do seu chá acompanha você em
+            qualquer uma delas — a escolha é sempre sua.
           </p>
         </div>
       </div>

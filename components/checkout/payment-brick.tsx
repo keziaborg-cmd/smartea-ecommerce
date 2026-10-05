@@ -14,6 +14,12 @@ if (typeof window !== "undefined" && publicKey) {
   initMercadoPago(publicKey, { locale: "pt-BR" });
 }
 
+export interface PixPending {
+  qrCode: string;
+  qrCodeBase64: string | null;
+  expiresAt: string | null;
+}
+
 interface PaymentBrickProps {
   orderNumber: string;
   accessToken: string;
@@ -21,6 +27,7 @@ interface PaymentBrickProps {
   preferenceId: string;
   payerEmail: string;
   onApproved: () => void;
+  onPixPending: (pix: PixPending) => void;
   onError: (message: string) => void;
 }
 
@@ -31,6 +38,7 @@ export function PaymentBrick({
   preferenceId,
   payerEmail,
   onApproved,
+  onPixPending,
   onError,
 }: PaymentBrickProps) {
   if (!publicKey) {
@@ -69,6 +77,12 @@ export function PaymentBrick({
         const data = await res.json();
         if (!res.ok || data.status === "rejected") {
           onError(data.message ?? "Pagamento não aprovado. Tente novamente.");
+          return;
+        }
+        // Pix não aprova na hora — a pessoa ainda precisa escanear/pagar o
+        // QR Code. Só cartão/boleto chegam aqui já aprovados de fato.
+        if (data.status === "pending" && data.pix) {
+          onPixPending(data.pix);
           return;
         }
         onApproved();

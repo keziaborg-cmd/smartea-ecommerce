@@ -125,12 +125,12 @@ export default function PedidoConfirmacaoPage() {
 
         <div className="mt-8 rounded-card-conteudo bg-verde-escuro p-6 text-left text-creme">
           <p className="eyebrow text-dourado">
-            <span className="mr-2 rounded border border-dourado/40 px-1.5 py-0.5">QR</span>
+            <span className="mr-2 rounded border border-dourado/40 px-1.5 py-0.5">APP</span>
             Próximo passo
           </p>
           <p className="mt-2 text-sm text-texto-sobre-escuro">
-            Quando o chá chegar, escaneie o QR Code da embalagem para ativar sua jornada de 21 dias no
-            Smartea+, guiada pela Flora.
+            Enquanto o chá não chega, já dá pra baixar o Smartea+ e começar sua jornada de 21 dias — a
+            Flora te espera lá, e o chá acompanha quando quiser.
           </p>
         </div>
 

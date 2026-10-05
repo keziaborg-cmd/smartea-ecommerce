@@ -23,7 +23,7 @@ const montserrat = Montserrat({
 const SITE_URL = "https://smartea.com.br";
 const SITE_TITLE = "Smartea — Chá 100% natural, um ritual em cada lata";
 const SITE_DESCRIPTION =
-  "Chás naturais Smartea: 6 blends para cada momento do seu dia. Cada lata traz um QR Code que ativa uma jornada de 21 dias no app Smartea+, guiada pela Flora.";
+  "Chás naturais Smartea: 6 blends para cada momento do seu dia. Conheça também o Smartea+, o app com jornadas guiadas de 21 dias, hábitos e um jardim que cresce com você.";
 
 export const metadata: Metadata = {
   // metadataBase resolve toda URL relativa (og:image, canonical, etc.) pro

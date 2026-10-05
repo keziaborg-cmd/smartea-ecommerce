@@ -1,6 +1,5 @@
-// Ported verbatim from design-bundle/Smartea.dc.html (pdpData()) — approved copy.
-// Editorial rule (see design-bundle/README.md): no countdowns, no fake
-// "últimas unidades", no artificial urgency, no clinical claims in `gatilhos`.
+// Editorial rule: no countdowns, no fake "últimas unidades", no artificial
+// urgency, no clinical claims in `gatilhos`.
 import type { TeaSlug } from "./teas";
 import type { JourneySlug } from "./journeys";
 
@@ -20,7 +19,7 @@ export interface PdpEntry {
   beneficios: string[];
   como: string;
   // Relação muitos-para-muitos chá <-> jornada, confirmada pelo usuário em
-  // 2026-08-14 (ex.: Camomila está em Sono E Ansiedade & Estresse).
+  // 2026-08-14 (ex.: Camomila está em Sono E Ansiedade).
   jornadas: JourneySlug[];
   diferencial: string;
   gatilhos: PdpGatilho[];
@@ -37,7 +36,7 @@ export const pdpData: Record<TeaSlug, PdpEntry> = {
     como: "Folhas selecionadas na colheita natural, preparadas em água quente por alguns minutos — sem açúcar, sem conservantes. Parte da manhã, antes de começar o dia.",
     jornadas: ["produtividade", "compulsividade"],
     diferencial:
-      "A lata do Chá Verde conecta às jornadas de Produtividade & Foco e Pausa no Smartea+ (21 dias cada), com a Flora guiando pausas e pequenos hábitos ao longo do dia.",
+      "Um companheiro natural pra quem escolhe o Chá Verde no ritual das jornadas Produtividade ou Pausa no Smartea+ — mas funciona bem em qualquer uma das quatro.",
     gatilhos: [
       { k: "Prova social", t: "Já faz parte da rotina de milhares de pessoas." },
       { k: "Tradição", t: "Folhas reconhecidas pela tradição do uso antioxidante." },
@@ -60,7 +59,7 @@ export const pdpData: Record<TeaSlug, PdpEntry> = {
     como: "Flores de camomila em infusão, preparadas cerca de 30 minutos antes de dormir, como parte de um ritual — não só uma bebida.",
     jornadas: ["sono", "ansiedade"],
     diferencial:
-      "Ativa as jornadas de Sono e Ansiedade & Estresse no Smartea+ (21 dias cada), com a Flora sugerindo respiração guiada junto ao ritual do chá.",
+      "Combina com o ritual das jornadas Sono e Ansiedade no Smartea+ — sem cafeína, serve bem a qualquer hora do dia.",
     gatilhos: [
       { k: "Prova social", t: "Relatos de quem incorporou o ritual noturno." },
       { k: "Tradição", t: "Uso tradicional da camomila para relaxar." },
@@ -82,7 +81,7 @@ export const pdpData: Record<TeaSlug, PdpEntry> = {
     como: "Infusão rápida, pode ser preparada em poucos minutos entre uma tarefa e outra.",
     jornadas: ["ansiedade"],
     diferencial:
-      "Parte da jornada de Ansiedade & Estresse de 21 dias no Smartea+, com pausas guiadas pela Flora entre um compromisso e outro.",
+      "Um sabor leve e floral pra quem quer um chá suave no ritual de qualquer jornada do Smartea+, a qualquer hora.",
     gatilhos: [
       { k: "Prova social", t: "Quem usa como ritual de pausa no trabalho." },
       { k: "Lote menor", t: "Lata de 80g, de produção reduzida." },
@@ -102,7 +101,8 @@ export const pdpData: Record<TeaSlug, PdpEntry> = {
     beneficios: ["Cafeína natural", "Corpo intenso", "Foco sustentado"],
     como: "Folhas de chá preto selecionadas, com liberação de energia mais gradual — ideal para o meio da manhã ou início da tarde.",
     jornadas: ["produtividade"],
-    diferencial: "Conecta à jornada de Produtividade & Foco de 21 dias no Smartea+, guiada pela Flora.",
+    diferencial:
+      "Com cafeína natural, é a escolha de quem quer o ritual do Smartea+ no início do dia — em qualquer jornada.",
     gatilhos: [
       { k: "Prova social", t: "Quem substituiu parte do café pelo ritual." },
       { k: "Tradição", t: "Uso tradicional do chá preto para energia." },
@@ -122,7 +122,8 @@ export const pdpData: Record<TeaSlug, PdpEntry> = {
     beneficios: ["Ervas calmantes", "Aroma suave", "Sem cafeína"],
     como: "Infusão relaxante, pode ser preparada em qualquer momento do dia que pedir uma pausa.",
     jornadas: ["sono", "ansiedade"],
-    diferencial: "Parte das jornadas de Sono e Ansiedade & Estresse no Smartea+ (21 dias cada).",
+    diferencial:
+      "Sem cafeína, combina com o ritual de qualquer jornada do Smartea+ — sabor leve, presente em qualquer hora do dia.",
     gatilhos: [
       { k: "Prova social", t: "Quem reservou um momento do dia só para respirar." },
       { k: "Honestidade", t: "Não promete eliminar a ansiedade — oferece um ritual de pausa." },
@@ -143,7 +144,7 @@ export const pdpData: Record<TeaSlug, PdpEntry> = {
     como: "1. Uma colher de sopa para 200 ml de água quente, pouco antes de ferver.\n\n2. Deixe em infusão de 4 a 6 minutos. Menos tempo, mais leve; mais tempo, mais marcante.\n\n3. Beba sem fazer mais nada junto. A infusão já é parte da pausa.\n\nNo calor, prepare a mesma medida, deixe esfriar e sirva com gelo.",
     jornadas: ["compulsividade"],
     diferencial:
-      "Ativa a jornada Pausa de 21 dias no Smartea+ — um intervalo seu no meio do dia, com conteúdo diário e um jardim que cresce junto.",
+      "Combina com o ritual da jornada Pausa no Smartea+ — um intervalo seu no meio do dia, com conteúdo diário e um jardim que cresce junto. Funciona bem em qualquer outra jornada também.",
     gatilhos: [{ k: "O momento certo", t: "Feito para o momento do dia em que tudo se emenda." }],
     faq: [
       { q: "O Hibisco tem cafeína?", a: "Não. Pode ser tomado a qualquer hora, inclusive à noite." },

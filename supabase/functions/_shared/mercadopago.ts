@@ -42,6 +42,12 @@ export async function createPreference(params: {
   return res.json();
 }
 
+export interface MpPixTransactionData {
+  qr_code?: string;
+  qr_code_base64?: string;
+  ticket_url?: string;
+}
+
 export async function createPayment(params: {
   formData: Record<string, unknown>;
   externalReference: string;
@@ -51,6 +57,12 @@ export async function createPayment(params: {
   id: number;
   status: string;
   status_detail: string;
+  // Presentes só em pagamentos Pix — a API já devolve isso pronto na criação
+  // do pagamento, sem precisar de chamada extra.
+  date_of_expiration?: string;
+  point_of_interaction?: {
+    transaction_data?: MpPixTransactionData;
+  };
 }> {
   const res = await fetch(`${MP_API}/v1/payments`, {
     method: "POST",

@@ -4,6 +4,7 @@ import { isShippingMethod, shippingFeeCents } from "../_shared/shipping.ts";
 import { generateOrderNumber } from "../_shared/order-number.ts";
 import { createPreference } from "../_shared/mercadopago.ts";
 import { tierForCartUnits, unitPriceForTier } from "../_shared/pricing.ts";
+import { applyCoupon, isValidCoupon, normalizeCouponCode } from "../_shared/coupons.ts";
 
 interface RequestBody {
   customer: { nome: string; email: string; telefone: string };
@@ -18,6 +19,7 @@ interface RequestBody {
     method: string;
   };
   items: { slug: string; qty: number }[];
+  couponCode?: string;
 }
 
 Deno.serve(async (req) => {
@@ -27,7 +29,7 @@ Deno.serve(async (req) => {
 
   try {
     const body: RequestBody = await req.json();
-    const { customer, shipping, items } = body;
+    const { customer, shipping, items, couponCode } = body;
 
     if (!customer?.nome || !customer?.email || !customer?.telefone) {
       return json({ message: "Dados de contato incompletos." }, 400);
@@ -41,6 +43,12 @@ Deno.serve(async (req) => {
     }
     if (!Array.isArray(items) || items.length === 0) {
       return json({ message: "Carrinho vazio." }, 400);
+    }
+
+    const rawCoupon = couponCode?.trim() ?? "";
+    const normalizedCoupon = rawCoupon ? normalizeCouponCode(rawCoupon) : "";
+    if (rawCoupon && !isValidCoupon(normalizedCoupon)) {
+      return json({ message: "Código de desconto inválido." }, 400);
     }
 
     const supabase = createAdminClient();
@@ -80,8 +88,11 @@ Deno.serve(async (req) => {
       };
     });
 
-    const subtotalCents = orderItems.reduce((sum, i) => sum + i.subtotal_cents, 0);
-    const shippingFee = shippingFeeCents(shipping.method);
+    const rawSubtotalCents = orderItems.reduce((sum, i) => sum + i.subtotal_cents, 0);
+    const rawShippingFee = shippingFeeCents(shipping.method);
+    const { subtotalCents, shippingFeeCents: shippingFee } = normalizedCoupon
+      ? applyCoupon(normalizedCoupon, rawSubtotalCents, rawShippingFee)
+      : { subtotalCents: rawSubtotalCents, shippingFeeCents: rawShippingFee };
     const totalCents = subtotalCents + shippingFee;
 
     const { data: existingCustomer } = await supabase

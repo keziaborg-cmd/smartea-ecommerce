@@ -29,7 +29,7 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   title: "Smartea+ — o app que continua sua jornada",
   description:
-    "Conheça o Smartea+: a Flora, as jornadas guiadas de 21 dias e como o QR Code de cada lata ativa sua experiência digital.",
+    "Conheça o Smartea+: a Flora, as jornadas guiadas de 21 dias e como o Smartea+ transforma o ritual do chá em hábito.",
 };
 
 export default function SmarteaMaisPage() {
