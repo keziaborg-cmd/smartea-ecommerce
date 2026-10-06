@@ -1,0 +1,36 @@
+# Fontes de conteúdo pro pipeline do blog, agrupadas pelas mesmas 4
+# categorias do blog do site (sono, ansiedade, produtividade, pausa).
+#
+# Estes são exemplos de estrutura pra você substituir pelas fontes de
+# verdade que já escolheu — os valores abaixo não foram validados como
+# fontes editorialmente aprovadas, só mostram o formato esperado.
+#
+# "type: rss" é o único tipo totalmente implementado nesta primeira versão.
+# Uma fonte "type: page" (uma página sem feed RSS) fica registrada aqui,
+# mas o coletor (pipeline/collect.py) só loga que ela existe e pula —
+# scraping genérico de página HTML não foi implementado, porque extrair
+# título/data/resumo de forma confiável varia demais de site pra site.
+# Pra usar uma fonte dessas de verdade, ache o feed RSS dela (a maioria dos
+# blogs/sites de notícia tem um, mesmo sem link visível — ex.: testar
+# "/feed" ou "/rss" no fim da URL) ou peça pra implementar um parser
+# específico pra esse site.
+
+sono:
+  - name: "Sleep Foundation"
+    type: rss
+    url: "https://www.sleepfoundation.org/feed"
+
+ansiedade:
+  - name: "Anxiety & Depression Association of America"
+    type: rss
+    url: "https://adaa.org/rss.xml"
+
+produtividade:
+  - name: "Harvard Business Review"
+    type: page
+    url: "https://hbr.org/topic/subject/productivity"
+
+pausa:
+  - name: "Mindful.org"
+    type: rss
+    url: "https://www.mindful.org/feed/"

@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { teas } from "@/data/teas";
+import { BLOG_AUTHORS } from "@/data/blog-authors";
+import { getPublishedPosts } from "@/lib/blog/posts";
 
 const SITE_URL = "https://smartea.com.br";
 
@@ -7,13 +9,14 @@ const SITE_URL = "https://smartea.com.br";
 // então um novo blend adicionado ali já entra no sitemap sem precisar editar
 // aqui). Carrinho/checkout/pedido ficam de fora — não fazem sentido indexados
 // por buscador (conteúdo transacional/pessoal, não uma página de destino).
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: SITE_URL, changeFrequency: "weekly", priority: 1 },
     { url: `${SITE_URL}/produtos`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/smartea-mais`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/quiz`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/sobre`, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${SITE_URL}/blog`, changeFrequency: "weekly", priority: 0.7 },
     // Páginas legais. /excluir-conta e /politica-de-privacidade também são
     // exigidas pelas lojas (Apple e Google) como URL pública, então precisam
     // estar indexáveis — não entram no disallow do robots.txt.
@@ -30,5 +33,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...productRoutes];
+  // Só artigos com status "publicado" chegam aqui — getPublishedPosts() já
+  // filtra rascunho fora, é o mesmo portão usado pela listagem e pelo artigo.
+  const posts = await getPublishedPosts();
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}`,
+    changeFrequency: "yearly",
+    priority: 0.6,
+  }));
+
+  const blogAuthorRoutes: MetadataRoute.Sitemap = BLOG_AUTHORS.map((author) => ({
+    url: `${SITE_URL}/blog/autor/${author.slug}`,
+    changeFrequency: "monthly",
+    priority: 0.3,
+  }));
+
+  return [...staticRoutes, ...productRoutes, ...blogRoutes, ...blogAuthorRoutes];
 }

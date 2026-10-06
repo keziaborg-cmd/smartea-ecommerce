@@ -23,3 +23,17 @@ supabase/.temp/
 # OS / editor
 .DS_Store
 *.log
+.env*
+
+# blog-pipeline (Python)
+blog-pipeline/data/*.sqlite3
+blog-pipeline/__pycache__/
+blog-pipeline/**/__pycache__/
+blog-pipeline/.venv/
+blog-pipeline/venv/
+blog-pipeline/.pytest_cache/
+
+# ...mas os arquivos de exemplo (sem segredo real) continuam versionados —
+# precisa vir depois de todo ".env*" acima, senão a regra de baixo não pega
+!.env.example
+!**/.env.example

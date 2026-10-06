@@ -1,0 +1,59 @@
+name: Blog pipeline — rascunhos semanais
+
+on:
+  schedule:
+    # Toda segunda-feira às 09:00 UTC (06:00 em Brasília, horário padrão)
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Rodar sem inserir nada de verdade em blog_posts (só mostra o que faria)"
+        type: boolean
+        default: false
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Chave de cache dinâmica (inclui o run_id) pra garantir que o save
+      # sempre aconteça no fim do job — com uma chave fixa, actions/cache só
+      # salva na primeira vez que a chave é usada, e o banco de deduplicação
+      # nunca seria atualizado depois disso. O restore usa o prefixo em
+      # restore-keys pra sempre pegar o cache mais recente disponível.
+      #
+      # Limitação a saber: o GitHub expira cache não acessado há ~7 dias e
+      # tem um limite total de 10GB por repositório — se esse workflow ficar
+      # muito tempo sem rodar, o estado de deduplicação pode se perder. Na
+      # pior hipótese, um item antigo seria reprocessado (gerando um post
+      # duplicado em "revisao", perceptível na revisão), não republicado sem
+      # revisão.
+      - name: Restaura o banco de deduplicação entre execuções
+        uses: actions/cache@v4
+        with:
+          path: blog-pipeline/data
+          key: blog-pipeline-sqlite-${{ github.run_id }}
+          restore-keys: |
+            blog-pipeline-sqlite-
+
+      - name: Instala dependências
+        working-directory: blog-pipeline
+        run: pip install -r requirements.txt
+
+      - name: Roda o pipeline
+        working-directory: blog-pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BLOG_DATABASE_URL: ${{ secrets.BLOG_DATABASE_URL }}
+          WEEKLY_TOKEN_CEILING: ${{ vars.WEEKLY_TOKEN_CEILING }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python run.py --dry-run -v
+          else
+            python run.py -v
+          fi

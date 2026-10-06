@@ -11,6 +11,7 @@ const LEFT_LINKS = [
   { href: "/produtos", label: "Produtos" },
   { href: "/quiz", label: "Quiz", accent: true },
   { href: "/smartea-mais", label: "Smartea+" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export function Nav() {
@@ -97,6 +98,7 @@ export function Nav() {
               { href: "/produtos", label: "Produtos" },
               { href: "/quiz", label: "Fazer o quiz", accent: true },
               { href: "/smartea-mais", label: "Smartea+" },
+              { href: "/blog", label: "Blog" },
               { href: "/carrinho", label: "Carrinho" },
             ].map((link) => (
               <Link

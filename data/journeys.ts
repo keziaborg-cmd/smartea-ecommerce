@@ -43,7 +43,7 @@ export const journeys: Journey[] = [
   },
   {
     slug: "ansiedade",
-    label: "Ansiedade & Estresse",
+    label: "Ansiedade",
     description: "Pausas guiadas ao longo do dia para respirar e reconectar com o presente.",
     openingQuestion: "O que mais pesa na sua semana agora?",
     chapters: [
@@ -60,7 +60,7 @@ export const journeys: Journey[] = [
   },
   {
     slug: "produtividade",
-    label: "Produtividade & Foco",
+    label: "Produtividade",
     description: "Energia mais estável e pausas guiadas entre blocos de foco.",
     openingQuestion: "Onde sua energia mais escapa hoje?",
     chapters: [
@@ -76,11 +76,11 @@ export const journeys: Journey[] = [
     },
   },
   {
-    // slug mantido como "compulsividade" de propósito: é identificador
-    // interno (chaveia pdp-data, cores em globals.css e o progresso do
-    // jardim em journeyMilestones.ts) e renomeá-lo quebraria esses vínculos
-    // e o pareamento com o app. Só a copy visível foi reescrita, saindo de
-    // alegação de saúde para linguagem de ritual.
+    // slug mantido como "compulsividade" de propósito: é só um identificador
+    // interno de roteamento do site (chaveia pdp-data, cores em globals.css e
+    // o progresso do jardim em journeyMilestones.ts). Não há vínculo técnico
+    // com o app — renomear é seguro, mas dá churn à toa; só a copy visível
+    // foi reescrita, saindo de alegação de saúde para linguagem de ritual.
     slug: "compulsividade",
     label: "Pausa",
     description: "Um intervalo no meio do dia para desacelerar antes de seguir.",

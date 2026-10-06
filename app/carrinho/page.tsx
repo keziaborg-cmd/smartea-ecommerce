@@ -11,10 +11,11 @@ import {
   selectSubtotalCents,
   selectShippingFeeCents,
   formatCentsBRL,
-  type ShippingMethod,
 } from "@/lib/cart/cart-store";
 import { lookupCep } from "@/lib/cep/lookup";
-import { PaymentBrick } from "@/components/checkout/payment-brick";
+import { applyCoupon, isValidCoupon, normalizeCouponCode, type CouponCode } from "@/lib/cart/coupons";
+import { PaymentBrick, type PixPending } from "@/components/checkout/payment-brick";
+import { PixQrCode } from "@/components/checkout/pix-qr-code";
 import { StepBadge } from "@/components/checkout/step-badge";
 import { trackBeginCheckout } from "@/lib/tracking/events";
 
@@ -73,7 +74,6 @@ export default function CarrinhoPage() {
   const setQty = useCartStore((s) => s.setQty);
   const remove = useCartStore((s) => s.remove);
   const shippingMethod = useCartStore((s) => s.shippingMethod);
-  const setShippingMethod = useCartStore((s) => s.setShippingMethod);
 
   const [hydrated, setHydrated] = useState(false);
   // eslint-disable-next-line react-hooks/set-state-in-effect -- see components/nav/nav.tsx
@@ -84,14 +84,43 @@ export default function CarrinhoPage() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [orderDraft, setOrderDraft] = useState<OrderDraft | null>(null);
+  const [pixPending, setPixPending] = useState<PixPending | null>(null);
   const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
+  const [couponInput, setCouponInput] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState<CouponCode | null>(null);
+  const [couponError, setCouponError] = useState<string | null>(null);
 
   const lines = hydrated ? selectCartLines(items) : [];
   const cartUnits = selectCartUnits(items);
   const cartTier = selectCartTier(items);
-  const subtotalCents = selectSubtotalCents(items);
-  const shippingFeeCents = selectShippingFeeCents(shippingMethod);
+  const rawSubtotalCents = selectSubtotalCents(items);
+  const rawShippingFeeCents = selectShippingFeeCents(shippingMethod);
+  // O desconto exibido aqui é só preview — o backend recalcula e valida o
+  // código de novo em shop-create-order, nunca confia no total do cliente.
+  const { subtotalCents, shippingFeeCents } = appliedCoupon
+    ? applyCoupon(appliedCoupon, rawSubtotalCents, rawShippingFeeCents)
+    : { subtotalCents: rawSubtotalCents, shippingFeeCents: rawShippingFeeCents };
   const totalCents = subtotalCents + shippingFeeCents;
+
+  function handleApplyCoupon() {
+    const normalized = normalizeCouponCode(couponInput);
+    if (!normalized) {
+      setCouponError("Digite um código.");
+      return;
+    }
+    if (!isValidCoupon(normalized)) {
+      setCouponError("Código inválido.");
+      return;
+    }
+    setAppliedCoupon(normalized);
+    setCouponError(null);
+  }
+
+  function handleRemoveCoupon() {
+    setAppliedCoupon(null);
+    setCouponInput("");
+    setCouponError(null);
+  }
 
   const tierHint =
     cartTier === 1
@@ -158,14 +187,23 @@ export default function CarrinhoPage() {
             method: shippingMethod,
           },
           items: lines.map((l) => ({ slug: l.slug, qty: l.qty })),
+          couponCode: appliedCoupon ?? undefined,
         }),
       });
-      const data = await res.json();
       if (!res.ok) {
-        setError(data.message ?? "Não foi possível criar o pedido. Tente novamente.");
+        let message = `Não foi possível criar o pedido (erro ${res.status}). Tente novamente.`;
+        try {
+          const data = await res.json();
+          if (data?.message) message = data.message;
+        } catch {
+          // resposta de erro não veio em JSON (ex: página de erro do servidor) —
+          // mantém a mensagem com o status HTTP em vez de mascarar como falha de rede.
+        }
+        setError(message);
         setSubmitting(false);
         return;
       }
+      const data = await res.json();
       setOrderDraft(data);
     } catch {
       setError("Falha de conexão. Tente novamente.");
@@ -226,39 +264,17 @@ export default function CarrinhoPage() {
                 <StepBadge n={2} />
                 <h2 className="font-display text-xl text-verde-escuro">Método de envio</h2>
               </div>
-              <div className="flex flex-col gap-3">
-                {(
-                  [
-                    { value: "padrao" as ShippingMethod, label: "Entrega padrão", detail: "3–7 dias úteis", priceLabel: "R$ 12,90" },
-                    { value: "retirada" as ShippingMethod, label: "Retirar na loja", detail: "Pronto em 24h", priceLabel: "Grátis" },
-                  ]
-                ).map((opt) => {
-                  const selected = shippingMethod === opt.value;
-                  return (
-                    <label
-                      key={opt.value}
-                      className={`flex cursor-pointer items-center gap-3.5 rounded-input border-2 bg-input-bg px-[18px] py-[15px] ${
-                        selected ? "border-verde-folha" : "border-borda-clara-2"
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="shipping"
-                        className="sr-only"
-                        checked={selected}
-                        onChange={() => setShippingMethod(opt.value)}
-                      />
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-verde-folha">
-                        <span className={`h-2.5 w-2.5 rounded-full ${selected ? "bg-verde-folha" : "bg-transparent"}`} />
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block text-[15px] font-extrabold text-verde-escuro">{opt.label}</span>
-                        <span className="block text-xs text-eyebrow-claro">{opt.detail}</span>
-                      </span>
-                      <span className="text-[15px] font-extrabold text-verde-folha">{opt.priceLabel}</span>
-                    </label>
-                  );
-                })}
+              <div className="flex items-center gap-3.5 rounded-input border-2 border-verde-folha bg-input-bg px-[18px] py-[15px]">
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-verde-folha">
+                  <span className="h-2.5 w-2.5 rounded-full bg-verde-folha" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[15px] font-extrabold text-verde-escuro">Entrega padrão</span>
+                  <span className="block text-xs text-eyebrow-claro">3–7 dias úteis</span>
+                </span>
+                <span className="text-[15px] font-extrabold text-verde-folha">
+                  {formatCentsBRL(shippingFeeCents)}
+                </span>
               </div>
             </section>
 
@@ -275,7 +291,20 @@ export default function CarrinhoPage() {
                 ))}
               </div>
               <div className="mt-4">
-                {orderDraft ? (
+                {orderDraft && pixPending ? (
+                  <PixQrCode
+                    qrCode={pixPending.qrCode}
+                    qrCodeBase64={pixPending.qrCodeBase64}
+                    expiresAt={pixPending.expiresAt}
+                    orderNumber={orderDraft.orderNumber}
+                    accessToken={orderDraft.accessToken}
+                    onConfirmed={() => {
+                      useCartStore.getState().clear();
+                      router.push(`/pedido/${orderDraft.orderNumber}?token=${orderDraft.accessToken}`);
+                    }}
+                    onRetry={() => setPixPending(null)}
+                  />
+                ) : orderDraft ? (
                   <PaymentBrick
                     orderNumber={orderDraft.orderNumber}
                     accessToken={orderDraft.accessToken}
@@ -286,6 +315,7 @@ export default function CarrinhoPage() {
                       useCartStore.getState().clear();
                       router.push(`/pedido/${orderDraft.orderNumber}?token=${orderDraft.accessToken}`);
                     }}
+                    onPixPending={(pix) => setPixPending(pix)}
                     onError={(message) => setError(message)}
                   />
                 ) : (
@@ -329,6 +359,50 @@ export default function CarrinhoPage() {
                   </button>
                 </div>
               ))}
+
+              {!orderDraft && (
+                <div className="mt-2 border-t border-creme/15 pt-4">
+                  {appliedCoupon ? (
+                    <div className="flex items-center justify-between rounded-input bg-creme/10 px-3.5 py-2.5 text-sm text-creme">
+                      <span>
+                        Código <strong>{appliedCoupon}</strong> aplicado
+                      </span>
+                      <button
+                        onClick={handleRemoveCoupon}
+                        aria-label="Remover código de desconto"
+                        className="shrink-0 text-creme/50 hover:text-creme"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex gap-2">
+                      <input
+                        value={couponInput}
+                        onChange={(e) => {
+                          setCouponInput(e.target.value);
+                          setCouponError(null);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            handleApplyCoupon();
+                          }
+                        }}
+                        placeholder="Código de desconto"
+                        className="w-full min-w-0 rounded-input border border-creme/20 bg-creme/10 px-3.5 py-2.5 text-sm text-creme placeholder:text-creme/40"
+                      />
+                      <button
+                        onClick={handleApplyCoupon}
+                        className="shrink-0 rounded-input bg-creme/15 px-4 py-2.5 text-sm font-semibold text-creme hover:bg-creme/25"
+                      >
+                        Aplicar
+                      </button>
+                    </div>
+                  )}
+                  {couponError && <p className="mt-1.5 text-xs text-red-300">{couponError}</p>}
+                </div>
+              )}
 
               <div className="mt-2 flex flex-col gap-2 border-t border-creme/15 pt-4 text-sm text-texto-sobre-escuro">
                 <div className="flex justify-between">

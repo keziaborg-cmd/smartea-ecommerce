@@ -29,6 +29,9 @@ export function Footer() {
               <Link href="/smartea-mais" className="text-sm text-[#a9c1a2] hover:text-creme">
                 Smartea+
               </Link>
+              <Link href="/blog" className="text-sm text-[#a9c1a2] hover:text-creme">
+                Blog
+              </Link>
               <Link href="/carrinho" className="text-sm text-[#a9c1a2] hover:text-creme">
                 Carrinho
               </Link>

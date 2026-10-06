@@ -22,9 +22,9 @@ const FLORA_BULLETS = [
 ];
 
 const ATIVACAO_STEPS = [
-  { title: "Compre o chá", text: "Escolha o blend que combina com o seu momento — ou faça o quiz." },
-  { title: "Escaneie o QR Code", text: "Cada lata Smartea traz um QR Code próprio, impresso na embalagem." },
-  { title: "A jornada é ativada", text: "O app reconhece o chá e abre a jornada de 21 dias correspondente." },
+  { title: "Baixe o Smartea+", text: "Disponível na App Store e no Google Play, com 14 dias grátis." },
+  { title: "Escolha sua jornada", text: "Sono, Ansiedade, Produtividade ou Pausa. Todas disponíveis desde o primeiro dia." },
+  { title: "Escolha o chá do seu ritual", text: "Um dos nossos, um que você já tem em casa, ou nenhum. A jornada é sua, o chá acompanha do seu jeito." },
 ];
 
 function Sparkle({ className }: { className?: string }) {
@@ -170,8 +170,8 @@ export function FeaturesSection() {
 
       <FeatureRow eyebrow="Chá & loja" title="O ritual começa na lata" bg="bg-jornada-sono-clara" visual={<TeaStack />}>
         <p className="font-body-mais text-tinta-mais/75">
-          Todo chá Smartea é a porta de entrada pra uma jornada — o app reconhece o QR Code e ativa a
-          experiência guiada certa.
+          Todo chá Smartea pode ser parte do seu ritual diário no Smartea+ — você escolhe qual, e a
+          jornada guiada é sua desde o primeiro dia, com ou sem chá.
         </p>
         <ul className="mt-4 space-y-2.5">
           {ATIVACAO_STEPS.map((s, i) => (

@@ -17,8 +17,8 @@ export function HeroSection() {
             Um app de bem-estar mental guiado por jornadas de chá
           </h1>
           <p className="mx-auto mt-5 max-w-md font-body-mais text-tinta-mais/75 md:mx-0">
-            Cada lata Smartea traz um QR Code que ativa uma jornada guiada de 21 dias no app
-            Smartea+, com a Flora acompanhando você a cada dia.
+            O Smartea+ é o app que acompanha o seu chá: jornadas guiadas de 21 dias, hábitos e um
+            jardim que cresce com você.
           </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row md:justify-start">
             <PillButton3D href="/quiz" variant="primary">

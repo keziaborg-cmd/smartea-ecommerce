@@ -74,8 +74,8 @@ export function HeroCarousel() {
           </Link>
         </div>
         <p className="mt-5 text-xs" style={{ color: tea.heroSub }}>
-          <span className="mr-2 rounded border border-white/30 px-1.5 py-0.5 font-bold">QR</span>
-          Ativa uma jornada de 21 dias no Smartea+, guiada pela Flora
+          <span className="mr-2 rounded border border-white/30 px-1.5 py-0.5 font-bold">APP</span>
+          Jornadas de 21 dias no Smartea+, guiada pela Flora
         </p>
       </div>
 
