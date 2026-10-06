@@ -47,6 +47,54 @@ export type Database = {
         }
         Relationships: []
       }
+      blog_posts: {
+        Row: {
+          author: string
+          body_markdown: string
+          category: string
+          created_at: string
+          excerpt: string
+          id: string
+          published_at: string | null
+          risk: string
+          slug: string
+          sources: Json
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author?: string
+          body_markdown: string
+          category: string
+          created_at?: string
+          excerpt: string
+          id?: string
+          published_at?: string | null
+          risk: string
+          slug: string
+          sources?: Json
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string
+          body_markdown?: string
+          category?: string
+          created_at?: string
+          excerpt?: string
+          id?: string
+          published_at?: string | null
+          risk?: string
+          slug?: string
+          sources?: Json
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       blog_subscribers: {
         Row: {
           created_at: string

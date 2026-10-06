@@ -1,12 +1,13 @@
-import { readFileSync, readdirSync } from "node:fs";
-import { join } from "node:path";
-import matter from "gray-matter";
 import { marked } from "marked";
+// O client "server" (lib/supabase/server.ts) usa cookies() de next/headers, que
+// não está disponível em generateStaticParams (roda em build time, sem
+// requisição HTTP) — ver erro do Next ao tentar. Blog é leitura pública sem
+// sessão nenhuma, então o client "browser" (sem cookies) funciona em
+// qualquer contexto, incluindo build time.
+import { createClient } from "@/lib/supabase/client";
 import { isBlogCategory, type BlogCategory } from "@/data/blog-categories";
 
-const CONTENT_DIR = join(process.cwd(), "content", "blog");
-
-export type PostStatus = "publicado" | "rascunho";
+export type PostStatus = "revisao" | "publicado";
 export type PostRisk = "alto" | "baixo";
 
 export interface PostSource {
@@ -14,7 +15,7 @@ export interface PostSource {
   url: string;
 }
 
-export interface BlogPostFrontmatter {
+export interface BlogPost {
   title: string;
   slug: string;
   category: BlogCategory;
@@ -24,87 +25,83 @@ export interface BlogPostFrontmatter {
   status: PostStatus;
   risk: PostRisk;
   sources: PostSource[];
+  contentHtml: string;
+  readingTimeMinutes: number;
 }
 
-export interface BlogPost extends BlogPostFrontmatter {
-  /** HTML já renderizado a partir do corpo em Markdown do arquivo. */
-  contentHtml: string;
-  /** Estimativa simples (palavras / 200wpm), arredondada pra cima, mínimo 1. */
-  readingTimeMinutes: number;
+interface BlogPostRow {
+  title: string;
+  slug: string;
+  category: string;
+  excerpt: string;
+  author: string;
+  body_markdown: string;
+  sources: unknown;
+  risk: string;
+  status: string;
+  created_at: string;
 }
 
 function wordCount(text: string): number {
   return text.trim().split(/\s+/).filter(Boolean).length;
 }
 
-function parseFrontmatter(raw: Record<string, unknown>, fileName: string): BlogPostFrontmatter {
-  const category = String(raw.category ?? "");
-  if (!isBlogCategory(category)) {
-    throw new Error(`${fileName}: categoria inválida "${category}".`);
-  }
-  const status = raw.status === "publicado" ? "publicado" : "rascunho";
-  const risk = raw.risk === "alto" ? "alto" : "baixo";
+function toPost(row: BlogPostRow): BlogPost | null {
+  if (!isBlogCategory(row.category)) return null;
+
+  const sources: PostSource[] = Array.isArray(row.sources)
+    ? row.sources.map((s) => ({ title: String((s as PostSource)?.title ?? ""), url: String((s as PostSource)?.url ?? "") }))
+    : [];
 
   return {
-    title: String(raw.title ?? ""),
-    slug: String(raw.slug ?? fileName.replace(/\.md$/, "")),
-    category,
-    excerpt: String(raw.excerpt ?? ""),
-    author: String(raw.author ?? "equipe-smartea"),
-    date: String(raw.date ?? ""),
-    status,
-    risk,
-    sources: Array.isArray(raw.sources)
-      ? raw.sources.map((s) => ({ title: String((s as PostSource).title ?? ""), url: String((s as PostSource).url ?? "") }))
-      : [],
+    title: row.title,
+    slug: row.slug,
+    category: row.category,
+    excerpt: row.excerpt,
+    author: row.author,
+    date: row.created_at,
+    status: row.status === "publicado" ? "publicado" : "revisao",
+    risk: row.risk === "alto" ? "alto" : "baixo",
+    sources,
+    contentHtml: marked.parse(row.body_markdown, { async: false }) as string,
+    readingTimeMinutes: Math.max(1, Math.ceil(wordCount(row.body_markdown) / 200)),
   };
 }
 
-function loadAllPostsUnfiltered(): BlogPost[] {
-  let fileNames: string[];
-  try {
-    fileNames = readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".md"));
-  } catch {
-    // Pasta ainda não existe (ex.: antes do primeiro artigo ser adicionado) — lista vazia, não erro.
-    return [];
-  }
-
-  return fileNames.map((fileName) => {
-    const raw = readFileSync(join(CONTENT_DIR, fileName), "utf-8");
-    const { data, content } = matter(raw);
-    const frontmatter = parseFrontmatter(data, fileName);
-    return {
-      ...frontmatter,
-      contentHtml: marked.parse(content, { async: false }) as string,
-      readingTimeMinutes: Math.max(1, Math.ceil(wordCount(content) / 200)),
-    };
-  });
-}
-
-function sortByDateDesc(posts: BlogPost[]): BlogPost[] {
-  return [...posts].sort((a, b) => (a.date < b.date ? 1 : -1));
-}
+const SELECT_COLUMNS = "title, slug, category, excerpt, author, body_markdown, sources, risk, status, created_at";
 
 /** Só artigos com status "publicado" — é o único portão que as páginas
- * públicas, a listagem e o sitemap enxergam. Um rascunho nunca passa daqui. */
-export function getPublishedPosts(): BlogPost[] {
-  return sortByDateDesc(loadAllPostsUnfiltered().filter((p) => p.status === "publicado"));
+ * públicas, a listagem e o sitemap enxergam. Isso já é garantido duas vezes:
+ * pela policy de RLS da tabela (a anon key não enxerga outro status mesmo
+ * que o filtro abaixo seja removido por engano) e pelo filtro explícito. */
+export async function getPublishedPosts(): Promise<BlogPost[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("blog_posts")
+    .select(SELECT_COLUMNS)
+    .eq("status", "publicado")
+    .order("created_at", { ascending: false });
+
+  if (error || !data) return [];
+  return data.map((row) => toPost(row as BlogPostRow)).filter((p): p is BlogPost => p !== null);
 }
 
-export function getPublishedPostBySlug(slug: string): BlogPost | undefined {
-  return getPublishedPosts().find((p) => p.slug === slug);
+export async function getPublishedPostBySlug(slug: string): Promise<BlogPost | undefined> {
+  const posts = await getPublishedPosts();
+  return posts.find((p) => p.slug === slug);
 }
 
-export function getPublishedPostsByCategory(category: BlogCategory): BlogPost[] {
-  return getPublishedPosts().filter((p) => p.category === category);
+export async function getPublishedPostsByCategory(category: BlogCategory): Promise<BlogPost[]> {
+  const posts = await getPublishedPosts();
+  return posts.filter((p) => p.category === category);
 }
 
-export function getRelatedPosts(post: BlogPost, limit = 3): BlogPost[] {
-  return getPublishedPosts()
-    .filter((p) => p.category === post.category && p.slug !== post.slug)
-    .slice(0, limit);
+export async function getRelatedPosts(post: BlogPost, limit = 3): Promise<BlogPost[]> {
+  const posts = await getPublishedPosts();
+  return posts.filter((p) => p.category === post.category && p.slug !== post.slug).slice(0, limit);
 }
 
-export function getPublishedPostsByAuthor(authorSlug: string): BlogPost[] {
-  return getPublishedPosts().filter((p) => p.author === authorSlug);
+export async function getPublishedPostsByAuthor(authorSlug: string): Promise<BlogPost[]> {
+  const posts = await getPublishedPosts();
+  return posts.filter((p) => p.author === authorSlug);
 }

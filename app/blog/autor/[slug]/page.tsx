@@ -26,7 +26,7 @@ export default async function BlogAuthorPage({ params }: { params: Promise<{ slu
   const author = getBlogAuthorBySlug(slug);
   if (!author) notFound();
 
-  const posts = getPublishedPostsByAuthor(author.slug);
+  const posts = await getPublishedPostsByAuthor(author.slug);
 
   const jsonLd = {
     "@context": "https://schema.org",

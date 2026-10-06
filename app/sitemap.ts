@@ -9,7 +9,7 @@ const SITE_URL = "https://smartea.com.br";
 // então um novo blend adicionado ali já entra no sitemap sem precisar editar
 // aqui). Carrinho/checkout/pedido ficam de fora — não fazem sentido indexados
 // por buscador (conteúdo transacional/pessoal, não uma página de destino).
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: SITE_URL, changeFrequency: "weekly", priority: 1 },
     { url: `${SITE_URL}/produtos`, changeFrequency: "weekly", priority: 0.9 },
@@ -35,7 +35,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Só artigos com status "publicado" chegam aqui — getPublishedPosts() já
   // filtra rascunho fora, é o mesmo portão usado pela listagem e pelo artigo.
-  const blogRoutes: MetadataRoute.Sitemap = getPublishedPosts().map((post) => ({
+  const posts = await getPublishedPosts();
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
     changeFrequency: "yearly",
     priority: 0.6,

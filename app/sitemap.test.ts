@@ -20,19 +20,19 @@ const FAKE_PUBLISHED_POST = {
 // usa essa função como fonte, sem adicionar nenhuma URL de artigo por fora
 // dela (o que poderia reintroduzir um rascunho por acidente).
 vi.mock("@/lib/blog/posts", () => ({
-  getPublishedPosts: () => [FAKE_PUBLISHED_POST],
+  getPublishedPosts: async () => [FAKE_PUBLISHED_POST],
 }));
 
 const { default: sitemap } = await import("./sitemap");
 
 describe("sitemap", () => {
-  it("inclui a URL do artigo publicado", () => {
-    const urls = sitemap().map((entry) => entry.url);
+  it("inclui a URL do artigo publicado", async () => {
+    const urls = (await sitemap()).map((entry) => entry.url);
     expect(urls).toContain("https://smartea.com.br/blog/publicado-teste");
   });
 
-  it("não inclui nenhuma URL de blog além das que vêm de getPublishedPosts", () => {
-    const urls = sitemap().map((entry) => entry.url);
+  it("não inclui nenhuma URL de blog além das que vêm de getPublishedPosts", async () => {
+    const urls = (await sitemap()).map((entry) => entry.url);
     const blogPostUrls = urls.filter((url) => url.startsWith("https://smartea.com.br/blog/") && !url.includes("/autor/"));
     expect(blogPostUrls).toEqual(["https://smartea.com.br/blog/publicado-teste"]);
   });

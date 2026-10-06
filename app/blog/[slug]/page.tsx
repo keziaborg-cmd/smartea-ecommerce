@@ -12,13 +12,14 @@ import { ProfessionalSupportNotice } from "@/components/blog/professional-suppor
 
 const SITE_URL = "https://smartea.com.br";
 
-export function generateStaticParams() {
-  return getPublishedPosts().map((post) => ({ slug: post.slug }));
+export async function generateStaticParams() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPublishedPostBySlug(slug);
+  const post = await getPublishedPostBySlug(slug);
   if (!post) return {};
 
   return {
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 function formatDate(iso: string): string {
   try {
-    return new Date(`${iso}T00:00:00`).toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+    return new Date(iso).toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
   } catch {
     return iso;
   }
@@ -45,11 +46,11 @@ function formatDate(iso: string): string {
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPublishedPostBySlug(slug);
+  const post = await getPublishedPostBySlug(slug);
   if (!post) notFound();
 
   const author = getBlogAuthorBySlug(post.author);
-  const related = getRelatedPosts(post);
+  const related = await getRelatedPosts(post);
 
   const jsonLd = [
     {

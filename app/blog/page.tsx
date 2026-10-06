@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description: "Conteúdo sobre sono, ansiedade, produtividade e pausa — da equipe Smartea, com fontes sempre citadas.",
 };
 
-export default function BlogPage() {
-  const posts = getPublishedPosts();
+export default async function BlogPage() {
+  const posts = await getPublishedPosts();
 
   return (
     <main className="animate-pagein px-[6vw] py-14">

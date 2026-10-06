@@ -4,7 +4,7 @@ import type { BlogPost } from "@/lib/blog/posts";
 
 function formatDate(iso: string): string {
   try {
-    return new Date(`${iso}T00:00:00`).toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
+    return new Date(iso).toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
   } catch {
     return iso;
   }
