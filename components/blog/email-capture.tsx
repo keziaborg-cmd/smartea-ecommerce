@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { track } from "@/lib/crm/tracker";
 
 export function EmailCapture({ sourceSlug }: { sourceSlug: string }) {
   const [email, setEmail] = useState("");
@@ -13,6 +14,7 @@ export function EmailCapture({ sourceSlug }: { sourceSlug: string }) {
     setStatus("sending");
     const supabase = createClient();
     const { error } = await supabase.from("blog_subscribers").insert({ email, source_slug: sourceSlug });
+    if (!error) track("newsletter_subscribed", { source: "blog", slug: sourceSlug }, { email });
     setStatus(error ? "error" : "done");
   }
 

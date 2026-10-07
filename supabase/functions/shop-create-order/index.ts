@@ -5,6 +5,7 @@ import { generateOrderNumber } from "../_shared/order-number.ts";
 import { createPreference } from "../_shared/mercadopago.ts";
 import { tierForCartUnits, unitPriceForTier } from "../_shared/pricing.ts";
 import { applyCoupon, isValidCoupon, normalizeCouponCode } from "../_shared/coupons.ts";
+import { crmTrack, sanitizeTracking } from "../_shared/crm.ts";
 
 interface RequestBody {
   customer: { nome: string; email: string; telefone: string };
@@ -20,7 +21,13 @@ interface RequestBody {
   };
   items: { slug: string; qty: number }[];
   couponCode?: string;
+  tracking?: unknown;
+  // Opt-ins de marketing marcados no checkout (todos desmarcados por padrão). O pedido não
+  // depende de nenhum deles.
+  consents?: { email?: boolean; whatsapp?: boolean; sms?: boolean; textVersion?: string };
 }
+
+const CONSENT_CHANNELS = ["email", "whatsapp", "sms"] as const;
 
 Deno.serve(async (req) => {
   const { json, preflight } = makeResponders(req);
@@ -29,7 +36,8 @@ Deno.serve(async (req) => {
 
   try {
     const body: RequestBody = await req.json();
-    const { customer, shipping, items, couponCode } = body;
+    const { customer, shipping, items, couponCode, consents } = body;
+    const tracking = sanitizeTracking(body.tracking);
 
     if (!customer?.nome || !customer?.email || !customer?.telefone) {
       return json({ message: "Dados de contato incompletos." }, 400);
@@ -50,6 +58,7 @@ Deno.serve(async (req) => {
     if (rawCoupon && !isValidCoupon(normalizedCoupon)) {
       return json({ message: "Código de desconto inválido." }, 400);
     }
+    const coupon = normalizedCoupon && isValidCoupon(normalizedCoupon) ? normalizedCoupon : null;
 
     const supabase = createAdminClient();
 
@@ -90,8 +99,8 @@ Deno.serve(async (req) => {
 
     const rawSubtotalCents = orderItems.reduce((sum, i) => sum + i.subtotal_cents, 0);
     const rawShippingFee = shippingFeeCents(shipping.method);
-    const { subtotalCents, shippingFeeCents: shippingFee } = normalizedCoupon
-      ? applyCoupon(normalizedCoupon, rawSubtotalCents, rawShippingFee)
+    const { subtotalCents, shippingFeeCents: shippingFee } = coupon
+      ? applyCoupon(coupon, rawSubtotalCents, rawShippingFee)
       : { subtotalCents: rawSubtotalCents, shippingFeeCents: rawShippingFee };
     const totalCents = subtotalCents + shippingFee;
 
@@ -140,6 +149,7 @@ Deno.serve(async (req) => {
           shipping_fee_cents: shippingFee,
           subtotal_cents: subtotalCents,
           total_cents: totalCents,
+          coupon_code: coupon,
           status: "pending",
         })
         .select("id, order_number, access_token")
@@ -160,6 +170,51 @@ Deno.serve(async (req) => {
     const itemsToInsert = orderItems.map((i) => ({ ...i, order_id: order.id }));
     const { error: itemsError } = await supabase.from("shop_order_items").insert(itemsToInsert);
     if (itemsError) throw itemsError;
+
+    const who = {
+      email: customer.email,
+      phone: customer.telefone,
+      personName: customer.nome,
+      shopCustomerId: customerId,
+      anonymousId: tracking.anonymousId,
+      sessionId: tracking.sessionId,
+    };
+    await crmTrack(supabase, {
+      ...who,
+      name: "order_created",
+      properties: {
+        order_id: order.id,
+        order_number: order.order_number,
+        items: orderItems.map((i) => ({
+          product_id: i.product_slug,
+          product_name: i.product_name,
+          quantity: i.qty,
+          price_cents: i.unit_price_cents,
+        })),
+        subtotal_cents: subtotalCents,
+        discount_cents: rawSubtotalCents - subtotalCents + (rawShippingFee - shippingFee),
+        shipping_cents: shippingFee,
+        total_cents: totalCents,
+        coupon,
+        shipping_city: shipping.cidade,
+        shipping_uf: shipping.uf,
+      },
+      idempotencyKey: `order:${order.order_number}:created`,
+    });
+    for (const channel of CONSENT_CHANNELS) {
+      if (consents?.[channel] !== true) continue;
+      await crmTrack(supabase, {
+        ...who,
+        name: "consent_granted",
+        properties: {
+          channel,
+          source: "checkout",
+          text_version: typeof consents.textVersion === "string" ? consents.textVersion.slice(0, 40) : null,
+          order_number: order.order_number,
+        },
+        idempotencyKey: `order:${order.order_number}:consent:${channel}`,
+      });
+    }
 
     const functionsBaseUrl = Deno.env.get("SUPABASE_URL")!.replace(".supabase.co", ".functions.supabase.co");
     const preference = await createPreference({

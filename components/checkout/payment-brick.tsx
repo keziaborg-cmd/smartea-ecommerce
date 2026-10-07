@@ -1,6 +1,7 @@
 "use client";
 
 import { initMercadoPago, Payment } from "@mercadopago/sdk-react";
+import { getTrackingIds } from "@/lib/crm/tracker";
 
 // Per the official usage pattern (@mercadopago/sdk-react README): call
 // initMercadoPago once at module scope, not inside a component effect.
@@ -72,7 +73,7 @@ export function PaymentBrick({
             "Content-Type": "application/json",
             apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "",
           },
-          body: JSON.stringify({ orderNumber, accessToken, formData }),
+          body: JSON.stringify({ orderNumber, accessToken, formData, tracking: getTrackingIds() }),
         });
         const data = await res.json();
         if (!res.ok || data.status === "rejected") {

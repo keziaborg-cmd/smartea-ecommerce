@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type InputHTMLAttributes } from "react";
+import { useEffect, useRef, useState, type InputHTMLAttributes } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -11,6 +11,7 @@ import {
   selectSubtotalCents,
   selectShippingFeeCents,
   formatCentsBRL,
+  cartSnapshot,
 } from "@/lib/cart/cart-store";
 import { lookupCep } from "@/lib/cep/lookup";
 import { applyCoupon, isValidCoupon, normalizeCouponCode, type CouponCode } from "@/lib/cart/coupons";
@@ -18,6 +19,7 @@ import { PaymentBrick, type PixPending } from "@/components/checkout/payment-bri
 import { PixQrCode } from "@/components/checkout/pix-qr-code";
 import { StepBadge } from "@/components/checkout/step-badge";
 import { trackBeginCheckout } from "@/lib/tracking/events";
+import { getTrackingIds, track } from "@/lib/crm/tracker";
 
 function Field({
   label,
@@ -61,6 +63,16 @@ const EMPTY_FORM: FormState = {
   uf: "",
 };
 
+// Muda quando o texto dos opt-ins mudar — vai junto de cada consentimento gravado no CRM, pra
+// sempre dar pra saber exatamente o que a pessoa aceitou.
+const MARKETING_CONSENT_TEXT_VERSION = "checkout-2026-10-07";
+
+const ADDRESS_FIELDS = ["cep", "rua", "numero", "bairro", "cidade", "uf"] as const;
+
+function looksLikeEmail(v: string): boolean {
+  return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.trim());
+}
+
 interface OrderDraft {
   orderNumber: string;
   accessToken: string;
@@ -89,6 +101,10 @@ export default function CarrinhoPage() {
   const [couponInput, setCouponInput] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState<CouponCode | null>(null);
   const [couponError, setCouponError] = useState<string | null>(null);
+  const [marketingConsent, setMarketingConsent] = useState({ email: false, whatsapp: false, sms: false });
+  const sentIdentity = useRef({ email: "", phone: "" });
+  const addressTracked = useRef({ started: false, completed: false });
+  const cartViewTracked = useRef(false);
 
   const lines = hydrated ? selectCartLines(items) : [];
   const cartUnits = selectCartUnits(items);
@@ -102,6 +118,47 @@ export default function CarrinhoPage() {
     : { subtotalCents: rawSubtotalCents, shippingFeeCents: rawShippingFeeCents };
   const totalCents = subtotalCents + shippingFeeCents;
 
+  useEffect(() => {
+    if (!hydrated || cartViewTracked.current || lines.length === 0) return;
+    cartViewTracked.current = true;
+    track("cart_viewed", { cart: cartSnapshot(items) });
+  }, [hydrated, lines.length, items]);
+
+  function knownIdentity() {
+    return {
+      email: looksLikeEmail(form.email) ? form.email : undefined,
+      phone: form.telefone || undefined,
+      personName: form.nome || undefined,
+    };
+  }
+
+  function handleEmailBlur() {
+    const email = form.email.trim();
+    if (!looksLikeEmail(email) || sentIdentity.current.email === email.toLowerCase()) return;
+    sentIdentity.current.email = email.toLowerCase();
+    track("email_submitted", { step: "checkout", cart: cartSnapshot(items) }, { email, personName: form.nome });
+  }
+
+  function handlePhoneBlur() {
+    const digits = form.telefone.replace(/\D/g, "");
+    if (digits.length < 10 || sentIdentity.current.phone === digits) return;
+    sentIdentity.current.phone = digits;
+    track("phone_submitted", { step: "checkout" }, { ...knownIdentity(), phone: form.telefone });
+  }
+
+  function handleAddressFocus() {
+    if (addressTracked.current.started) return;
+    addressTracked.current.started = true;
+    track("address_started", { step: "checkout" }, knownIdentity());
+  }
+
+  function handleAddressBlur() {
+    if (addressTracked.current.completed) return;
+    if (!ADDRESS_FIELDS.every((k) => form[k].trim())) return;
+    addressTracked.current.completed = true;
+    track("address_completed", { city: form.cidade, uf: form.uf }, knownIdentity());
+  }
+
   function handleApplyCoupon() {
     const normalized = normalizeCouponCode(couponInput);
     if (!normalized) {
@@ -114,6 +171,15 @@ export default function CarrinhoPage() {
     }
     setAppliedCoupon(normalized);
     setCouponError(null);
+    const discounted = applyCoupon(normalized, rawSubtotalCents, rawShippingFeeCents);
+    track(
+      "coupon_applied",
+      {
+        coupon: normalized,
+        discount_cents: rawSubtotalCents - discounted.subtotalCents + (rawShippingFeeCents - discounted.shippingFeeCents),
+      },
+      knownIdentity(),
+    );
   }
 
   function handleRemoveCoupon() {
@@ -165,6 +231,18 @@ export default function CarrinhoPage() {
       valueCents: totalCents,
       items: lines.map((l) => ({ slug: l.slug, qty: l.qty })),
     });
+    track(
+      "checkout_started",
+      {
+        cart: cartSnapshot(items),
+        subtotal_cents: subtotalCents,
+        discount_cents: rawSubtotalCents - subtotalCents + (rawShippingFeeCents - shippingFeeCents),
+        shipping_cents: shippingFeeCents,
+        total_cents: totalCents,
+        coupon: appliedCoupon,
+      },
+      knownIdentity(),
+    );
 
     try {
       const functionsUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/shop-create-order`;
@@ -188,6 +266,8 @@ export default function CarrinhoPage() {
           },
           items: lines.map((l) => ({ slug: l.slug, qty: l.qty })),
           couponCode: appliedCoupon ?? undefined,
+          tracking: getTrackingIds(),
+          consents: { ...marketingConsent, textVersion: MARKETING_CONSENT_TEXT_VERSION },
         }),
       });
       if (!res.ok) {
@@ -238,24 +318,28 @@ export default function CarrinhoPage() {
               </div>
               <div className="grid gap-3.5 sm:grid-cols-2">
                 <Field wide label="Nome completo" placeholder="Seu nome" value={form.nome} onChange={(e) => updateField("nome", e.target.value)} />
-                <Field wide label="E-mail" type="email" placeholder="voce@email.com" value={form.email} onChange={(e) => updateField("email", e.target.value)} />
-                <Field label="Telefone" placeholder="(00) 00000-0000" value={form.telefone} onChange={(e) => updateField("telefone", e.target.value)} />
+                <Field wide label="E-mail" type="email" placeholder="voce@email.com" value={form.email} onChange={(e) => updateField("email", e.target.value)} onBlur={handleEmailBlur} />
+                <Field label="Telefone" placeholder="(00) 00000-0000" value={form.telefone} onChange={(e) => updateField("telefone", e.target.value)} onBlur={handlePhoneBlur} />
                 <div>
                   <Field
                     label="CEP"
                     placeholder="00000-000"
                     value={form.cep}
                     onChange={(e) => updateField("cep", e.target.value)}
-                    onBlur={handleCepBlur}
+                    onFocus={handleAddressFocus}
+                    onBlur={() => {
+                      handleCepBlur();
+                      handleAddressBlur();
+                    }}
                   />
                   {cepLoading && <span className="mt-1.5 block text-xs text-eyebrow-claro">Buscando CEP…</span>}
                 </div>
-                <Field wide label="Endereço" placeholder="Rua / Avenida" value={form.rua} onChange={(e) => updateField("rua", e.target.value)} />
-                <Field label="Número" placeholder="Nº" value={form.numero} onChange={(e) => updateField("numero", e.target.value)} />
-                <Field label="Complemento" placeholder="Apto, bloco (opcional)" value={form.complemento} onChange={(e) => updateField("complemento", e.target.value)} />
-                <Field wide label="Bairro" placeholder="Bairro" value={form.bairro} onChange={(e) => updateField("bairro", e.target.value)} />
-                <Field label="Cidade" placeholder="Cidade" value={form.cidade} onChange={(e) => updateField("cidade", e.target.value)} />
-                <Field label="UF" placeholder="UF" maxLength={2} value={form.uf} onChange={(e) => updateField("uf", e.target.value)} />
+                <Field wide label="Endereço" placeholder="Rua / Avenida" value={form.rua} onChange={(e) => updateField("rua", e.target.value)} onFocus={handleAddressFocus} onBlur={handleAddressBlur} />
+                <Field label="Número" placeholder="Nº" value={form.numero} onChange={(e) => updateField("numero", e.target.value)} onFocus={handleAddressFocus} onBlur={handleAddressBlur} />
+                <Field label="Complemento" placeholder="Apto, bloco (opcional)" value={form.complemento} onChange={(e) => updateField("complemento", e.target.value)} onFocus={handleAddressFocus} onBlur={handleAddressBlur} />
+                <Field wide label="Bairro" placeholder="Bairro" value={form.bairro} onChange={(e) => updateField("bairro", e.target.value)} onFocus={handleAddressFocus} onBlur={handleAddressBlur} />
+                <Field label="Cidade" placeholder="Cidade" value={form.cidade} onChange={(e) => updateField("cidade", e.target.value)} onFocus={handleAddressFocus} onBlur={handleAddressBlur} />
+                <Field label="UF" placeholder="UF" maxLength={2} value={form.uf} onChange={(e) => updateField("uf", e.target.value)} onFocus={handleAddressFocus} onBlur={handleAddressBlur} />
               </div>
             </section>
 
@@ -435,6 +519,32 @@ export default function CarrinhoPage() {
                     e autorizo o uso dos meus dados para processar este pedido.
                   </span>
                 </label>
+              )}
+
+              {!orderDraft && (
+                <fieldset className="text-xs text-texto-sobre-escuro-2">
+                  <legend className="mb-1.5">Quero receber novidades e ofertas da Smartea por (opcional):</legend>
+                  <div className="flex flex-wrap gap-x-5 gap-y-1.5">
+                    {(
+                      [
+                        ["email", "E-mail"],
+                        ["whatsapp", "WhatsApp"],
+                        ["sms", "SMS"],
+                      ] as const
+                    ).map(([channel, label]) => (
+                      <label key={channel} className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          checked={marketingConsent[channel]}
+                          onChange={(e) => setMarketingConsent((c) => ({ ...c, [channel]: e.target.checked }))}
+                          className="h-4 w-4 shrink-0 accent-dourado"
+                        />
+                        {label}
+                      </label>
+                    ))}
+                  </div>
+                  <p className="mt-1.5 opacity-80">Não é necessário para concluir a compra. Você pode cancelar quando quiser.</p>
+                </fieldset>
               )}
 
               {error && <p className="text-sm text-red-300">{error}</p>}

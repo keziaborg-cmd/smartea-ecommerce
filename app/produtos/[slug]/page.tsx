@@ -9,6 +9,7 @@ import { ProductCard } from "@/components/product/product-card";
 import { AddToCartButton } from "@/components/product/add-to-cart-button";
 import { FaqAccordion } from "@/components/product/faq-accordion";
 import { ViewItemTracker } from "@/components/product/view-item-tracker";
+import { SectionViewTracker } from "@/components/crm/section-view-tracker";
 import { AppBadge } from "@/components/ui/app-badge";
 import { formatCentsBRL } from "@/lib/cart/cart-store";
 
@@ -110,6 +111,7 @@ export default async function ProdutoPage({ params }: { params: Promise<{ slug: 
           </div>
           <div className="rounded-card-conteudo border border-borda-clara bg-white p-7">
             <h2 className="font-display text-[26px] text-verde-escuro">Benefícios</h2>
+            <SectionViewTracker event="benefits_viewed" properties={{ product_id: tea.slug }} />
             <ul className="mt-3 flex flex-col gap-2">
               {tea.benefits.map((b) => (
                 <li key={b} className="flex items-start gap-2 text-sm text-tinta/80">
@@ -180,6 +182,7 @@ export default async function ProdutoPage({ params }: { params: Promise<{ slug: 
         {/* FAQ */}
         <div className="mt-6">
           <h2 className="mb-4 font-display text-3xl text-verde-escuro">Perguntas frequentes</h2>
+          <SectionViewTracker event="faq_viewed" properties={{ product_id: tea.slug }} />
           <FaqAccordion items={pdp.faq} accentColor={tea.priceColor} />
         </div>
 

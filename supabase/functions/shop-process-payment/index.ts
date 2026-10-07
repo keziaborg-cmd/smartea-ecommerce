@@ -1,11 +1,14 @@
 import { makeResponders } from "../_shared/cors.ts";
 import { createAdminClient } from "../_shared/supabase-admin.ts";
-import { createPayment, mapMpStatusToOrderStatus } from "../_shared/mercadopago.ts";
+import { createPayment } from "../_shared/mercadopago.ts";
+import { applyPaymentUpdate } from "../_shared/payment-events.ts";
+import { crmTrack, sanitizeTracking } from "../_shared/crm.ts";
 
 interface RequestBody {
   orderNumber: string;
   accessToken: string;
   formData: Record<string, unknown>;
+  tracking?: unknown;
 }
 
 Deno.serve(async (req) => {
@@ -14,16 +17,17 @@ Deno.serve(async (req) => {
   if (preflightResponse) return preflightResponse;
 
   try {
-    const { orderNumber, accessToken, formData }: RequestBody = await req.json();
+    const { orderNumber, accessToken, formData, tracking: rawTracking }: RequestBody = await req.json();
     if (!orderNumber || !accessToken || !formData) {
       return json({ message: "Requisição inválida." }, 400);
     }
+    const tracking = sanitizeTracking(rawTracking);
 
     const supabase = createAdminClient();
 
     const { data: order, error: orderError } = await supabase
       .from("shop_orders")
-      .select("id, order_number, status, mp_payment_id")
+      .select("id, order_number, status, customer_id, nome, email, telefone, total_cents")
       .eq("order_number", orderNumber)
       .eq("access_token", accessToken)
       .maybeSingle();
@@ -35,25 +39,47 @@ Deno.serve(async (req) => {
       return json({ status: "approved" });
     }
 
-    const functionsBaseUrl = Deno.env.get("SUPABASE_URL")!.replace(".supabase.co", ".functions.supabase.co");
-    const payment = await createPayment({
-      formData,
-      externalReference: order.order_number,
-      notificationUrl: `${functionsBaseUrl}/shop-mercadopago-webhook`,
-      idempotencyKey: `${order.id}:${Date.now()}`,
+    const { count: previousAttempts } = await supabase
+      .from("shop_payment_attempts")
+      .select("id", { count: "exact", head: true })
+      .eq("order_id", order.id);
+
+    const who = {
+      email: order.email,
+      phone: order.telefone,
+      personName: order.nome,
+      shopCustomerId: order.customer_id,
+      anonymousId: tracking.anonymousId,
+      sessionId: tracking.sessionId,
+    };
+    const attempt = (previousAttempts ?? 0) + 1;
+    const paymentMethod = typeof formData.payment_method_id === "string" ? formData.payment_method_id : null;
+
+    await crmTrack(supabase, {
+      ...who,
+      name: "payment_started",
+      properties: { order_id: order.id, order_number: order.order_number, amount_cents: order.total_cents, payment_method: paymentMethod, attempt },
     });
 
-    const orderStatus = mapMpStatusToOrderStatus(payment.status);
+    const functionsBaseUrl = Deno.env.get("SUPABASE_URL")!.replace(".supabase.co", ".functions.supabase.co");
+    let payment;
+    try {
+      payment = await createPayment({
+        formData,
+        externalReference: order.order_number,
+        notificationUrl: `${functionsBaseUrl}/shop-mercadopago-webhook`,
+        idempotencyKey: `${order.id}:${Date.now()}`,
+      });
+    } catch (paymentErr) {
+      await crmTrack(supabase, {
+        ...who,
+        name: "payment_failed",
+        properties: { order_id: order.id, order_number: order.order_number, amount_cents: order.total_cents, payment_method: paymentMethod, attempt, reason: "processing_error" },
+      });
+      throw paymentErr;
+    }
 
-    await supabase
-      .from("shop_orders")
-      .update({
-        mp_payment_id: String(payment.id),
-        mp_payment_status: payment.status,
-        status: orderStatus,
-        updated_at: new Date().toISOString(),
-      })
-      .eq("id", order.id);
+    const orderStatus = (await applyPaymentUpdate(supabase, payment, tracking)) ?? "pending";
 
     if (orderStatus === "rejected") {
       return json({
