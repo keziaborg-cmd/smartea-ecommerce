@@ -57,5 +57,9 @@ export const useConsentStore = create<ConsentState>()((set, get) => ({
 }));
 
 export function hasAnalyticsConsent(): boolean {
+  // Um evento disparado na montagem da página (ex.: product_viewed) chega antes do efeito que lê
+  // a escolha guardada; ler aqui (é síncrono) evita descartar o evento de quem já consentiu.
+  const state = useConsentStore.getState();
+  if (!state.loaded && typeof window !== "undefined") state.load();
   return useConsentStore.getState().choice?.analytics === true;
 }
