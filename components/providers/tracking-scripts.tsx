@@ -1,14 +1,22 @@
+"use client";
+
 import Script from "next/script";
+import { useConsentStore } from "@/lib/consent/consent";
 
 // Measurement ID do GA4 é público (aparece no HTML de qualquer site), então o
 // default fica no código: o tracking funciona sem depender de configurar a env
 // var na Vercel. NEXT_PUBLIC_GA4_MEASUREMENT_ID continua tendo precedência.
 const DEFAULT_GA4_MEASUREMENT_ID = "G-PV98V0QPPC";
 
+// GA4 só carrega com "Análise" aceito e o Meta Pixel só com "Marketing" (banner de cookies) — a
+// Política de Privacidade diz que cookies não necessários dependem dessa escolha.
 export function TrackingScripts() {
-  const ga4Id =
-    process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || DEFAULT_GA4_MEASUREMENT_ID;
-  const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+  const analytics = useConsentStore((s) => s.choice?.analytics === true);
+  const marketing = useConsentStore((s) => s.choice?.marketing === true);
+  const ga4Id = analytics
+    ? process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || DEFAULT_GA4_MEASUREMENT_ID
+    : null;
+  const pixelId = marketing ? process.env.NEXT_PUBLIC_META_PIXEL_ID : null;
 
   return (
     <>

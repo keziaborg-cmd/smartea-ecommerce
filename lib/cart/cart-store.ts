@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { teas, type TeaSlug } from "@/data/teas";
 import { tierForCartUnits, unitPriceForTier, type PriceTier } from "@/lib/pricing/tiers";
+import { track } from "@/lib/crm/tracker";
 
 export type ShippingMethod = "padrao";
 
@@ -28,17 +29,23 @@ interface CartState {
 
 export const useCartStore = create<CartState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       items: {},
       shippingMethod: "padrao",
-      add: (slug, qty = 1) =>
+      add: (slug, qty = 1) => {
+        const wasEmpty = selectCartUnits(get().items) === 0;
         set((state) => ({
           items: {
             ...state.items,
             [slug]: (state.items[slug] ?? 0) + qty,
           },
-        })),
-      setQty: (slug, qty) =>
+        }));
+        const items = get().items;
+        if (wasEmpty) track("cart_created", { product_id: slug, cart: cartSnapshot(items) });
+        track("product_added_to_cart", { ...productProps(slug, items), quantity: qty, cart: cartSnapshot(items) });
+      },
+      setQty: (slug, qty) => {
+        const previous = get().items[slug] ?? 0;
         set((state) => {
           if (qty <= 0) {
             const rest = { ...state.items };
@@ -46,13 +53,24 @@ export const useCartStore = create<CartState>()(
             return { items: rest };
           }
           return { items: { ...state.items, [slug]: qty } };
-        }),
-      remove: (slug) =>
+        });
+        const items = get().items;
+        if (qty <= 0) {
+          track("product_removed_from_cart", { ...productProps(slug, items), quantity: previous, cart: cartSnapshot(items) });
+        } else if (qty !== previous) {
+          track("cart_updated", { ...productProps(slug, items), quantity: qty, previous_quantity: previous, cart: cartSnapshot(items) });
+        }
+      },
+      remove: (slug) => {
+        const previous = get().items[slug] ?? 0;
         set((state) => {
           const rest = { ...state.items };
           delete rest[slug];
           return { items: rest };
-        }),
+        });
+        const items = get().items;
+        track("product_removed_from_cart", { ...productProps(slug, items), quantity: previous, cart: cartSnapshot(items) });
+      },
       clear: () => set({ items: {} }),
     }),
     { name: "smartea-cart", skipHydration: true },
@@ -97,4 +115,29 @@ export function formatCentsBRL(cents: number): string {
     style: "currency",
     currency: "BRL",
   });
+}
+
+// Contexto que vai junto de todo evento de carrinho do CRM — dá pra reconstruir o carrinho
+// inteiro a partir de qualquer evento, sem depender da ordem dos anteriores.
+export function cartSnapshot(items: Partial<Record<TeaSlug, number>>) {
+  const lines = selectCartLines(items);
+  return {
+    items: lines.map((l) => ({
+      product_id: l.slug,
+      product_name: l.name,
+      quantity: l.qty,
+      price_cents: l.unitPriceCents,
+    })),
+    units: selectCartUnits(items),
+    subtotal_cents: lines.reduce((sum, l) => sum + l.subtotalCents, 0),
+  };
+}
+
+function productProps(slug: TeaSlug, items: Partial<Record<TeaSlug, number>>) {
+  const tea = teas.find((t) => t.slug === slug);
+  return {
+    product_id: slug,
+    product_name: tea?.name ?? slug,
+    price_cents: tea ? unitPriceForTier(selectCartTier(items), tea) : null,
+  };
 }

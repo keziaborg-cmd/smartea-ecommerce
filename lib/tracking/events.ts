@@ -1,5 +1,11 @@
 "use client";
 
+import { track } from "@/lib/crm/tracker";
+
+// GA4 e Meta Pixel (só carregam com consentimento — ver components/providers/tracking-scripts.tsx).
+// Os eventos do CRM first-party saem daqui também quando o ponto de disparo é o mesmo; eventos
+// de carrinho saem direto da store (lib/cart/cart-store.ts).
+
 declare global {
   interface Window {
     dataLayer?: unknown[];
@@ -19,6 +25,7 @@ function fbq(...args: unknown[]) {
 }
 
 export function trackViewItem(params: { slug: string; name: string; priceCents: number }) {
+  track("product_viewed", { product_id: params.slug, product_name: params.name, price_cents: params.priceCents });
   gtag("event", "view_item", {
     currency: "BRL",
     value: params.priceCents / 100,
@@ -74,6 +81,7 @@ export function trackPurchase(params: { orderNumber: string; valueCents: number;
 }
 
 export function trackQuizComplete(params: { primarySlug: string; secondarySlug: string }) {
+  track("quiz_completed", { primary_result: params.primarySlug, secondary_result: params.secondarySlug });
   gtag("event", "quiz_complete", {
     primary_result: params.primarySlug,
     secondary_result: params.secondarySlug,

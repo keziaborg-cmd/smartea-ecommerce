@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CookiePreferencesLink } from "@/components/consent/cookie-preferences-link";
 
 export function Footer() {
   const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "ola@smartea.com";
@@ -49,6 +50,7 @@ export function Footer() {
               <Link href="/politica-de-privacidade" className="text-sm text-[#a9c1a2] hover:text-creme">
                 Política de Privacidade
               </Link>
+              <CookiePreferencesLink className="text-left text-sm text-[#a9c1a2] hover:text-creme" />
               <Link href="/suporte" className="text-sm text-[#a9c1a2] hover:text-creme">
                 Suporte
               </Link>

@@ -1,13 +1,19 @@
 "use client";
 
 import { useUIStore } from "@/lib/ui/ui-store";
+import { useEffect } from "react";
 import { buildWhatsAppLink } from "@/lib/whatsapp/link";
+import { track } from "@/lib/crm/tracker";
 
 export function ContactModal() {
   const open = useUIStore((s) => s.contactOpen);
   const setOpen = useUIStore((s) => s.setContactOpen);
   const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "ola@smartea.com";
   const instagram = process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "smartea";
+
+  useEffect(() => {
+    if (open) track("contact_viewed", { via: "modal" });
+  }, [open]);
 
   if (!open) return null;
 

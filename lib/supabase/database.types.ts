@@ -1049,6 +1049,8 @@ export type Database = {
           cep: string
           cidade: string
           complemento: string | null
+          confirmed_at: string | null
+          coupon_code: string | null
           created_at: string
           customer_id: string | null
           email: string
@@ -1056,6 +1058,7 @@ export type Database = {
           mp_payment_id: string | null
           mp_payment_status: string | null
           mp_preference_id: string | null
+          mp_status_detail: string | null
           nome: string
           numero: string
           order_number: string
@@ -1075,6 +1078,8 @@ export type Database = {
           cep: string
           cidade: string
           complemento?: string | null
+          confirmed_at?: string | null
+          coupon_code?: string | null
           created_at?: string
           customer_id?: string | null
           email: string
@@ -1082,6 +1087,7 @@ export type Database = {
           mp_payment_id?: string | null
           mp_payment_status?: string | null
           mp_preference_id?: string | null
+          mp_status_detail?: string | null
           nome: string
           numero: string
           order_number: string
@@ -1101,6 +1107,8 @@ export type Database = {
           cep?: string
           cidade?: string
           complemento?: string | null
+          confirmed_at?: string | null
+          coupon_code?: string | null
           created_at?: string
           customer_id?: string | null
           email?: string
@@ -1108,6 +1116,7 @@ export type Database = {
           mp_payment_id?: string | null
           mp_payment_status?: string | null
           mp_preference_id?: string | null
+          mp_status_detail?: string | null
           nome?: string
           numero?: string
           order_number?: string
@@ -1127,6 +1136,53 @@ export type Database = {
             columns: ["customer_id"]
             isOneToOne: false
             referencedRelation: "shop_customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      shop_payment_attempts: {
+        Row: {
+          amount_cents: number | null
+          created_at: string
+          id: string
+          mp_payment_id: string
+          order_id: string
+          payment_method_id: string | null
+          payment_type_id: string | null
+          status: string
+          status_detail: string | null
+          updated_at: string
+        }
+        Insert: {
+          amount_cents?: number | null
+          created_at?: string
+          id?: string
+          mp_payment_id: string
+          order_id: string
+          payment_method_id?: string | null
+          payment_type_id?: string | null
+          status: string
+          status_detail?: string | null
+          updated_at?: string
+        }
+        Update: {
+          amount_cents?: number | null
+          created_at?: string
+          id?: string
+          mp_payment_id?: string
+          order_id?: string
+          payment_method_id?: string | null
+          payment_type_id?: string | null
+          status?: string
+          status_detail?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shop_payment_attempts_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "shop_orders"
             referencedColumns: ["id"]
           },
         ]
@@ -1504,6 +1560,24 @@ export type Database = {
         Returns: undefined
       }
       cpf_valido: { Args: { p_cpf: string }; Returns: boolean }
+      crm_track_server: {
+        Args: {
+          p_anonymous_id?: string
+          p_context?: Json
+          p_email?: string
+          p_idempotency_key?: string
+          p_name: string
+          p_occurred_at?: string
+          p_person_name?: string
+          p_phone?: string
+          p_properties?: Json
+          p_session_id?: string
+          p_shop_customer_id?: string
+        }
+        Returns: number
+      }
+      crm_track_web: { Args: { p_events: Json }; Returns: number }
+      crm_unsubscribe: { Args: { p_message_id: string }; Returns: string }
       ferramenta_entrar: { Args: { p_ferramenta: string }; Returns: string }
       ferramenta_meu_ranking: {
         Args: { p_ferramenta: string }
@@ -1572,6 +1646,7 @@ export type Database = {
         }
         Returns: undefined
       }
+      track_events: { Args: { p_events: Json }; Returns: number }
       unlock_flora_pose: {
         Args: { p_pose_id: string; p_user_id: string }
         Returns: boolean
