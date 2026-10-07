@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-06T21:01:49.486617Z",
+  "title": "Design System: Smartea",
+  "extensions": {
+    "colorMeta": {
+      "verde-escuro": {
+        "role": "primary",
+        "displayName": "Verde Floresta",
+        "canonical": "#013f24",
+        "tonalRamp": [
+          "#002213",
+          "#002a18",
+          "#00321d",
+          "#003a21",
+          "#215740",
+          "#628978",
+          "#a4bab0",
+          "#e5ebe9"
+        ]
+      },
+      "verde-folha": {
+        "role": "primary",
+        "displayName": "Verde Folha",
+        "canonical": "#568833",
+        "tonalRamp": [
+          "#2f4a1c",
+          "#3a5c22",
+          "#456d29",
+          "#507f2f",
+          "#6b974d",
+          "#97b581",
+          "#c2d4b6",
+          "#eef3ea"
+        ]
+      },
+      "vinho": {
+        "role": "secondary",
+        "displayName": "Vinho",
+        "canonical": "#6f1d11",
+        "tonalRamp": [
+          "#3d0f09",
+          "#4b130b",
+          "#59170d",
+          "#671b0f",
+          "#813a2f",
+          "#a6746c",
+          "#cbaea9",
+          "#f0e8e7"
+        ]
+      },
+      "vermelho-marca": {
+        "role": "secondary",
+        "displayName": "Vermelho Marca",
+        "canonical": "#c01718",
+        "tonalRamp": [
+          "#690c0d",
+          "#820f10",
+          "#9a1213",
+          "#b31516",
+          "#c83435",
+          "#d87071",
+          "#e8acac",
+          "#f8e7e7"
+        ]
+      },
+      "dourado": {
+        "role": "tertiary",
+        "displayName": "Dourado",
+        "canonical": "#c8a24a",
+        "tonalRamp": [
+          "#6e5928",
+          "#876d32",
+          "#a1823b",
+          "#bb9745",
+          "#cfad61",
+          "#ddc58f",
+          "#ebddbe",
+          "#f9f5ec"
+        ]
+      },
+      "creme": {
+        "role": "neutral",
+        "displayName": "Creme",
+        "canonical": "#fffdf8",
+        "tonalRamp": [
+          "#8c8b88",
+          "#adaba8",
+          "#cdccc8",
+          "#eeece8",
+          "#fffdf8",
+          "#fffdfa",
+          "#fffefc",
+          "#fffefe"
+        ]
+      },
+      "creme-quente": {
+        "role": "neutral",
+        "displayName": "Creme Quente",
+        "canonical": "#f0e6cf",
+        "tonalRamp": [
+          "#847e71",
+          "#a29c8c",
+          "#c1b9a7",
+          "#e0d7c1",
+          "#f1e9d5",
+          "#f5efe1",
+          "#f9f6ed",
+          "#fdfcfa"
+        ]
+      },
+      "sage": {
+        "role": "neutral",
+        "displayName": "Sage",
+        "canonical": "#e1ead4",
+        "tonalRamp": [
+          "#7b8074",
+          "#989e8f",
+          "#b5bcab",
+          "#d2dac6",
+          "#e4ecd9",
+          "#ecf2e4",
+          "#f4f7ef",
+          "#fcfcfa"
+        ]
+      },
+      "tinta": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#211f1e",
+        "tonalRamp": [
+          "#121110",
+          "#161514",
+          "#1a1918",
+          "#1e1d1c",
+          "#3d3b3a",
+          "#767574",
+          "#afafae",
+          "#e8e8e8"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Títulos de página, Carena."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Títulos de seção na home."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Nomes de produto, preços e títulos de cartão."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido em Montserrat."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Botões e links de navegação."
+      },
+      "eyebrow": {
+        "displayName": "Eyebrow",
+        "purpose": "Rótulos de seção em caixa-alta."
+      }
+    },
+    "shadows": [
+      {
+        "name": "lata",
+        "value": "0 40px 45px rgba(0,0,0,0.5)",
+        "purpose": "Latas em hero e destaque."
+      },
+      {
+        "name": "card-produto",
+        "value": "0 26px 26px rgba(0,0,0,0.28)",
+        "purpose": "Lata dentro do cartão de produto."
+      },
+      {
+        "name": "laje-3d",
+        "value": "0 5px 0 0 #324e19",
+        "purpose": "Botão 3D do Smartea+."
+      }
+    ],
+    "motion": [
+      {
+        "name": "hero-arrive",
+        "value": "0.72s cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Entrada da lata no hero."
+      },
+      {
+        "name": "floaty",
+        "value": "7s ease-in-out infinite",
+        "purpose": "Flutuação suave das latas."
+      },
+      {
+        "name": "pagein",
+        "value": "0.3s ease-out",
+        "purpose": "Fade com subida de 12px ao entrar na página."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      },
+      {
+        "name": "2xl",
+        "value": "1536px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Pílula verde-escuro para a ação principal.",
+      "html": "<button class=\"ds-btn-primary\">Ver os chás</button>",
+      "css": ".ds-btn-primary{background:#013f24;color:#fffdf8;font-weight:600;font-size:14px;padding:12px 32px;border:none;border-radius:40px;cursor:pointer;transition:background .2s}.ds-btn-primary:hover{background:#568833}.ds-btn-primary:focus-visible{outline:2px solid #c8a24a;outline-offset:3px}"
+    },
+    {
+      "name": "Outline Pill",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Contato e Carrinho na barra de navegação.",
+      "html": "<button class=\"ds-btn-outline\">Contato</button>",
+      "css": ".ds-btn-outline{background:transparent;color:#013f24;font-size:14px;padding:8px 20px;border:1px solid rgba(1,63,36,.25);border-radius:40px;cursor:pointer;transition:border-color .2s}.ds-btn-outline:hover{border-color:#6f1d11}.ds-btn-outline:focus-visible{outline:2px solid #c8a24a;outline-offset:3px}"
+    },
+    {
+      "name": "3D Button (Smartea+)",
+      "kind": "button",
+      "refersTo": "button-3d",
+      "description": "Único gesto tátil: laje sólida que encolhe ao pressionar.",
+      "html": "<button class=\"ds-btn-3d\">Fiz hoje</button>",
+      "css": ".ds-btn-3d{background:#477023;color:#fffdf8;font-weight:700;font-size:14px;padding:12px 32px;border:none;border-radius:40px;cursor:pointer;box-shadow:0 5px 0 0 #324e19;transition:transform .08s ease,box-shadow .08s ease}.ds-btn-3d:active{transform:translateY(4px);box-shadow:0 1px 0 0 #324e19}.ds-btn-3d:focus-visible{outline:2px solid #c8a24a;outline-offset:3px}"
+    },
+    {
+      "name": "Product Card",
+      "kind": "card",
+      "refersTo": "card-produto",
+      "description": "Cartão de blend com luz própria.",
+      "html": "<div class=\"ds-card\"><p class=\"ds-card-name\">Chá Verde</p><p class=\"ds-card-tag\">o clássico que desperta.</p><div class=\"ds-card-row\"><span class=\"ds-card-price\">R$ 24,90</span><span class=\"ds-card-btn\">Adicionar</span></div></div>",
+      "css": ".ds-card{background:linear-gradient(180deg,#e6efdd,#dbe8cf);border-radius:26px;padding:24px;text-align:center;width:260px}.ds-card-name{font-family:Carena,serif;font-size:24px;color:#013f24;margin:12px 0 0}.ds-card-tag{font-size:14px;font-style:italic;color:#4a5544;margin:4px 0 0}.ds-card-row{display:flex;justify-content:space-between;align-items:center;margin-top:16px}.ds-card-price{font-family:Carena,serif;font-size:20px;color:#568833}.ds-card-btn{background:#013f24;color:#fffdf8;font-size:14px;font-weight:600;padding:8px 20px;border-radius:40px}"
+    },
+    {
+      "name": "Benefit Card",
+      "kind": "card",
+      "refersTo": "card-conteudo",
+      "description": "Cartão de conteúdo de 22px com título em Carena.",
+      "html": "<div class=\"ds-benefit\"><p class=\"ds-benefit-title\">100% natural</p><p class=\"ds-benefit-text\">Sem açúcar, só folhas selecionadas.</p></div>",
+      "css": ".ds-benefit{background:#f0e6cf;color:#013f24;border-radius:22px;padding:32px;width:280px}.ds-benefit-title{font-family:Carena,serif;font-size:24px;margin:0}.ds-benefit-text{font-size:14px;opacity:.85;margin:4px 0 0}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Barra sticky sage com links em verde-escuro e Quiz em vinho.",
+      "html": "<nav class=\"ds-nav\"><a>Sobre</a><a>Produtos</a><a class=\"ds-nav-accent\">Quiz</a><a>Smartea+</a><a>Blog</a></nav>",
+      "css": ".ds-nav{display:flex;gap:28px;background:rgba(225,234,212,.95);padding:18px 24px;border-radius:12px}.ds-nav a{font-size:14px;font-weight:500;color:#013f24;cursor:pointer}.ds-nav a:hover{color:#568833}.ds-nav-accent{font-weight:800!important;color:#6f1d11!important}"
+    },
+    {
+      "name": "Eyebrow",
+      "kind": "custom",
+      "refersTo": "eyebrow",
+      "description": "Rótulo de seção acima dos títulos.",
+      "html": "<p class=\"ds-eyebrow\">Nossa história</p>",
+      "css": ".ds-eyebrow{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.26em;color:#7a8a6e;margin:0}"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Botica de Jardim",
+    "overview": "Antigo no carinho, novo na execução: uma botica de jardim que acende uma luz por dia. A metáfora guia o design por dentro e nunca vira texto de comunicação; para o público, a linguagem é \"jardim\" e \"estufa\".",
+    "keyCharacteristics": [
+      "Verde-floresta e creme quente como base; vinho e dourado como acentos raros.",
+      "Cada chá tem sua própria luz: gradiente, brilho e cores de botão por blend.",
+      "Carena para títulos e preços; Montserrat para o resto.",
+      "Botões em pílula; um único gesto tátil, o botão com laje sólida.",
+      "Latas de produto são o herói visual; sombra só nelas."
+    ],
+    "rules": [
+      {
+        "name": "The Luz do Dia Rule",
+        "body": "Cada blend carrega a própria luz, vinda de data/teas.ts.",
+        "section": "colors"
+      },
+      {
+        "name": "The Vermelho Sem Culpa Rule",
+        "body": "Vermelho nunca pune; reacende o foco.",
+        "section": "colors"
+      },
+      {
+        "name": "The Escopo Smartea+ Rule",
+        "body": "Paleta e fontes do Smartea+ ficam em /smartea-mais.",
+        "section": "colors"
+      },
+      {
+        "name": "The Display É Carena Rule",
+        "body": "Todo título e preço usa font-display.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sombra É do Produto Rule",
+        "body": "Só a lata projeta sombra pesada.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar verde-escuro (#013f24) como cor-âncora e creme (#fffdf8) como fundo base.",
+      "Do dar a cada blend a própria luz (gradiente, brilho, cores de botão) vinda de data/teas.ts.",
+      "Do usar Carena para títulos e preços, Montserrat para o resto.",
+      "Do manter botões como pílulas e cartões com cantos de 22–34px.",
+      "Do reservar o botão 3D de laje sólida ao Smartea+ e à ação \"fiz hoje\".",
+      "Do usar \"jardim\" e \"estufa\" na comunicação; \"botica\" é só direção interna de design."
+    ],
+    "donts": [
+      "Don't parecer clínico ou farmacêutico: nada de branco frio, jaleco ou tom de suplemento de academia.",
+      "Don't clonar o Duolingo: o Smartea+ é gamificado, mas derivado da paleta da marca.",
+      "Don't usar vermelho para culpar ou punir; ele reacende o foco.",
+      "Don't pôr sombra pesada em superfícies ou cartões; só nas latas.",
+      "Don't usar a paleta ou as fontes do Smartea+ fora de /smartea-mais."
+    ]
+  }
+}
