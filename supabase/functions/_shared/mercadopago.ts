@@ -48,22 +48,28 @@ export interface MpPixTransactionData {
   ticket_url?: string;
 }
 
-export async function createPayment(params: {
-  formData: Record<string, unknown>;
-  externalReference: string;
-  notificationUrl: string;
-  idempotencyKey: string;
-}): Promise<{
+export interface MpPayment {
   id: number;
   status: string;
   status_detail: string;
+  external_reference: string;
+  payment_method_id?: string;
+  payment_type_id?: string;
+  transaction_amount?: number;
   // Presentes só em pagamentos Pix — a API já devolve isso pronto na criação
   // do pagamento, sem precisar de chamada extra.
   date_of_expiration?: string;
   point_of_interaction?: {
     transaction_data?: MpPixTransactionData;
   };
-}> {
+}
+
+export async function createPayment(params: {
+  formData: Record<string, unknown>;
+  externalReference: string;
+  notificationUrl: string;
+  idempotencyKey: string;
+}): Promise<MpPayment> {
   const res = await fetch(`${MP_API}/v1/payments`, {
     method: "POST",
     headers: {
@@ -85,12 +91,7 @@ export async function createPayment(params: {
   return data;
 }
 
-export async function getPayment(paymentId: string | number): Promise<{
-  id: number;
-  status: string;
-  status_detail: string;
-  external_reference: string;
-}> {
+export async function getPayment(paymentId: string | number): Promise<MpPayment> {
   const res = await fetch(`${MP_API}/v1/payments/${paymentId}`, {
     headers: { Authorization: `Bearer ${accessToken()}` },
   });
