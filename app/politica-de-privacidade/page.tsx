@@ -227,7 +227,7 @@ const SECTIONS: LegalSection[] = [
       { t: "p", text: "Envie sua solicitação para **kezia.borges@almara.com.br** ou para o(a) Encarregado(a) indicado(a) na seção 2." },
       { t: "p", text: "Responderemos em até **15 (quinze) dias** nas hipóteses previstas no artigo 19, §3º, da LGPD, e nos demais casos no menor prazo possível." },
       { t: "h3", text: "Exclusão de conta" },
-      { t: "p", text: "A exclusão da conta do aplicativo pode ser solicitada diretamente no Almara+, em **Perfil → Excluir conta**, com efeito imediato, ou pela página **smartea.com.br/excluir-conta**, para quem não tem mais o aplicativo instalado." },
+      { t: "p", text: "A exclusão da conta do aplicativo pode ser solicitada diretamente no Almara+, em **Perfil → Excluir conta**, com efeito imediato, ou pela página **almara.com.br/excluir-conta**, para quem não tem mais o aplicativo instalado." },
       { t: "p", text: "No pedido feito pela página, confirmamos o recebimento em até **1 dia útil** e concluímos a exclusão em até **7 dias corridos** após a confirmação por e-mail do titular." },
       { t: "p", text: "A exclusão remove os dados de conta, diário, humor, conversas com a Mara e progresso das jornadas. Informações de pedidos já realizados são mantidas de forma anonimizada, pelo prazo exigido pela legislação fiscal, conforme o artigo 18, VI, da LGPD." },
       { t: "p", text: "Poderemos solicitar informações adicionais para confirmar sua identidade antes de atender determinadas solicitações, como medida de proteção contra pedidos fraudulentos." },

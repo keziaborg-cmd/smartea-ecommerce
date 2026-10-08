@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 import { teas } from "@/data/teas";
 import { BLOG_AUTHORS } from "@/data/blog-authors";
 import { getPublishedPosts } from "@/lib/blog/posts";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://smartea.com.br";
 
 // Páginas fixas do site + uma entrada por chá (gerado a partir de data/teas.ts,
 // então um novo blend adicionado ali já entra no sitemap sem precisar editar

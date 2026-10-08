@@ -6,6 +6,7 @@ import { Nav } from "@/components/nav/nav";
 import { Footer } from "@/components/footer/footer";
 import { AppProviders } from "@/components/providers/app-providers";
 import { TrackingScripts } from "@/components/providers/tracking-scripts";
+import { SITE_URL } from "@/lib/site";
 
 const carena = localFont({
   src: "../public/fonts/Carena-Regular.otf",
@@ -20,7 +21,6 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-const SITE_URL = "https://smartea.com.br";
 const SITE_TITLE = "Almara — Chá 100% natural, um ritual em cada lata";
 const SITE_DESCRIPTION =
   "Chás naturais Almara: 6 blends para cada momento do seu dia. Conheça também o Almara+, o app com jornadas guiadas de 21 dias, hábitos e um jardim que cresce com você.";

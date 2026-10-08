@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { SITE_HOST } from "@/lib/site";
 
 // Gerador de imagem compartilhado por app/opengraph-image.tsx e
 // app/twitter-image.tsx (mesmo visual pros dois, tamanhos-padrão praticamente
@@ -78,7 +79,7 @@ export async function renderOgImage() {
             textAlign: "center",
           }}
         >
-          smartea.com.br
+          {SITE_HOST}
         </div>
       </div>
     ),

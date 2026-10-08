@@ -9,8 +9,8 @@ import { RelatedPosts } from "@/components/blog/related-posts";
 import { JourneyCta } from "@/components/blog/journey-cta";
 import { EmailCapture } from "@/components/blog/email-capture";
 import { ProfessionalSupportNotice } from "@/components/blog/professional-support-notice";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://smartea.com.br";
 
 export async function generateStaticParams() {
   const posts = await getPublishedPosts();

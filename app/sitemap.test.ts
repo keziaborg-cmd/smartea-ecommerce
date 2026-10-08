@@ -28,12 +28,12 @@ const { default: sitemap } = await import("./sitemap");
 describe("sitemap", () => {
   it("inclui a URL do artigo publicado", async () => {
     const urls = (await sitemap()).map((entry) => entry.url);
-    expect(urls).toContain("https://smartea.com.br/blog/publicado-teste");
+    expect(urls).toContain("https://almara.com.br/blog/publicado-teste");
   });
 
   it("não inclui nenhuma URL de blog além das que vêm de getPublishedPosts", async () => {
     const urls = (await sitemap()).map((entry) => entry.url);
-    const blogPostUrls = urls.filter((url) => url.startsWith("https://smartea.com.br/blog/") && !url.includes("/autor/"));
-    expect(blogPostUrls).toEqual(["https://smartea.com.br/blog/publicado-teste"]);
+    const blogPostUrls = urls.filter((url) => url.startsWith("https://almara.com.br/blog/") && !url.includes("/autor/"));
+    expect(blogPostUrls).toEqual(["https://almara.com.br/blog/publicado-teste"]);
   });
 });
