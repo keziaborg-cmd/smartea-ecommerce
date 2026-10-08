@@ -56,7 +56,7 @@ export async function renderOgImage() {
         />
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoSrc} width={260} height={174} alt="" style={{ position: "relative" }} />
+        <img src={logoSrc} width={240} height={194} alt="" style={{ position: "relative" }} />
 
         <div
           style={{

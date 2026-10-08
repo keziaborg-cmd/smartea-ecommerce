@@ -52,7 +52,7 @@ export function Nav() {
             className="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2"
             onClick={() => setMenuOpen(false)}
           >
-            <Image src="/logo.png" alt="Almara" width={69} height={46} className="h-[46px] w-auto" priority />
+            <Image src="/logo.png" alt="Almara" width={57} height={46} className="h-[46px] w-auto" priority />
           </Link>
 
           <div className="ml-auto flex items-center gap-3">

@@ -11,7 +11,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-[1240px] flex-wrap items-start justify-between gap-10 xl:max-w-[1400px] 2xl:max-w-[1600px]">
         <div className="max-w-[320px]">
           <div className="mb-4 inline-flex items-center rounded-pill bg-creme px-[26px] py-3">
-            <Image src="/logo.png" alt="Almara" width={69} height={46} className="h-[46px] w-auto" />
+            <Image src="/logo.png" alt="Almara" width={57} height={46} className="h-[46px] w-auto" />
           </div>
           <p className="text-sm leading-relaxed text-[#a9c1a2]">
             Chás naturais para o corpo e a mente. Calma que floresce, foco que transforma.
