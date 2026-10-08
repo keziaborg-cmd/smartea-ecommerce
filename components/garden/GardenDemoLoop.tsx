@@ -1,6 +1,6 @@
 /**
  * GardenDemoLoop — versão de marketing da cena progressiva do jardim,
- * pra usar dentro de um card (ex: FeatureRow de components/smartea-mais/
+ * pra usar dentro de um card (ex: FeatureRow de components/almara-mais/
  * features-section.tsx). Não é a cena pesada em si — é um wrapper que
  * decide QUANDO carregar e animar ela:
  *

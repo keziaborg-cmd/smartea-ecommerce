@@ -12,7 +12,7 @@ export function JourneyCta({ category }: { category: BlogCategory }) {
       <p className="mt-2 font-display text-2xl text-creme">Jornada {journey.label}, 21 dias com a Mara</p>
       <p className="mx-auto mt-2 max-w-md text-sm text-texto-sobre-escuro">{journey.description}</p>
       <Link
-        href="/smartea-mais"
+        href="/almara-mais"
         className="mt-5 inline-block rounded-pill bg-dourado px-7 py-3 text-sm font-bold text-verde-escuro"
       >
         Conhecer o Almara+

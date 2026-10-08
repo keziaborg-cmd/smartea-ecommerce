@@ -3,6 +3,7 @@ import { persist } from "zustand/middleware";
 import { teas, type TeaSlug } from "@/data/teas";
 import { tierForCartUnits, unitPriceForTier, type PriceTier } from "@/lib/pricing/tiers";
 import { track } from "@/lib/crm/tracker";
+import { STORAGE_KEYS } from "@/lib/storage-keys";
 
 export type ShippingMethod = "padrao";
 
@@ -73,7 +74,7 @@ export const useCartStore = create<CartState>()(
       },
       clear: () => set({ items: {} }),
     }),
-    { name: "smartea-cart", skipHydration: true },
+    { name: STORAGE_KEYS.cart, skipHydration: true },
   ),
 );
 

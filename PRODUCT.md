@@ -35,7 +35,7 @@ Voz: mentor de bem-estar entusiasmado, empático e prático.
 
 ## Evidence on Hand
 
-Não há depoimentos, avaliações, selos ou benchmarks reais ainda; não fabricar nenhum. Existem copy e imagens de produto no repositório (`public/tea`, `public/flora*.png`, `public/logo.png`, `data/teas.ts`, `data/benefits.ts`).
+Não há depoimentos, avaliações, selos ou benchmarks reais ainda; não fabricar nenhum. Existem copy e imagens de produto no repositório (`public/tea`, `public/mara*.png`, `public/logo.png`, `data/teas.ts`, `data/benefits.ts`).
 
 ## Product Principles
 

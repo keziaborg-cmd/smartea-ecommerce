@@ -3,8 +3,8 @@ import { browserName, deviceType, parseUtm, safeUrl } from "./tracker";
 
 describe("safeUrl", () => {
   it("tira o token de acesso do pedido (e qualquer parâmetro fora da lista) da URL registrada", () => {
-    expect(safeUrl("https://almara.com.br/pedido/SMT-1?token=abc-123&utm_source=x#topo")).toBe(
-      "https://almara.com.br/pedido/SMT-1?utm_source=x",
+    expect(safeUrl("https://almara.com.br/pedido/ALM-1?token=abc-123&utm_source=x#topo")).toBe(
+      "https://almara.com.br/pedido/ALM-1?utm_source=x",
     );
   });
 

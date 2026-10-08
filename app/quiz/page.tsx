@@ -125,7 +125,7 @@ export default function QuizPage() {
               </p>
             </div>
             <Link
-              href="/smartea-mais"
+              href="/almara-mais"
               className="w-full shrink-0 rounded-pill bg-verde-escuro px-7 py-3 text-center text-sm font-semibold text-creme sm:w-auto"
             >
               Conhecer o Almara+

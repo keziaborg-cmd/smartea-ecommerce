@@ -25,7 +25,7 @@ export const BLOG_CATEGORY_TO_JOURNEY_SLUG: Record<BlogCategory, JourneySlug> = 
 
 // Tokens de cor por categoria — reusa os mesmos `--color-jornada-*` já
 // definidos em app/globals.css pras jornadas no Almara+, pra consistência
-// visual entre o app, a página /smartea-mais e o blog.
+// visual entre o app, a página /almara-mais e o blog.
 export const BLOG_CATEGORY_STYLE: Record<BlogCategory, { solid: string; clara: string; escura: string }> = {
   sono: { solid: "bg-jornada-sono", clara: "bg-jornada-sono-clara", escura: "text-jornada-sono-escura" },
   ansiedade: { solid: "bg-jornada-ansiedade", clara: "bg-jornada-ansiedade-clara", escura: "text-jornada-ansiedade-escura" },

@@ -4,7 +4,7 @@
 // cada jornada. Não duplicar a lista de chás aqui; usar getTeasForJourney().
 //
 // Os campos `openingQuestion`, `chapters` e `timeline` foram escritos como
-// texto editorial placeholder para o redesign de /smartea-mais (2026-08-16,
+// texto editorial placeholder para o redesign de /almara-mais (2026-08-16,
 // a pedido do usuário) — plausíveis, mas provisórios até o conteúdo real do
 // app ser confirmado. Revisar antes de publicar.
 

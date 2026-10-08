@@ -1,11 +1,12 @@
 "use client";
 
 import { create } from "zustand";
+import { migrateLegacyStorage, STORAGE_KEYS } from "@/lib/storage-keys";
 
 // Trocar a versão faz o banner aparecer de novo pra todo mundo (ex.: mudou o texto ou entrou uma
 // categoria nova de cookie).
 export const COOKIE_CONSENT_VERSION = "cookies-2026-10-07";
-const STORAGE_KEY = "smartea-consent";
+const STORAGE_KEY = STORAGE_KEYS.consent;
 
 export interface ConsentChoice {
   analytics: boolean;
@@ -26,6 +27,7 @@ interface ConsentState {
 
 function readStored(): ConsentChoice | null {
   try {
+    migrateLegacyStorage();
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as ConsentChoice;

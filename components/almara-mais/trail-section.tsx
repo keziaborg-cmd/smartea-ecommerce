@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Leaf } from "lucide-react";
-import { TRAIL_STEPS } from "@/data/smartea-mais-content";
+import { TRAIL_STEPS } from "@/data/almara-mais-content";
 import conceitoIcon from "./icones/conceito-i.png";
 import autoidentificacaoIcon from "./icones/autoidentificacao-i.png";
 import aprofundamentoIcon from "./icones/aprofundamento-i.png";

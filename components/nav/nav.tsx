@@ -10,7 +10,7 @@ const LEFT_LINKS = [
   { href: "/sobre", label: "Sobre" },
   { href: "/produtos", label: "Produtos" },
   { href: "/quiz", label: "Quiz", accent: true },
-  { href: "/smartea-mais", label: "Almara+" },
+  { href: "/almara-mais", label: "Almara+" },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -97,7 +97,7 @@ export function Nav() {
               { href: "/sobre", label: "Sobre" },
               { href: "/produtos", label: "Produtos" },
               { href: "/quiz", label: "Fazer o quiz", accent: true },
-              { href: "/smartea-mais", label: "Almara+" },
+              { href: "/almara-mais", label: "Almara+" },
               { href: "/blog", label: "Blog" },
               { href: "/carrinho", label: "Carrinho" },
             ].map((link) => (

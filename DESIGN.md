@@ -104,7 +104,7 @@ components:
 
 Antigo no carinho, novo na execução: uma botica de jardim que acende uma luz por dia. A metáfora guia o design por dentro (latas como frascos de farmácia de ervas, uma luz verde atrás de cada uma, superfícies de papel creme) e **nunca vira texto de comunicação**: "botica" pode puxar a marca para o lado de remédio, e a Almara é cuidadosa com alegações de saúde. Para o público, a linguagem é "jardim" e "estufa".
 
-O sistema é suave e orgânico por padrão: cantos grandes, pílulas, divisores ondulados, brilho difuso atrás das latas. A paleta é botânica e quente (verde-floresta sobre creme, vinho como contraponto), nunca clínica. O Almara+ (`/smartea-mais`) é a camada gamificada: mais saturada e tátil, mas derivada da mesma paleta da marca.
+O sistema é suave e orgânico por padrão: cantos grandes, pílulas, divisores ondulados, brilho difuso atrás das latas. A paleta é botânica e quente (verde-floresta sobre creme, vinho como contraponto), nunca clínica. O Almara+ (`/almara-mais`) é a camada gamificada: mais saturada e tátil, mas derivada da mesma paleta da marca.
 
 **Key Characteristics:**
 - Verde-floresta e creme quente como base; vinho e dourado como acentos raros.
@@ -137,7 +137,7 @@ Botânica e quente: verdes profundos sobre papel creme, com vinho e dourado como
 - **Eyebrow Claro / Escuro** (#7a8a6e / #9db38f): rótulos em caixa-alta.
 - **Borda Clara** (#e0dac6) e **Input** (#faf8f1): bordas e campos.
 
-### Almara+ (escopo da página /smartea-mais)
+### Almara+ (escopo da página /almara-mais)
 - **Folha Viva** (#477023, escura #324e19), fundo **Creme Mais** (#f6f2e6), texto **Tinta Mais** (#22331c).
 - Jornadas: **Sono** terracota (#b8703a), **Ansiedade** verde-água (#5c8a72), **Produtividade** oliva (#8a9a3e), **Pausa** rosé (#b0685f), cada uma com variante escura e clara.
 
@@ -150,7 +150,7 @@ Botânica e quente: verdes profundos sobre papel creme, com vinho e dourado como
 
 **Display Font:** Carena (serif, arquivo local `public/fonts/Carena-Regular.otf`, fallback serif)
 **Body Font:** Montserrat (Google Fonts, fallback sans-serif)
-**Almara+:** Fredoka (display) e Nunito (corpo), apenas em `/smartea-mais`.
+**Almara+:** Fredoka (display) e Nunito (corpo), apenas em `/almara-mais`.
 
 **Character:** Um serif de display com calor de rótulo antigo contra uma sans geométrica limpa e legível; carinho antigo, execução nova.
 
@@ -224,4 +224,4 @@ Linguagem orgânica de cantos grandes: pílula (40px) para botões e chips, 12px
 - **Don't** clonar o Duolingo: o Almara+ é gamificado, mas derivado da paleta da marca (folha-viva, jornadas em tons terrosos), nunca verde-lima ou azul literal.
 - **Don't** usar vermelho para culpar ou punir; ele reacende o foco.
 - **Don't** pôr sombra pesada em superfícies ou cartões; só nas latas.
-- **Don't** usar a paleta ou as fontes do Almara+ (Fredoka, Nunito, jornadas) fora de `/smartea-mais`.
+- **Don't** usar a paleta ou as fontes do Almara+ (Fredoka, Nunito, jornadas) fora de `/almara-mais`.

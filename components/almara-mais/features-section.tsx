@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { PillButton3D } from "@/components/smartea-mais/pill-button-3d";
+import { PillButton3D } from "@/components/almara-mais/pill-button-3d";
 import { GardenDemoLoop } from "@/components/garden/GardenDemoLoop";
 
-function FloraPhoto({ className, src = "/flora.png" }: { className?: string; src?: string }) {
+function MaraPhoto({ className, src = "/mara.png" }: { className?: string; src?: string }) {
   return (
     <Image
       src={src}
@@ -15,7 +15,7 @@ function FloraPhoto({ className, src = "/flora.png" }: { className?: string; src
   );
 }
 
-const FLORA_BULLETS = [
+const MARA_BULLETS = [
   { title: "Guia diária", text: "Uma mensagem por dia, no seu ritmo, lembrando do seu momento de chá." },
   { title: "Lembra do ritual", text: "Um toque gentil quando a correria do dia ameaça engolir sua pausa." },
   { title: "Ajusta a jornada", text: "Acompanha como você está indo e adapta sugestões ao longo dos 21 dias." },
@@ -35,7 +35,7 @@ function Sparkle({ className }: { className?: string }) {
   );
 }
 
-function FloraGuideVisual() {
+function MaraGuideVisual() {
   return (
     <div className="relative flex justify-center">
       <div className="pointer-events-none absolute -left-4 top-0 h-32 w-32 rounded-full bg-folha-viva opacity-25 blur-2xl sm:h-40 sm:w-40" />
@@ -44,12 +44,12 @@ function FloraGuideVisual() {
         Hora do seu chá da tarde!
         <span className="absolute -bottom-[7px] left-8 h-4 w-4 rotate-45 border-b-2 border-r-2 border-tinta-mais/10 bg-white" />
       </div>
-      <FloraPhoto src="/flora-cha.png" className="relative z-0 h-[240px] w-auto md:h-[360px]" />
+      <MaraPhoto src="/mara-cha.png" className="relative z-0 h-[240px] w-auto md:h-[360px]" />
     </div>
   );
 }
 
-function FloraSubscribeVisual() {
+function MaraSubscribeVisual() {
   return (
     <div className="relative flex justify-center">
       <div className="pointer-events-none absolute -right-4 top-2 h-32 w-32 rounded-full bg-jornada-pausa opacity-20 blur-2xl sm:h-40 sm:w-40" />
@@ -57,7 +57,7 @@ function FloraSubscribeVisual() {
       <Sparkle className="pointer-events-none absolute left-2 top-6 h-6 w-6 text-jornada-pausa sm:left-6 sm:h-8 sm:w-8" />
       <Sparkle className="pointer-events-none absolute right-4 top-1/3 h-4 w-4 text-jornada-pausa-escura sm:right-10" />
       <Sparkle className="pointer-events-none absolute bottom-6 left-8 h-5 w-5 text-jornada-pausa opacity-70" />
-      <FloraPhoto className="relative z-0 h-[240px] w-auto md:h-[360px]" />
+      <MaraPhoto className="relative z-0 h-[240px] w-auto md:h-[360px]" />
     </div>
   );
 }
@@ -139,13 +139,13 @@ function FeatureRow({ reverse, eyebrow, title, bg, children, visual }: FeatureRo
 export function FeaturesSection() {
   return (
     <section className="mx-auto mt-20 flex max-w-[1100px] flex-col gap-6 px-[6vw] xl:max-w-[1260px] 2xl:max-w-[1440px]">
-      <FeatureRow eyebrow="Quem guia você" title="Mara, sua companhia de bem-estar" bg="bg-folha-viva-clara" visual={<FloraGuideVisual />}>
+      <FeatureRow eyebrow="Quem guia você" title="Mara, sua companhia de bem-estar" bg="bg-folha-viva-clara" visual={<MaraGuideVisual />}>
         <p className="font-body-mais text-tinta-mais/75">
           Mara é a IA de bem-estar do Almara+ — uma presença gentil que acompanha seu ritual, não um
           assistente técnico.
         </p>
         <ul className="mt-4 space-y-3">
-          {FLORA_BULLETS.map((b) => (
+          {MARA_BULLETS.map((b) => (
             <li key={b.title} className="rounded-2xl border-2 border-tinta-mais/10 bg-white px-4 py-3">
               <p className="font-display-mais text-sm font-bold text-tinta-mais">{b.title}</p>
               <p className="mt-0.5 font-body-mais text-sm text-tinta-mais/70">{b.text}</p>
@@ -190,7 +190,7 @@ export function FeaturesSection() {
         </Link>
       </FeatureRow>
 
-      <FeatureRow reverse eyebrow="Assinatura" title="Continue além do trial" bg="bg-jornada-pausa-clara" visual={<FloraSubscribeVisual />}>
+      <FeatureRow reverse eyebrow="Assinatura" title="Continue além do trial" bg="bg-jornada-pausa-clara" visual={<MaraSubscribeVisual />}>
         <p className="font-body-mais text-tinta-mais/75">
           Toda jornada começa com um trial gratuito — depois, escolha o plano que faz sentido pra
           continuar com a Mara.

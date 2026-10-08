@@ -8,16 +8,19 @@ export interface BlogAuthor {
   credential?: string;
   bio: string;
   photo?: string;
+  /** Slugs antigos que ainda podem estar gravados nos posts (o endereço antigo redireciona com 301). */
+  legacySlugs?: string[];
 }
 
 export const BLOG_AUTHORS: BlogAuthor[] = [
   {
-    slug: "equipe-smartea",
+    slug: "equipe-almara",
+    legacySlugs: ["equipe-smartea"],
     name: "Equipe Almara",
     bio: "Conteúdo escrito pela equipe editorial da Almara, com apoio de fontes públicas confiáveis — sempre citadas ao final de cada artigo.",
   },
 ];
 
 export function getBlogAuthorBySlug(slug: string): BlogAuthor | undefined {
-  return BLOG_AUTHORS.find((a) => a.slug === slug);
+  return BLOG_AUTHORS.find((a) => a.slug === slug || a.legacySlugs?.includes(slug));
 }

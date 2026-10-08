@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { PillButton3D } from "@/components/smartea-mais/pill-button-3d";
-import { AchievementBadge } from "@/components/smartea-mais/achievement-badge";
-import { ACHIEVEMENTS } from "@/data/smartea-mais-content";
+import { PillButton3D } from "@/components/almara-mais/pill-button-3d";
+import { AchievementBadge } from "@/components/almara-mais/achievement-badge";
+import { ACHIEVEMENTS } from "@/data/almara-mais-content";
 
 const BADGE_COLORS = ["verde", "sono", "ansiedade", "produtividade"] as const;
 
@@ -43,7 +43,7 @@ export function HeroSection() {
               <span className="absolute -left-[7px] top-1/2 h-4 w-4 -translate-y-1/2 rotate-45 border-b-2 border-l-2 border-tinta-mais/10 bg-white" />
             </div>
             <Image
-              src="/flora.png"
+              src="/mara.png"
               alt="Mara, mascote do Almara+"
               width={3375}
               height={4219}

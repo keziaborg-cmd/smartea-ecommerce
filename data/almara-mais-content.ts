@@ -1,4 +1,4 @@
-// Conteúdo específico da página /smartea-mais (redesign gamificado,
+// Conteúdo específico da página /almara-mais (redesign gamificado,
 // 2026-08-16). Separado de journeys.ts porque não é metadado de jornada —
 // é o conteúdo fixo das seções "como funciona o dia a dia" e "ferramentas".
 

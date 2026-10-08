@@ -17,7 +17,7 @@ function pageType(path: string): string {
   if (path === "/sobre") return "about";
   if (path === "/suporte") return "support";
   if (path === "/quiz") return "quiz";
-  if (path === "/smartea-mais") return "landing";
+  if (path === "/almara-mais") return "landing";
   return "other";
 }
 

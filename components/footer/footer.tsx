@@ -27,7 +27,7 @@ export function Footer() {
               <Link href="/produtos" className="text-sm text-[#a9c1a2] hover:text-creme">
                 Produtos
               </Link>
-              <Link href="/smartea-mais" className="text-sm text-[#a9c1a2] hover:text-creme">
+              <Link href="/almara-mais" className="text-sm text-[#a9c1a2] hover:text-creme">
                 Almara+
               </Link>
               <Link href="/blog" className="text-sm text-[#a9c1a2] hover:text-creme">

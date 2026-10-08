@@ -1,4 +1,4 @@
-import type { ToolIcon } from "@/data/smartea-mais-content";
+import type { ToolIcon } from "@/data/almara-mais-content";
 
 const shared = {
   fill: "none",

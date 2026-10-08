@@ -6,7 +6,7 @@ const FAKE_PUBLISHED_POST = {
   slug: "publicado-teste",
   category: "sono",
   excerpt: "",
-  author: "equipe-smartea",
+  author: "equipe-almara",
   date: "2026-01-01",
   status: "publicado",
   risk: "baixo",
