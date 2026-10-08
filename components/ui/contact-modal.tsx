@@ -8,7 +8,7 @@ import { track } from "@/lib/crm/tracker";
 export function ContactModal() {
   const open = useUIStore((s) => s.contactOpen);
   const setOpen = useUIStore((s) => s.setContactOpen);
-  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "ola@smartea.com";
+  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "ola@almara.com.br";
   const instagram = process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "smartea";
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export function ContactModal() {
             </span>
           </a>
           <a
-            href={buildWhatsAppLink("Olá! Vim pelo site da Smartea e queria falar com vocês.")}
+            href={buildWhatsAppLink("Olá! Vim pelo site da Almara e queria falar com vocês.")}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3.5 rounded-input border border-borda-clara-2 bg-white px-[18px] py-[15px] hover:border-dourado"

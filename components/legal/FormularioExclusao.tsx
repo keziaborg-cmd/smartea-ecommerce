@@ -17,7 +17,7 @@
 
 import { useMemo, useState } from "react";
 
-const DESTINO = "ola@smartea.com.br";
+const DESTINO = "ola@almara.com.br";
 const ASSUNTO = "Excluir conta";
 const EMAIL_VALIDO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -81,7 +81,7 @@ export function FormularioExclusao() {
 
   const href = useMemo(() => {
     const corpo = [
-      "Solicito a exclusão da minha conta Smartea+ e dos dados associados a ela.",
+      "Solicito a exclusão da minha conta Almara+ e dos dados associados a ela.",
       "",
       `E-mail cadastrado na conta: ${email.trim()}`,
       motivo.trim() ? `Motivo: ${motivo.trim()}` : "Motivo: (não informado)",

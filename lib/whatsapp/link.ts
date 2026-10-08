@@ -1,4 +1,4 @@
-// Número oficial de WhatsApp da Smartea (DDI + DDD + número, só dígitos). O
+// Número oficial de WhatsApp da Almara (DDI + DDD + número, só dígitos). O
 // número público é o mesmo exibido nas páginas legais e em /suporte — se mudar,
 // atualize os dois. NEXT_PUBLIC_WHATSAPP_NUMBER continua tendo precedência.
 const DEFAULT_WHATSAPP_NUMBER = "5519990306995";

@@ -10,7 +10,7 @@ const LEFT_LINKS = [
   { href: "/sobre", label: "Sobre" },
   { href: "/produtos", label: "Produtos" },
   { href: "/quiz", label: "Quiz", accent: true },
-  { href: "/smartea-mais", label: "Smartea+" },
+  { href: "/smartea-mais", label: "Almara+" },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -52,7 +52,7 @@ export function Nav() {
             className="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2"
             onClick={() => setMenuOpen(false)}
           >
-            <Image src="/logo.png" alt="Smartea" width={69} height={46} className="h-[46px] w-auto" priority />
+            <Image src="/logo.png" alt="Almara" width={69} height={46} className="h-[46px] w-auto" priority />
           </Link>
 
           <div className="ml-auto flex items-center gap-3">
@@ -97,7 +97,7 @@ export function Nav() {
               { href: "/sobre", label: "Sobre" },
               { href: "/produtos", label: "Produtos" },
               { href: "/quiz", label: "Fazer o quiz", accent: true },
-              { href: "/smartea-mais", label: "Smartea+" },
+              { href: "/smartea-mais", label: "Almara+" },
               { href: "/blog", label: "Blog" },
               { href: "/carrinho", label: "Carrinho" },
             ].map((link) => (

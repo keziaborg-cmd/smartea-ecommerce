@@ -42,7 +42,7 @@ export default function HomePage() {
             <h2 className="mt-3 font-display text-[clamp(42px,6vw,68px)] text-verde-escuro">Um ritual em cada lata</h2>
             <p className="mt-4 max-w-md text-tinta/80">
               Chás 100% naturais, sem açúcar, feitos para acompanhar cada momento do seu dia — e o
-              Smartea+, o app que transforma o ritual em rotina, no seu tempo, do seu jeito.
+              Almara+, o app que transforma o ritual em rotina, no seu tempo, do seu jeito.
             </p>
             <Link href="/sobre" className="mt-5 inline-block font-semibold text-verde-folha hover:underline">
               Conheça nossa história →

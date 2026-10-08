@@ -114,7 +114,7 @@ export function CookieBanner() {
     >
       <div className="mx-auto max-h-[calc(100vh-2rem)] max-w-[760px] overflow-y-auto rounded-panel bg-verde-escuro p-6 sm:p-7">
         <p id="cookie-banner-title" className="font-display text-2xl text-creme">
-          Cookies na Smartea
+          Cookies na Almara
         </p>
         <p className="mt-2 text-sm leading-relaxed text-texto-sobre-escuro">
           Usamos cookies essenciais para o site funcionar. Com a sua permissão, também usamos cookies de análise, para

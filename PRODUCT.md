@@ -14,16 +14,16 @@ Contexto de mercado informado pelo usuário: Millennials e Geração Z somam 65%
 
 ## Product Purpose
 
-Smartea vende chás funcionais 100% naturais e sem açúcar (6 blends, cada um pensado para um momento do dia) e o app Smartea+, com jornadas guiadas de 21 dias e a Flora, IA de bem-estar. O site vende os chás, apresenta a marca e leva ao app. Sucesso: transformar o chá em ritual diário e o ritual em hábito.
+Almara vende chás funcionais 100% naturais e sem açúcar (6 blends, cada um pensado para um momento do dia) e o app Almara+, com jornadas guiadas de 21 dias e a Mara, IA de bem-estar. O site vende os chás, apresenta a marca e leva ao app. Sucesso: transformar o chá em ritual diário e o ritual em hábito.
 
 ## Positioning
 
-Chá + app + Flora (IA): a lata de chá é o ritual físico, o Smartea+ guia o hábito em 21 dias e a Flora acompanha. Um concorrente de chá não tem o app e a IA; um app de hábitos não tem o produto.
+Chá + app + Mara (IA): a lata de chá é o ritual físico, o Almara+ guia o hábito em 21 dias e a Mara acompanha. Um concorrente de chá não tem o app e a IA; um app de hábitos não tem o produto.
 
 ## Capabilities and Constraints
 
-- Site Next.js (app router) em pt-BR, com home, produtos, quiz, blog (Supabase), cupons, carrinho/checkout (Mercado Pago), páginas institucionais e página do Smartea+.
-- O app Smartea+ ainda não foi lançado: não afirmar disponibilidade nas lojas nem números de usuários.
+- Site Next.js (app router) em pt-BR, com home, produtos, quiz, blog (Supabase), cupons, carrinho/checkout (Mercado Pago), páginas institucionais e página do Almara+.
+- O app Almara+ ainda não foi lançado: não afirmar disponibilidade nas lojas nem números de usuários.
 - Estado do checkout/pagamentos não confirmado nesta sessão; tratar como em aberto.
 
 ## Brand Commitments

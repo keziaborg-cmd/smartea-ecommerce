@@ -1,4 +1,4 @@
-// As 4 jornadas reais do app Smartea+, confirmadas pelo usuário em 2026-08-14.
+// As 4 jornadas reais do app Almara+, confirmadas pelo usuário em 2026-08-14.
 // A relação chá <-> jornada é muitos-para-muitos e vive em `pdp-data.ts`
 // (campo `jornadas` de cada chá) — este arquivo só guarda os metadados de
 // cada jornada. Não duplicar a lista de chás aqui; usar getTeasForJourney().
@@ -49,7 +49,7 @@ export const journeys: Journey[] = [
     chapters: [
       "Reconhecendo os gatilhos",
       "A pausa de 3 minutos",
-      "Respiração guiada com a Flora",
+      "Respiração guiada com a Mara",
       "Presença em meio à correria",
     ],
     timeline: {

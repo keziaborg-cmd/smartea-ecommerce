@@ -61,7 +61,7 @@ export default function QuizPage() {
       trackAddToCart({ slug, name, priceCents, qty: 1 });
     }
 
-    const whatsappMessage = `Fiz o quiz da Smartea e meu chá ideal é o ${primary.name}! ${quizWhy[primary.name]}`;
+    const whatsappMessage = `Fiz o quiz da Almara e meu chá ideal é o ${primary.name}! ${quizWhy[primary.name]}`;
 
     return (
       <main className="animate-pagein px-[6vw] py-14">
@@ -117,10 +117,10 @@ export default function QuizPage() {
         <div className="mx-auto mt-6 max-w-[1120px] rounded-card-conteudo border border-borda-clara bg-white p-7 xl:max-w-[1280px] 2xl:max-w-[1440px]">
           <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-center sm:text-left">
             <div className="flex-1">
-              <p className="eyebrow text-eyebrow-claro">Smartea+</p>
+              <p className="eyebrow text-eyebrow-claro">Almara+</p>
               <p className="mt-2 font-display text-2xl text-verde-escuro">Sua jornada não termina na xícara</p>
               <p className="mt-1 text-sm text-tinta/70">
-                No Smartea+ você encontra jornadas guiadas de 21 dias, com a Flora ao seu lado — todas
+                No Almara+ você encontra jornadas guiadas de 21 dias, com a Mara ao seu lado — todas
                 disponíveis, para qualquer chá que você escolher.
               </p>
             </div>
@@ -128,7 +128,7 @@ export default function QuizPage() {
               href="/smartea-mais"
               className="w-full shrink-0 rounded-pill bg-verde-escuro px-7 py-3 text-center text-sm font-semibold text-creme sm:w-auto"
             >
-              Conhecer o Smartea+
+              Conhecer o Almara+
             </Link>
           </div>
         </div>

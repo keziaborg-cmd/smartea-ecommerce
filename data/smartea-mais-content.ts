@@ -8,7 +8,7 @@ export const TRAIL_STEPS = [
   { title: "Aprofundamento", text: "Vai um pouco mais fundo no porquê, sem enrolação." },
   { title: "Seu ecossistema", text: "As ferramentas do seu ecossistema de bem-estar, prontas pra aplicar agora." },
   { title: "Ritual do chá", text: "A pausa física: seu chá do dia, o momento pra respirar de verdade." },
-  { title: "Conversa com a Flora", text: "Um bate-papo curto pra fechar o que ficou de aprendizado." },
+  { title: "Conversa com a Mara", text: "Um bate-papo curto pra fechar o que ficou de aprendizado." },
   { title: "Fechamento", text: "Um resumo do dia e um gentil convite pra amanhã." },
 ] as const;
 

@@ -3,8 +3,8 @@ import Link from "next/link";
 import { unsubscribe } from "./actions";
 
 export const metadata: Metadata = {
-  title: "Descadastro — Smartea",
-  description: "Pare de receber mensagens de marketing da Smartea.",
+  title: "Descadastro — Almara",
+  description: "Pare de receber mensagens de marketing da Almara.",
   robots: { index: false, follow: false },
 };
 
@@ -23,7 +23,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ m
       {sp.ok ? (
         <div role="status" className="mt-6 space-y-3 leading-relaxed text-tinta/80">
           <p>
-            Pronto. Você não vai mais receber mensagens de marketing da Smartea por{" "}
+            Pronto. Você não vai mais receber mensagens de marketing da Almara por{" "}
             <strong className="font-medium text-verde-escuro">{CHANNEL[sp.ok] ?? sp.ok}</strong>.
           </p>
           <p>
@@ -33,13 +33,13 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ m
       ) : sp.erro === "link" || (!valid && !sp.erro) ? (
         <p className="mt-6 leading-relaxed text-tinta/80">
           Este link de descadastro não é válido ou já expirou. Se quiser parar de receber mensagens, fale com a gente em{" "}
-          <a href="mailto:ola@smartea.com.br" className="underline underline-offset-2">ola@smartea.com.br</a>.
+          <a href="mailto:ola@almara.com.br" className="underline underline-offset-2">ola@almara.com.br</a>.
         </p>
       ) : (
         <form action={unsubscribe} className="mt-6 space-y-4">
           <input type="hidden" name="m" value={sp.m} />
           <p className="leading-relaxed text-tinta/80">
-            Confirme pra parar de receber mensagens de marketing da Smartea neste canal. Mensagens sobre seus pedidos continuam chegando.
+            Confirme pra parar de receber mensagens de marketing da Almara neste canal. Mensagens sobre seus pedidos continuam chegando.
           </p>
           {sp.erro === "falha" && (
             <p role="alert" className="text-sm text-red-700">

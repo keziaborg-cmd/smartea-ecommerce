@@ -3,9 +3,9 @@ import { LegalPage, type LegalSection } from "@/components/legal/LegalPage";
 import { FormularioExclusao } from "@/components/legal/FormularioExclusao";
 
 export const metadata: Metadata = {
-  title: "Excluir sua conta Smartea+",
+  title: "Excluir sua conta Almara+",
   description:
-    "Como excluir sua conta Smartea+ e os dados associados a ela, pelo aplicativo ou por esta página, sem precisar fazer login.",
+    "Como excluir sua conta Almara+ e os dados associados a ela, pelo aplicativo ou por esta página, sem precisar fazer login.",
   // a página é exigida pelo Google Play e precisa abrir para qualquer pessoa
   robots: { index: true, follow: true },
 };
@@ -16,7 +16,7 @@ const SECTIONS: LegalSection[] = [
     blocks: [
       { t: "li", text: "Dados da sua conta: nome, e-mail e endereço" },
       { t: "li", text: "Todo o conteúdo do diário e os registros de humor" },
-      { t: "li", text: "As conversas com a Flora" },
+      { t: "li", text: "As conversas com a Mara" },
       { t: "li", text: "O progresso das jornadas, o jardim, hábitos e tarefas" },
       { t: "li", text: "Preferências e configurações" },
       { t: "p", text: "Isso é apagado por completo e não pode ser recuperado." },
@@ -37,7 +37,7 @@ const SECTIONS: LegalSection[] = [
     blocks: [
       {
         t: "strong",
-        text: "Excluir a conta não cancela automaticamente a assinatura do Smartea+, porque ela é gerenciada pela loja de aplicativos. Cancele antes, ou logo em seguida:",
+        text: "Excluir a conta não cancela automaticamente a assinatura do Almara+, porque ela é gerenciada pela loja de aplicativos. Cancele antes, ou logo em seguida:",
       },
       { t: "li", text: "**iPhone:** Ajustes → seu nome → Assinaturas" },
       { t: "li", text: "**Android:** Google Play Store → Pagamentos e assinaturas" },
@@ -46,7 +46,7 @@ const SECTIONS: LegalSection[] = [
   {
     title: "Dúvidas",
     blocks: [
-      { t: "kv", k: "E-mail", v: "ola@smartea.com.br" },
+      { t: "kv", k: "E-mail", v: "ola@almara.com.br" },
       { t: "kv", k: "WhatsApp", v: "(19) 99030-6995" },
     ],
   },
@@ -61,7 +61,7 @@ export default function Page() {
   return (
     <LegalPage
       eyebrow="Sua conta"
-      title="Excluir sua conta Smartea+"
+      title="Excluir sua conta Almara+"
       intro={["Você pode excluir sua conta e seus dados a qualquer momento, sem precisar falar com ninguém."]}
       sections={SECTIONS}
       related={RELATED}
@@ -69,7 +69,7 @@ export default function Page() {
       <section className="mt-8">
         <h2 className="font-display text-2xl text-verde-escuro">Pelo aplicativo</h2>
         <p className="mt-3 leading-relaxed text-tinta/80">
-          Abra o Smartea+, vá em <strong className="font-medium text-verde-escuro">Perfil → Excluir conta</strong> e
+          Abra o Almara+, vá em <strong className="font-medium text-verde-escuro">Perfil → Excluir conta</strong> e
           confirme. A exclusão acontece na hora.
         </p>
       </section>

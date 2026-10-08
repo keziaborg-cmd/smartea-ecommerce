@@ -3,8 +3,8 @@ import { getPublishedPosts } from "@/lib/blog/posts";
 import { BlogListClient } from "@/components/blog/blog-list-client";
 
 export const metadata: Metadata = {
-  title: "Blog — Smartea",
-  description: "Conteúdo sobre sono, ansiedade, produtividade e pausa — da equipe Smartea, com fontes sempre citadas.",
+  title: "Blog — Almara",
+  description: "Conteúdo sobre sono, ansiedade, produtividade e pausa — da equipe Almara, com fontes sempre citadas.",
 };
 
 export default async function BlogPage() {

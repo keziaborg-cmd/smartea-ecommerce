@@ -75,7 +75,7 @@ export function HeroCarousel() {
         </div>
         <p className="mt-5 text-xs" style={{ color: tea.heroSub }}>
           <span className="mr-2 rounded border border-white/30 px-1.5 py-0.5 font-bold">APP</span>
-          Jornadas de 21 dias no Smartea+, guiada pela Flora
+          Jornadas de 21 dias no Almara+, guiada pela Mara
         </p>
       </div>
 

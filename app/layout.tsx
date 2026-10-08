@@ -21,9 +21,9 @@ const montserrat = Montserrat({
 });
 
 const SITE_URL = "https://smartea.com.br";
-const SITE_TITLE = "Smartea — Chá 100% natural, um ritual em cada lata";
+const SITE_TITLE = "Almara — Chá 100% natural, um ritual em cada lata";
 const SITE_DESCRIPTION =
-  "Chás naturais Smartea: 6 blends para cada momento do seu dia. Conheça também o Smartea+, o app com jornadas guiadas de 21 dias, hábitos e um jardim que cresce com você.";
+  "Chás naturais Almara: 6 blends para cada momento do seu dia. Conheça também o Almara+, o app com jornadas guiadas de 21 dias, hábitos e um jardim que cresce com você.";
 
 export const metadata: Metadata = {
   // metadataBase resolve toda URL relativa (og:image, canonical, etc.) pro
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
-    siteName: "Smartea",
+    siteName: "Almara",
     locale: "pt_BR",
     type: "website",
   },

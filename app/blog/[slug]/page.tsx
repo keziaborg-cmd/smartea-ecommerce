@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!post) return {};
 
   return {
-    title: `${post.title} — Blog Smartea`,
+    title: `${post.title} — Blog Almara`,
     description: post.excerpt,
     alternates: { canonical: `${SITE_URL}/blog/${post.slug}` },
     openGraph: {
@@ -60,7 +60,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       description: post.excerpt,
       datePublished: post.date,
       author: author ? { "@type": "Person", name: author.name } : undefined,
-      publisher: { "@type": "Organization", name: "Smartea" },
+      publisher: { "@type": "Organization", name: "Almara" },
       mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
     },
     author && {

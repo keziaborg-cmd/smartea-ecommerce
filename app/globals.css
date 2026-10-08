@@ -31,7 +31,7 @@
   --color-gatilho-bg: #f7f3e8;
 
   /*
-   * Smartea+ ("/smartea-mais") redesign palette — vivid, gamified, but
+   * Almara+ ("/smartea-mais") redesign palette — vivid, gamified, but
    * derived FROM the storefront tokens above (verde-folha, dourado, vinho,
    * sage, creme-quente), not from Duolingo's literal hues. Revised
    * 2026-08-16 after the first pass read as a too-literal Duolingo clone.
@@ -271,7 +271,7 @@ body {
   font-family: var(--font-montserrat), sans-serif !important;
 }
 
-/* Smartea+ redesign fonts — same unlayered !important pattern as above, for
+/* Almara+ redesign fonts — same unlayered !important pattern as above, for
    the same reason (see comment on body/.font-display): scoped via a wrapper
    with the next/font variable className on the /smartea-mais page only. */
 .font-display-mais {

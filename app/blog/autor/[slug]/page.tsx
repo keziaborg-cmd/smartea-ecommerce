@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const author = getBlogAuthorBySlug(slug);
   if (!author) return {};
   return {
-    title: `${author.name} — Blog Smartea`,
+    title: `${author.name} — Blog Almara`,
     description: author.bio,
     alternates: { canonical: `${SITE_URL}/blog/autor/${author.slug}` },
   };

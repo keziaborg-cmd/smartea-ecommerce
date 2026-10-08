@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const tea = getTeaBySlug(slug);
   if (!tea) return {};
   return {
-    title: `${tea.name} — Smartea`,
+    title: `${tea.name} — Almara`,
     description: tea.about,
   };
 }
@@ -93,13 +93,13 @@ export default async function ProdutoPage({ params }: { params: Promise<{ slug: 
               ))}
             </div>
             <p className="mt-2 text-xs" style={{ color: tea.heroSub }}>
-              Desconto vale pra combinação de qualquer chá Smartea no carrinho — não precisa ser só este.
+              Desconto vale pra combinação de qualquer chá Almara no carrinho — não precisa ser só este.
             </p>
 
             <AddToCartButton tea={tea} className="mt-5 w-fit rounded-pill bg-creme px-8 py-3.5 text-sm font-semibold text-verde-escuro" />
             <p className="mt-5 text-xs" style={{ color: tea.heroSub }}>
               <span className="mr-2 rounded border border-white/30 px-1.5 py-0.5 font-bold">APP</span>
-              Combina com a jornada de {pdp.jornadas.map(journeyLabel).join(" e ")} no Smartea+
+              Combina com a jornada de {pdp.jornadas.map(journeyLabel).join(" e ")} no Almara+
             </p>
           </div>
         </div>
@@ -163,7 +163,7 @@ export default async function ProdutoPage({ params }: { params: Promise<{ slug: 
           <AppBadge size={76} />
           <div className="min-w-0">
             <p className="eyebrow text-dourado">
-              No Smartea+ · jornada{pdp.jornadas.length > 1 ? "s" : ""} {pdp.jornadas.map(journeyLabel).join(" · ")}
+              No Almara+ · jornada{pdp.jornadas.length > 1 ? "s" : ""} {pdp.jornadas.map(journeyLabel).join(" · ")}
             </p>
             <p className="mt-2 font-display text-2xl leading-snug text-creme">{pdp.diferencial}</p>
           </div>

@@ -1,4 +1,4 @@
-// Autores do blog — hoje só a Smartea como autora institucional, mas a
+// Autores do blog — hoje só a Almara como autora institucional, mas a
 // estrutura já aceita profissionais parceiros assinando artigos no futuro
 // (bio, credencial, foto por autor, não só um nome solto no frontmatter).
 export interface BlogAuthor {
@@ -13,8 +13,8 @@ export interface BlogAuthor {
 export const BLOG_AUTHORS: BlogAuthor[] = [
   {
     slug: "equipe-smartea",
-    name: "Equipe Smartea",
-    bio: "Conteúdo escrito pela equipe editorial da Smartea, com apoio de fontes públicas confiáveis — sempre citadas ao final de cada artigo.",
+    name: "Equipe Almara",
+    bio: "Conteúdo escrito pela equipe editorial da Almara, com apoio de fontes públicas confiáveis — sempre citadas ao final de cada artigo.",
   },
 ];
 

@@ -7,7 +7,7 @@ function FloraPhoto({ className, src = "/flora.png" }: { className?: string; src
   return (
     <Image
       src={src}
-      alt="Flora, mascote do Smartea+"
+      alt="Mara, mascote do Almara+"
       width={3375}
       height={4219}
       className={className}
@@ -22,7 +22,7 @@ const FLORA_BULLETS = [
 ];
 
 const ATIVACAO_STEPS = [
-  { title: "Baixe o Smartea+", text: "Disponível na App Store e no Google Play, com 14 dias grátis." },
+  { title: "Baixe o Almara+", text: "Disponível na App Store e no Google Play, com 14 dias grátis." },
   { title: "Escolha sua jornada", text: "Sono, Ansiedade, Produtividade ou Pausa. Todas disponíveis desde o primeiro dia." },
   { title: "Escolha o chá do seu ritual", text: "Um dos nossos, um que você já tem em casa, ou nenhum. A jornada é sua, o chá acompanha do seu jeito." },
 ];
@@ -93,7 +93,7 @@ function TeaStack() {
       />
       <Image
         src="/tea/cha-verde.png"
-        alt="Chás Smartea"
+        alt="Chás Almara"
         width={200}
         height={200}
         className="relative z-10 h-[160px] w-auto drop-shadow-xl md:h-[220px]"
@@ -139,9 +139,9 @@ function FeatureRow({ reverse, eyebrow, title, bg, children, visual }: FeatureRo
 export function FeaturesSection() {
   return (
     <section className="mx-auto mt-20 flex max-w-[1100px] flex-col gap-6 px-[6vw] xl:max-w-[1260px] 2xl:max-w-[1440px]">
-      <FeatureRow eyebrow="Quem guia você" title="Flora, sua companhia de bem-estar" bg="bg-folha-viva-clara" visual={<FloraGuideVisual />}>
+      <FeatureRow eyebrow="Quem guia você" title="Mara, sua companhia de bem-estar" bg="bg-folha-viva-clara" visual={<FloraGuideVisual />}>
         <p className="font-body-mais text-tinta-mais/75">
-          Flora é a IA de bem-estar do Smartea+ — uma presença gentil que acompanha seu ritual, não um
+          Mara é a IA de bem-estar do Almara+ — uma presença gentil que acompanha seu ritual, não um
           assistente técnico.
         </p>
         <ul className="mt-4 space-y-3">
@@ -162,7 +162,7 @@ export function FeaturesSection() {
         visual={<GardenDemoLoop fallback={<GardenGraphic />} />}
       >
         <p className="font-body-mais text-tinta-mais/75">
-          No Smartea+, seu progresso na jornada vira um jardim que cresce a cada dia de ritual
+          No Almara+, seu progresso na jornada vira um jardim que cresce a cada dia de ritual
           cumprido — um jeito visual e gentil de acompanhar sua constância, com 12 itens diferentes
           pra desbloquear.
         </p>
@@ -170,7 +170,7 @@ export function FeaturesSection() {
 
       <FeatureRow eyebrow="Chá & loja" title="O ritual começa na lata" bg="bg-jornada-sono-clara" visual={<TeaStack />}>
         <p className="font-body-mais text-tinta-mais/75">
-          Todo chá Smartea pode ser parte do seu ritual diário no Smartea+ — você escolhe qual, e a
+          Todo chá Almara pode ser parte do seu ritual diário no Almara+ — você escolhe qual, e a
           jornada guiada é sua desde o primeiro dia, com ou sem chá.
         </p>
         <ul className="mt-4 space-y-2.5">
@@ -193,7 +193,7 @@ export function FeaturesSection() {
       <FeatureRow reverse eyebrow="Assinatura" title="Continue além do trial" bg="bg-jornada-pausa-clara" visual={<FloraSubscribeVisual />}>
         <p className="font-body-mais text-tinta-mais/75">
           Toda jornada começa com um trial gratuito — depois, escolha o plano que faz sentido pra
-          continuar com a Flora.
+          continuar com a Mara.
         </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           <div className="rounded-2xl border-2 border-tinta-mais/10 bg-white px-4 py-4 text-center">
