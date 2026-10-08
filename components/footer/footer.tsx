@@ -4,7 +4,8 @@ import { CookiePreferencesLink } from "@/components/consent/cookie-preferences-l
 
 export function Footer() {
   const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "ola@almara.com.br";
-  const instagram = process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || "smartea";
+  // Sem o @ definido (NEXT_PUBLIC_INSTAGRAM_HANDLE), o Instagram não aparece.
+  const instagram = process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE?.trim().replace(/^@/, "") || null;
 
   return (
     <footer className="mt-[70px] bg-verde-escuro px-[6vw] pb-10 pt-14 text-[#cfe0c9]">
@@ -62,7 +63,7 @@ export function Footer() {
               <a href={`mailto:${email}`} className="text-sm text-[#a9c1a2] hover:text-creme">
                 {email}
               </a>
-              <span className="text-sm text-[#a9c1a2]">@{instagram}</span>
+              {instagram && <span className="text-sm text-[#a9c1a2]">@{instagram}</span>}
             </div>
           </div>
         </div>
