@@ -48,7 +48,7 @@ export const teas: Tea[] = [
   {
     name: "Chá Verde",
     slug: "cha-verde",
-    tag: "o clássico que desperta.",
+    tag: "um sopro de renovação.",
     weight: "120g",
     price: "R$ 24,90",
     priceCents: 2490,

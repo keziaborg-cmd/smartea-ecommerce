@@ -8,6 +8,7 @@ import { teas } from "@/data/teas";
 export function HeroCarousel() {
   const [index, setIndex] = useState(0);
   const tea = teas[index];
+  const [first, second] = tea.name.split(" ");
 
   function go(next: number) {
     setIndex((next + teas.length) % teas.length);
@@ -27,12 +28,31 @@ export function HeroCarousel() {
       </div>
 
       <div className="relative mt-3 flex flex-col items-center justify-center py-6 text-center md:mt-4 md:py-10">
+        {/* Palavra decorativa atrás da lata (o nome já está no alt da imagem). Nome de duas palavras
+            ("Chá Verde", "Chá Preto"): a lata fica no vão entre elas. A grade 1fr | vão | 1fr (colunas
+            iguais, largura do painel) trava o vão no centro mesmo com palavras de larguras diferentes; o vão acompanha a largura
+            visível da lata em cada breakpoint. O tamanho da letra sai da conta: o painel tem 0,88 da
+            tela e a palavra mais larga ("Verde", ~3em) precisa caber entre o vão e a borda com ~16px
+            de folga, ou seja, letra <= (0,44·tela − vão/2 − 16px) / 3 — daí o 14,77vw − constante. */}
         <span
           key={`word-${tea.slug}`}
-          className="animate-hero-wordfade pointer-events-none absolute whitespace-nowrap font-display leading-none opacity-90"
-          style={{ color: tea.heroWord, fontSize: "clamp(60px,12vw,180px)" }}
+          aria-hidden="true"
+          className={`animate-hero-wordfade pointer-events-none absolute whitespace-nowrap font-display leading-none opacity-90 ${
+            second
+              ? "inset-x-0 grid grid-cols-[minmax(0,1fr)_var(--can-gap)_minmax(0,1fr)] [--can-gap:96px] [font-size:clamp(26px,calc(14.77vw_-_20px),70px)] sm:[--can-gap:150px] sm:[font-size:clamp(60px,calc(14.77vw_-_30px),180px)] md:[--can-gap:190px] md:[font-size:clamp(60px,calc(14.77vw_-_37px),180px)]"
+              : ""
+          }`}
+          style={{ color: tea.heroWord, fontSize: second ? undefined : "clamp(60px,12vw,180px)" }}
         >
-          {tea.name}
+          {second ? (
+            <>
+              <span className="justify-self-end">{first}</span>
+              <span />
+              <span className="justify-self-start">{second}</span>
+            </>
+          ) : (
+            tea.name
+          )}
         </span>
 
         <div className="relative z-[2] w-fit -translate-y-2 md:translate-y-0">
