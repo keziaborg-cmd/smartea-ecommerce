@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { LegalPage, type LegalSection } from "@/components/legal/LegalPage";
 
 export const metadata: Metadata = {
-  title: "Suporte — Smartea",
+  title: "Suporte — Almara",
   description:
-    "Canais de atendimento da Smartea e respostas para os assuntos mais comuns: pedidos, assinatura do Smartea+, exclusão de conta e tratamento de dados.",
+    "Canais de atendimento da Almara e respostas para os assuntos mais comuns: pedidos, assinatura do Almara+, exclusão de conta e tratamento de dados.",
 };
 
 const SECTIONS: LegalSection[] = [
   {
     title: "Canais",
     blocks: [
-      { t: "kv", k: "E-mail", v: "ola@smartea.com.br" },
+      { t: "kv", k: "E-mail", v: "ola@almara.com.br" },
       { t: "kv", k: "WhatsApp", v: "(19) 99030-6995" },
       { t: "kv", k: "Atendimento", v: "Segunda a sexta, das 8h às 18h" },
       { t: "p", text: "Respondemos em até 1 dia útil." },
@@ -34,7 +34,7 @@ const SECTIONS: LegalSection[] = [
         t: "p",
         text: "Veja os prazos e o passo a passo na [Política de Trocas e Devoluções](/politica-de-trocas-e-devolucoes), ou fale com a gente pelos canais acima.",
       },
-      { t: "h3", text: "Quero cancelar minha assinatura do Smartea+" },
+      { t: "h3", text: "Quero cancelar minha assinatura do Almara+" },
       {
         t: "p",
         text: "A assinatura é gerenciada pela loja de aplicativos. No iPhone, em Ajustes → seu nome → Assinaturas. No Android, na Google Play Store → Pagamentos e assinaturas. O cancelamento vale a partir do fim do período já pago.",
@@ -47,7 +47,7 @@ const SECTIONS: LegalSection[] = [
       { t: "h3", text: "Quero saber como meus dados são tratados" },
       {
         t: "p",
-        text: "Está tudo na [Política de Privacidade e Cookies](/politica-de-privacidade). Para pedidos relacionados à LGPD, escreva para kezia.borges@smartea.com.br.",
+        text: "Está tudo na [Política de Privacidade e Cookies](/politica-de-privacidade). Para pedidos relacionados à LGPD, escreva para kezia.borges@almara.com.br.",
       },
     ],
   },
@@ -63,8 +63,8 @@ export default function Page() {
   return (
     <LegalPage
       eyebrow="Atendimento"
-      title="Suporte Smartea"
-      intro={["Precisa de ajuda com um pedido, com a sua conta ou com o Smartea+? Fala com a gente."]}
+      title="Suporte Almara"
+      intro={["Precisa de ajuda com um pedido, com a sua conta ou com o Almara+? Fala com a gente."]}
       sections={SECTIONS}
       related={RELATED}
     />

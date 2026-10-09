@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-10-06T21:01:49.486617Z",
-  "title": "Design System: Smartea",
+  "title": "Design System: Almara",
   "extensions": {
     "colorMeta": {
       "verde-escuro": {
@@ -180,7 +180,7 @@
       {
         "name": "laje-3d",
         "value": "0 5px 0 0 #324e19",
-        "purpose": "Botão 3D do Smartea+."
+        "purpose": "Botão 3D do Almara+."
       }
     ],
     "motion": [
@@ -237,7 +237,7 @@
       "css": ".ds-btn-outline{background:transparent;color:#013f24;font-size:14px;padding:8px 20px;border:1px solid rgba(1,63,36,.25);border-radius:40px;cursor:pointer;transition:border-color .2s}.ds-btn-outline:hover{border-color:#6f1d11}.ds-btn-outline:focus-visible{outline:2px solid #c8a24a;outline-offset:3px}"
     },
     {
-      "name": "3D Button (Smartea+)",
+      "name": "3D Button (Almara+)",
       "kind": "button",
       "refersTo": "button-3d",
       "description": "Único gesto tátil: laje sólida que encolhe ao pressionar.",
@@ -265,7 +265,7 @@
       "kind": "nav",
       "refersTo": "nav",
       "description": "Barra sticky sage com links em verde-escuro e Quiz em vinho.",
-      "html": "<nav class=\"ds-nav\"><a>Sobre</a><a>Produtos</a><a class=\"ds-nav-accent\">Quiz</a><a>Smartea+</a><a>Blog</a></nav>",
+      "html": "<nav class=\"ds-nav\"><a>Sobre</a><a>Produtos</a><a class=\"ds-nav-accent\">Quiz</a><a>Almara+</a><a>Blog</a></nav>",
       "css": ".ds-nav{display:flex;gap:28px;background:rgba(225,234,212,.95);padding:18px 24px;border-radius:12px}.ds-nav a{font-size:14px;font-weight:500;color:#013f24;cursor:pointer}.ds-nav a:hover{color:#568833}.ds-nav-accent{font-weight:800!important;color:#6f1d11!important}"
     },
     {
@@ -299,8 +299,8 @@
         "section": "colors"
       },
       {
-        "name": "The Escopo Smartea+ Rule",
-        "body": "Paleta e fontes do Smartea+ ficam em /smartea-mais.",
+        "name": "The Escopo Almara+ Rule",
+        "body": "Paleta e fontes do Almara+ ficam em /almara-mais.",
         "section": "colors"
       },
       {
@@ -319,15 +319,15 @@
       "Do dar a cada blend a própria luz (gradiente, brilho, cores de botão) vinda de data/teas.ts.",
       "Do usar Carena para títulos e preços, Montserrat para o resto.",
       "Do manter botões como pílulas e cartões com cantos de 22–34px.",
-      "Do reservar o botão 3D de laje sólida ao Smartea+ e à ação \"fiz hoje\".",
+      "Do reservar o botão 3D de laje sólida ao Almara+ e à ação \"fiz hoje\".",
       "Do usar \"jardim\" e \"estufa\" na comunicação; \"botica\" é só direção interna de design."
     ],
     "donts": [
       "Don't parecer clínico ou farmacêutico: nada de branco frio, jaleco ou tom de suplemento de academia.",
-      "Don't clonar o Duolingo: o Smartea+ é gamificado, mas derivado da paleta da marca.",
+      "Don't clonar o Duolingo: o Almara+ é gamificado, mas derivado da paleta da marca.",
       "Don't usar vermelho para culpar ou punir; ele reacende o foco.",
       "Don't pôr sombra pesada em superfícies ou cartões; só nas latas.",
-      "Don't usar a paleta ou as fontes do Smartea+ fora de /smartea-mais."
+      "Don't usar a paleta ou as fontes do Almara+ fora de /almara-mais."
     ]
   }
 }

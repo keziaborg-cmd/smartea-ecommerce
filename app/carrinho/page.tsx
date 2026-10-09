@@ -523,7 +523,7 @@ export default function CarrinhoPage() {
 
               {!orderDraft && (
                 <fieldset className="text-xs text-texto-sobre-escuro-2">
-                  <legend className="mb-1.5">Quero receber novidades e ofertas da Smartea por (opcional):</legend>
+                  <legend className="mb-1.5">Quero receber novidades e ofertas da Almara por (opcional):</legend>
                   <div className="flex flex-wrap gap-x-5 gap-y-1.5">
                     {(
                       [

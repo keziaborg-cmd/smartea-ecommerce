@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CLI do pipeline de rascunhos do blog da Smartea.
+"""CLI do pipeline de rascunhos do blog da Almara.
 
 Uso:
     python run.py                  # roda tudo em sequência: coleta -> classifica -> escreve -> publica
@@ -20,7 +20,7 @@ from pipeline import classify, collect, config, db, write, publish
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Pipeline de rascunhos do blog Smartea")
+    parser = argparse.ArgumentParser(description="Pipeline de rascunhos do blog Almara")
     parser.add_argument(
         "--stage",
         choices=["collect", "classify", "write", "publish", "all"],

@@ -3,8 +3,8 @@ import { teas } from "@/data/teas";
 import { ProductCard } from "@/components/product/product-card";
 
 export const metadata: Metadata = {
-  title: "Nossos chás — Smartea",
-  description: "Os 6 blends de chá 100% natural da Smartea. Escolha o seu ritual.",
+  title: "Nossos chás — Almara",
+  description: "Os 6 blends de chá 100% natural da Almara. Escolha o seu ritual.",
 };
 
 export default function CatalogoPage() {

@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, Heart, Leaf, Star, type LucideIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { TOOLS, type ToolIcon } from "@/data/smartea-mais-content";
-import { ToolIconGraphic } from "@/components/smartea-mais/tool-icon";
+import { TOOLS, type ToolIcon } from "@/data/almara-mais-content";
+import { ToolIconGraphic } from "@/components/almara-mais/tool-icon";
 
 const COLORS = ["bg-folha-viva", "bg-jornada-sono", "bg-jornada-ansiedade", "bg-jornada-produtividade", "bg-jornada-pausa"];
 const BG_CLARA = [
@@ -22,7 +22,7 @@ const SHADOWS = [
   "var(--color-jornada-pausa-escura)",
 ];
 
-// só 2 dos 6 tools têm badge (ver TOOLS em smartea-mais-content.ts) — ícone
+// só 2 dos 6 tools têm badge (ver TOOLS em almara-mais-content.ts) — ícone
 // escolhido pelo sentido do texto, não genérico: coração pra "favorita",
 // estrela pra "mais usada"/em alta.
 const BADGE_ICON: Partial<Record<ToolIcon, LucideIcon>> = {
@@ -46,10 +46,10 @@ const STAGGER_STEP_MS = 90;
  * Não existe, dentro deste site, uma página própria por ferramenta — elas
  * vivem dentro do app mobile de verdade. Em vez de inventar uma rota que não
  * leva a lugar nenhum, cada card aponta pro CTA final da página (âncora
- * `#comecar` em app/smartea-mais/page.tsx), que é o próximo passo real que
+ * `#comecar` em app/almara-mais/page.tsx), que é o próximo passo real que
  * um visitante pode tomar aqui.
  */
-const TOOL_HREF = "/smartea-mais#comecar";
+const TOOL_HREF = "/almara-mais#comecar";
 
 export function ToolsSection() {
   const sectionRef = useRef<HTMLElement>(null);

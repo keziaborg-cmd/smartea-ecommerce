@@ -129,8 +129,8 @@ export default function PedidoConfirmacaoPage() {
             Próximo passo
           </p>
           <p className="mt-2 text-sm text-texto-sobre-escuro">
-            Enquanto o chá não chega, já dá pra baixar o Smartea+ e começar sua jornada de 21 dias — a
-            Flora te espera lá, e o chá acompanha quando quiser.
+            Enquanto o chá não chega, já dá pra baixar o Almara+ e começar sua jornada de 21 dias — a
+            Mara te espera lá, e o chá acompanha quando quiser.
           </p>
         </div>
 

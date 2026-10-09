@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import { BLOG_AUTHORS, getBlogAuthorBySlug } from "@/data/blog-authors";
 import { getPublishedPostsByAuthor } from "@/lib/blog/posts";
 import { PostCard } from "@/components/blog/post-card";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://smartea.com.br";
 
 export function generateStaticParams() {
   return BLOG_AUTHORS.map((author) => ({ slug: author.slug }));
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const author = getBlogAuthorBySlug(slug);
   if (!author) return {};
   return {
-    title: `${author.name} — Blog Smartea`,
+    title: `${author.name} — Blog Almara`,
     description: author.bio,
     alternates: { canonical: `${SITE_URL}/blog/autor/${author.slug}` },
   };

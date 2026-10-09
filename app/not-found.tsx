@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <main className="animate-pagein flex flex-col items-center px-[6vw] py-20 text-center">
-      <Image src="/flora.png" alt="Flora, mascote da Smartea" width={220} height={275} className="h-[220px] w-auto" priority />
+      <Image src="/mara.png" alt="Mara, mascote da Almara" width={220} height={275} className="h-[220px] w-auto" priority />
       <p className="eyebrow mt-6 text-eyebrow-claro">Ops</p>
       <h1 className="mt-3 font-display text-[clamp(32px,5vw,52px)] text-verde-escuro">
         Essa trilha ainda não existe por aqui

@@ -1,4 +1,4 @@
-# Pipeline de rascunhos do blog — Smartea
+# Pipeline de rascunhos do blog — Almara
 
 Projeto Python separado, dentro do repo do site, que gera **rascunhos** de artigo pro
 blog a partir de fontes externas (feeds RSS), usando a API da Anthropic pra classificar

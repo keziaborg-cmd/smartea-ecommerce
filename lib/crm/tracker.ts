@@ -1,6 +1,7 @@
 "use client";
 
 import { hasAnalyticsConsent, useConsentStore } from "@/lib/consent/consent";
+import { migrateLegacyStorage, STORAGE_KEYS } from "@/lib/storage-keys";
 
 // Tracking first-party do CRM. Os eventos vão em lote pra public.crm_track_web (definida em
 // smartea-metrics/db/006_crm_core.sql), que valida contra o catálogo e faz identity resolution.
@@ -19,9 +20,9 @@ const ESSENTIAL_EVENTS = new Set([
   "newsletter_subscribed",
 ]);
 
-const ANON_KEY = "smartea-aid";
-const SESSION_KEY = "smartea-sid";
-const ATTRIBUTION_KEY = "smartea-attr";
+const ANON_KEY = STORAGE_KEYS.anonymousId;
+const SESSION_KEY = STORAGE_KEYS.session;
+const ATTRIBUTION_KEY = STORAGE_KEYS.attribution;
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
 const FLUSH_DELAY_MS = 1500;
 const MAX_BATCH = 50;
@@ -68,6 +69,7 @@ function newId(): string {
 }
 
 function readStorage(key: string): string | null {
+  migrateLegacyStorage();
   try {
     return localStorage.getItem(key);
   } catch {

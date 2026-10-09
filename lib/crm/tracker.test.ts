@@ -3,14 +3,14 @@ import { browserName, deviceType, parseUtm, safeUrl } from "./tracker";
 
 describe("safeUrl", () => {
   it("tira o token de acesso do pedido (e qualquer parâmetro fora da lista) da URL registrada", () => {
-    expect(safeUrl("https://smartea.com.br/pedido/SMT-1?token=abc-123&utm_source=x#topo")).toBe(
-      "https://smartea.com.br/pedido/SMT-1?utm_source=x",
+    expect(safeUrl("https://almara.com.br/pedido/ALM-1?token=abc-123&utm_source=x#topo")).toBe(
+      "https://almara.com.br/pedido/ALM-1?utm_source=x",
     );
   });
 
   it("mantém utm, gclid, fbclid e ref", () => {
-    const url = safeUrl("https://smartea.com.br/?utm_campaign=c&gclid=g&fbclid=f&ref=r&email=a@b.com");
-    expect(url).toBe("https://smartea.com.br/?utm_campaign=c&gclid=g&fbclid=f&ref=r");
+    const url = safeUrl("https://almara.com.br/?utm_campaign=c&gclid=g&fbclid=f&ref=r&email=a@b.com");
+    expect(url).toBe("https://almara.com.br/?utm_campaign=c&gclid=g&fbclid=f&ref=r");
   });
 
   it("URL inválida vira string vazia", () => {

@@ -5,8 +5,8 @@ import { BenefitCard } from "@/components/ui/benefit-card";
 import { BENEFIT_CARDS } from "@/data/benefits";
 
 export const metadata: Metadata = {
-  title: "Sobre — Smartea",
-  description: "A história da Smartea: um ritual em cada lata.",
+  title: "Sobre — Almara",
+  description: "A história da Almara: um ritual em cada lata.",
 };
 
 export default function SobrePage() {
@@ -17,7 +17,7 @@ export default function SobrePage() {
         <h1 className="mt-3 font-display text-[clamp(44px,7vw,80px)] text-verde-escuro">Um ritual em cada lata</h1>
         <div className="mt-8 flex flex-col gap-5 text-left text-tinta/80">
           <p>
-            A Smartea nasceu de uma pergunta simples: e se um chá pudesse ser mais do que uma bebida —
+            A Almara nasceu de uma pergunta simples: e se um chá pudesse ser mais do que uma bebida —
             um convite diário para desacelerar, respirar e cuidar de si?
           </p>
           <p>
@@ -26,8 +26,8 @@ export default function SobrePage() {
             noite que pede calma.
           </p>
           <p>
-            E por trás de cada lata existe mais do que chá: o Smartea+, nosso app de jornadas
-            guiadas de 21 dias, com a Flora, nossa IA de bem-estar — pequenos hábitos, todos os dias.
+            E por trás de cada lata existe mais do que chá: o Almara+, nosso app de jornadas
+            guiadas de 21 dias, com a Mara, nossa IA de bem-estar — pequenos hábitos, todos os dias.
           </p>
         </div>
       </div>
@@ -37,7 +37,7 @@ export default function SobrePage() {
         <div>
           <p className="font-display text-2xl text-creme">A jornada continua no app</p>
           <p className="mt-1.5 text-texto-sobre-escuro">
-            Baixe o Smartea+ e escolha sua jornada de 21 dias. O ritual do seu chá acompanha você em
+            Baixe o Almara+ e escolha sua jornada de 21 dias. O ritual do seu chá acompanha você em
             qualquer uma delas — a escolha é sempre sua.
           </p>
         </div>

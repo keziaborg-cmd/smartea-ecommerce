@@ -1,5 +1,5 @@
 const RESEND_API = "https://api.resend.com/emails";
-const FROM_ADDRESS = "Smartea <ola@smartea.com.br>";
+const FROM_ADDRESS = "Almara <ola@almara.com.br>";
 
 function resendApiKey(): string {
   const key = Deno.env.get("RESEND_API_KEY");
@@ -68,7 +68,7 @@ export async function sendOrderConfirmationEmail(data: OrderConfirmationEmailDat
     body: JSON.stringify({
       from: FROM_ADDRESS,
       to: data.customerEmail,
-      subject: `Pedido ${data.orderNumber} confirmado — Smartea`,
+      subject: `Pedido ${data.orderNumber} confirmado — Almara`,
       html: buildHtml(data),
     }),
   });

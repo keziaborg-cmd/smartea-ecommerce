@@ -1,6 +1,6 @@
 ---
-name: Smartea
-description: Uma botica de jardim que acende uma luz por dia — chás funcionais e o app Smartea+, em verde-floresta, creme e vinho.
+name: Almara
+description: Uma botica de jardim que acende uma luz por dia — chás funcionais e o app Almara+, em verde-floresta, creme e vinho.
 colors:
   verde-escuro: "#013f24"
   verde-folha: "#568833"
@@ -96,15 +96,15 @@ components:
     textColor: "{colors.verde-escuro}"
 ---
 
-# Design System: Smartea
+# Design System: Almara
 
 ## Overview
 
 **Creative North Star: "A Botica de Jardim"**
 
-Antigo no carinho, novo na execução: uma botica de jardim que acende uma luz por dia. A metáfora guia o design por dentro (latas como frascos de farmácia de ervas, uma luz verde atrás de cada uma, superfícies de papel creme) e **nunca vira texto de comunicação**: "botica" pode puxar a marca para o lado de remédio, e a Smartea é cuidadosa com alegações de saúde. Para o público, a linguagem é "jardim" e "estufa".
+Antigo no carinho, novo na execução: uma botica de jardim que acende uma luz por dia. A metáfora guia o design por dentro (latas como frascos de farmácia de ervas, uma luz verde atrás de cada uma, superfícies de papel creme) e **nunca vira texto de comunicação**: "botica" pode puxar a marca para o lado de remédio, e a Almara é cuidadosa com alegações de saúde. Para o público, a linguagem é "jardim" e "estufa".
 
-O sistema é suave e orgânico por padrão: cantos grandes, pílulas, divisores ondulados, brilho difuso atrás das latas. A paleta é botânica e quente (verde-floresta sobre creme, vinho como contraponto), nunca clínica. O Smartea+ (`/smartea-mais`) é a camada gamificada: mais saturada e tátil, mas derivada da mesma paleta da marca.
+O sistema é suave e orgânico por padrão: cantos grandes, pílulas, divisores ondulados, brilho difuso atrás das latas. A paleta é botânica e quente (verde-floresta sobre creme, vinho como contraponto), nunca clínica. O Almara+ (`/almara-mais`) é a camada gamificada: mais saturada e tátil, mas derivada da mesma paleta da marca.
 
 **Key Characteristics:**
 - Verde-floresta e creme quente como base; vinho e dourado como acentos raros.
@@ -137,20 +137,20 @@ Botânica e quente: verdes profundos sobre papel creme, com vinho e dourado como
 - **Eyebrow Claro / Escuro** (#7a8a6e / #9db38f): rótulos em caixa-alta.
 - **Borda Clara** (#e0dac6) e **Input** (#faf8f1): bordas e campos.
 
-### Smartea+ (escopo da página /smartea-mais)
+### Almara+ (escopo da página /almara-mais)
 - **Folha Viva** (#477023, escura #324e19), fundo **Creme Mais** (#f6f2e6), texto **Tinta Mais** (#22331c).
 - Jornadas: **Sono** terracota (#b8703a), **Ansiedade** verde-água (#5c8a72), **Produtividade** oliva (#8a9a3e), **Pausa** rosé (#b0685f), cada uma com variante escura e clara.
 
 ### Named Rules
 **The Luz do Dia Rule.** Cada blend carrega a própria luz (gradiente + brilho + cor de botão). Cores por chá vivem em `data/teas.ts`, não em tokens globais.
 **The Vermelho Sem Culpa Rule.** Vermelho nunca pune. Aparece para reacender o foco, jamais como erro de fracasso ou cobrança.
-**The Escopo Smartea+ Rule.** Paleta e fontes do Smartea+ ficam na página do app; a loja usa verde-escuro e Carena/Montserrat.
+**The Escopo Almara+ Rule.** Paleta e fontes do Almara+ ficam na página do app; a loja usa verde-escuro e Carena/Montserrat.
 
 ## Typography
 
 **Display Font:** Carena (serif, arquivo local `public/fonts/Carena-Regular.otf`, fallback serif)
 **Body Font:** Montserrat (Google Fonts, fallback sans-serif)
-**Smartea+:** Fredoka (display) e Nunito (corpo), apenas em `/smartea-mais`.
+**Almara+:** Fredoka (display) e Nunito (corpo), apenas em `/almara-mais`.
 
 **Character:** Um serif de display com calor de rótulo antigo contra uma sans geométrica limpa e legível; carinho antigo, execução nova.
 
@@ -177,7 +177,7 @@ Híbrido: superfícies planas em camadas tonais (sage, creme, creme quente), com
 ### Shadow Vocabulary
 - **Lata** (`box-shadow: 0 40px 45px rgba(0,0,0,0.5)`): latas em hero e destaque.
 - **Cartão de produto** (`0 26px 26px rgba(0,0,0,0.28)`): lata dentro do cartão.
-- **Laje sólida** (`0 5px 0 0 var(--btn-shadow)`): só no botão 3D do Smartea+; encolhe a 1px ao pressionar.
+- **Laje sólida** (`0 5px 0 0 var(--btn-shadow)`): só no botão 3D do Almara+; encolhe a 1px ao pressionar.
 - **Brilho de lata** (radial-gradient com blur de 6px, ~70px além da borda): luz difusa atrás da lata.
 
 ### Named Rules
@@ -194,7 +194,7 @@ Linguagem orgânica de cantos grandes: pílula (40px) para botões e chips, 12px
 - **Primary:** verde-escuro com texto creme, padding ~12px 32px, peso 600.
 - **On dark:** creme com texto verde-escuro (hero e banda verde).
 - **Outline / ghost:** borda verde-escuro a 25% (ou branca a 30% sobre escuro); hover leva a borda para vinho (claro) ou dourado (escuro).
-- **3D (Smartea+):** cor viva com laje sólida mais escura embaixo; ao pressionar, desce 4px e a laje encolhe. É o único gesto tátil do sistema; usar para a ação "fiz hoje".
+- **3D (Almara+):** cor viva com laje sólida mais escura embaixo; ao pressionar, desce 4px e a laje encolhe. É o único gesto tátil do sistema; usar para a ação "fiz hoje".
 
 ### Cards / Containers
 - **Cartão de produto:** 26px, padding 24px, fundo em gradiente por chá, lata central com brilho, nome em Carena, tag em itálico, preço e botão em pílula com as cores do blend.
@@ -216,12 +216,12 @@ Linguagem orgânica de cantos grandes: pílula (40px) para botões e chips, 12px
 - **Do** dar a cada blend a própria luz (gradiente, brilho, cores de botão) vinda de `data/teas.ts`.
 - **Do** usar Carena para títulos e preços, Montserrat para o resto.
 - **Do** manter botões como pílulas e cartões com cantos de 22–34px.
-- **Do** reservar o botão 3D de laje sólida ao Smartea+ e à ação "fiz hoje".
+- **Do** reservar o botão 3D de laje sólida ao Almara+ e à ação "fiz hoje".
 - **Do** usar "jardim" e "estufa" na comunicação; "botica" é só direção interna de design.
 
 ### Don't:
 - **Don't** parecer clínico ou farmacêutico: nada de branco frio, jaleco ou tom de suplemento de academia.
-- **Don't** clonar o Duolingo: o Smartea+ é gamificado, mas derivado da paleta da marca (folha-viva, jornadas em tons terrosos), nunca verde-lima ou azul literal.
+- **Don't** clonar o Duolingo: o Almara+ é gamificado, mas derivado da paleta da marca (folha-viva, jornadas em tons terrosos), nunca verde-lima ou azul literal.
 - **Don't** usar vermelho para culpar ou punir; ele reacende o foco.
 - **Don't** pôr sombra pesada em superfícies ou cartões; só nas latas.
-- **Don't** usar a paleta ou as fontes do Smartea+ (Fredoka, Nunito, jornadas) fora de `/smartea-mais`.
+- **Don't** usar a paleta ou as fontes do Almara+ (Fredoka, Nunito, jornadas) fora de `/almara-mais`.

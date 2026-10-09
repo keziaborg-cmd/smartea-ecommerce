@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://smartea.com.br";
 
 export default function robots(): MetadataRoute.Robots {
   return {

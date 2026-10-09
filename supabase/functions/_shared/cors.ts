@@ -1,6 +1,9 @@
 // Update this list when the production domain changes or a new preview/dev
 // origin needs to call these functions directly from the browser.
 const ALLOWED_ORIGINS = [
+  "https://almara.com.br",
+  "https://www.almara.com.br",
+  // domínio antigo: só durante a transição (ele redireciona pro novo com 301); remover depois
   "https://smartea.com.br",
   "https://www.smartea.com.br",
   "http://localhost:3411",

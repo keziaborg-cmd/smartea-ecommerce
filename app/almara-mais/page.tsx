@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Fredoka, Nunito } from "next/font/google";
-import { HeroSection } from "@/components/smartea-mais/hero-section";
-import { TrailSection } from "@/components/smartea-mais/trail-section";
-import { JourneysSection } from "@/components/smartea-mais/journeys-section";
-import { ToolsSection } from "@/components/smartea-mais/tools-section";
-import { FeaturesSection } from "@/components/smartea-mais/features-section";
-import { PillButton3D } from "@/components/smartea-mais/pill-button-3d";
+import { HeroSection } from "@/components/almara-mais/hero-section";
+import { TrailSection } from "@/components/almara-mais/trail-section";
+import { JourneysSection } from "@/components/almara-mais/journeys-section";
+import { ToolsSection } from "@/components/almara-mais/tools-section";
+import { FeaturesSection } from "@/components/almara-mais/features-section";
+import { PillButton3D } from "@/components/almara-mais/pill-button-3d";
 
 // Fontes só desta página (redesign gamificado inspirado no Duolingo,
 // 2026-08-16) — carregadas aqui via next/font e escopadas por um wrapper
@@ -27,12 +27,12 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Smartea+ — o app que continua sua jornada",
+  title: "Almara+ — o app que continua sua jornada",
   description:
-    "Conheça o Smartea+: a Flora, as jornadas guiadas de 21 dias e como o Smartea+ transforma o ritual do chá em hábito.",
+    "Conheça o Almara+: a Mara, as jornadas guiadas de 21 dias e como o Almara+ transforma o ritual do chá em hábito.",
 };
 
-export default function SmarteaMaisPage() {
+export default function AlmaraMaisPage() {
   return (
     <main
       className={`${fredoka.variable} ${nunito.variable} font-body-mais animate-pagein bg-bg-mais px-[6vw] py-10 sm:px-[4vw]`}

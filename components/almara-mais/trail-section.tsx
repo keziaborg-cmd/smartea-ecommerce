@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Leaf } from "lucide-react";
-import { TRAIL_STEPS } from "@/data/smartea-mais-content";
+import { TRAIL_STEPS } from "@/data/almara-mais-content";
 import conceitoIcon from "./icones/conceito-i.png";
 import autoidentificacaoIcon from "./icones/autoidentificacao-i.png";
 import aprofundamentoIcon from "./icones/aprofundamento-i.png";
@@ -151,7 +151,7 @@ export function TrailSection() {
         </h2>
         <p className="mx-auto mt-3 max-w-md font-body-mais text-tinta-mais/70">
           Cada dia de jornada é uma trilha curtinha de 7 paradas — do conceito até a conversa com a
-          Flora.
+          Mara.
         </p>
       </div>
 
