@@ -7,8 +7,19 @@ describe("redirect do domínio antigo", () => {
     expect(legacyDomainRedirects({ REDIRECT_LEGACY_DOMAIN: "0" })).toEqual([]);
   });
 
-  it("ligado: 301 de smartea.com.br e www pro endereço do site, poupando a verificação do Google", () => {
-    const [rule] = legacyDomainRedirects({ REDIRECT_LEGACY_DOMAIN: "1" });
+  it("ligado: caminhos renomeados vão direto pro endereço final (um salto só)", () => {
+    const rules = legacyDomainRedirects({ REDIRECT_LEGACY_DOMAIN: "1" });
+    const direct = rules.find((r: { source: string }) => r.source === "/smartea-mais")!;
+    expect(direct.destination).toBe("https://almara.com.br/almara-mais");
+    expect(direct.statusCode).toBe(301);
+    expect(rules.find((r: { source: string }) => r.source === "/blog/autor/equipe-smartea")!.destination).toBe("https://almara.com.br/blog/autor/equipe-almara");
+    // as regras específicas vêm antes da genérica, senão a genérica engoliria o caminho
+    expect(rules.findIndex((r: { source: string }) => r.source === "/smartea-mais")).toBeLessThan(rules.length - 1);
+  });
+
+  it("ligado: o resto do domínio antigo e do www vai pro novo com 301, poupando a verificação do Google", () => {
+    const rules = legacyDomainRedirects({ REDIRECT_LEGACY_DOMAIN: "1" });
+    const rule = rules[rules.length - 1];
     expect(rule.statusCode).toBe(301);
     expect(rule.has[0].value).toBe("(?:www\\.)?smartea\\.com\\.br");
     expect(rule.destination).toMatch(/\/:path$/);
