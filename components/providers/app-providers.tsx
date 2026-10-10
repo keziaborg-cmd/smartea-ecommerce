@@ -5,6 +5,7 @@ import { useCartStore } from "@/lib/cart/cart-store";
 import { Toast } from "@/components/ui/toast";
 import { ContactModal } from "@/components/ui/contact-modal";
 import { CookieBanner } from "@/components/consent/cookie-banner";
+import { WhatsAppWidget } from "@/components/whatsapp/whatsapp-widget";
 import { CrmTracker } from "@/components/crm/crm-tracker";
 import { migrateLegacyStorage } from "@/lib/storage-keys";
 
@@ -22,6 +23,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
       {children}
       <Toast />
       <ContactModal />
+      <WhatsAppWidget />
       <CookieBanner />
       <CrmTracker />
     </>
