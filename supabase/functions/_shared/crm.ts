@@ -1,7 +1,7 @@
 import type { SupabaseClient } from "npm:@supabase/supabase-js@2";
 
 // Entrada de eventos do CRM pelo servidor (public.crm_track_server, definida em
-// smartea-metrics/db/006_crm_core.sql). Nunca lança: o CRM fora do ar não pode
+// almara-metrics/db/006_crm_core.sql). Nunca lança: o CRM fora do ar não pode
 // derrubar um pedido ou pagamento.
 export interface CrmServerEvent {
   name: string;

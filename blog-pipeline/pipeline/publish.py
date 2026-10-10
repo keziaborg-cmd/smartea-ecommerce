@@ -34,7 +34,7 @@ def _unique_slug(cur, base_slug: str) -> str:
 
 def publish_draft(draft: dict, *, conn_str: str, dry_run: bool = False) -> bool:
     """Insere um rascunho em public.blog_posts, sempre em status "revisao" —
-    quem decide publicar é uma pessoa, no painel smartea-metrics (aba
+    quem decide publicar é uma pessoa, no painel almara-metrics (aba
     "Blog"), nunca este pipeline. Devolve True se o insert teve sucesso (ou
     se dry_run)."""
     if dry_run:
