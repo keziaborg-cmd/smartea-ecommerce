@@ -4,7 +4,7 @@ import { hasAnalyticsConsent, useConsentStore } from "@/lib/consent/consent";
 import { migrateLegacyStorage, STORAGE_KEYS } from "@/lib/storage-keys";
 
 // Tracking first-party do CRM. Os eventos vão em lote pra public.crm_track_web (definida em
-// smartea-metrics/db/006_crm_core.sql), que valida contra o catálogo e faz identity resolution.
+// almara-metrics/db/006_crm_core.sql), que valida contra o catálogo e faz identity resolution.
 //
 // Consentimento: sem "cookies de análise" aceitos, não existe anonymous_id nem sessão (nada é
 // guardado no navegador) e só os eventos do funil de compra abaixo são enviados — e-mail e

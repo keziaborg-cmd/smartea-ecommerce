@@ -8,7 +8,7 @@ relevância e escrever o texto. Os rascunhos entram direto na tabela `public.blo
 **Nenhum artigo é publicado automaticamente.** Todo artigo nasce com
 `status = 'revisao'` — RLS garante isso (o role do pipeline só consegue inserir nesse
 status, ver `supabase/migrations/20261006000000_blog_posts.sql`) e o site só lê
-`status = 'publicado'`. A revisão e a publicação acontecem no painel smartea-metrics
+`status = 'publicado'`. A revisão e a publicação acontecem no painel almara-metrics
 (aba "Blog"), nunca aqui.
 
 ## As 4 etapas
@@ -80,7 +80,7 @@ Prefira um feed de uma fonte sem esse tipo de proteção.
 
 ## Classificação de risco
 
-- `risco: alto` — categorias `sono`, `ansiedade` e `pausa`. O painel smartea-metrics já
+- `risco: alto` — categorias `sono`, `ansiedade` e `pausa`. O painel almara-metrics já
   sinaliza isso na tela de revisão, pedindo revisão de um profissional antes de
   publicar, não só da Kezia.
 - `risco: baixo` — categoria `produtividade`. Pode ser revisado só pela Kezia.
@@ -125,7 +125,7 @@ já publicado antes, não pular revisão.
 
 ## Revisando e publicando um rascunho
 
-1. O post entra na aba "Blog" do painel smartea-metrics assim que o pipeline roda,
+1. O post entra na aba "Blog" do painel almara-metrics assim que o pipeline roda,
    listado em "Aguardando revisão" — com categoria, risco, fontes e o corpo completo.
 2. Leia o artigo. Se o risco for alto, peça revisão de um profissional antes de seguir.
 3. Clique em "Publicar". O post vira `status = 'publicado'` na hora — não existe edição

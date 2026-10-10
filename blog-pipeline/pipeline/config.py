@@ -35,8 +35,8 @@ _ceiling = os.environ.get("WEEKLY_TOKEN_CEILING")
 WEEKLY_TOKEN_CEILING = int(_ceiling) if _ceiling else None
 
 # Connection string do role blog_pipeline_writer (só INSERT, sempre em status "revisao" — ver
-# smartea-ecommerce/supabase/migrations/20261006000000_blog_posts.sql). A revisão e a publicação
-# de verdade acontecem no painel smartea-metrics, não aqui.
+# almara-ecommerce/supabase/migrations/20261006000000_blog_posts.sql). A revisão e a publicação
+# de verdade acontecem no painel almara-metrics, não aqui.
 BLOG_DATABASE_URL = os.environ.get("BLOG_DATABASE_URL")
 
 
